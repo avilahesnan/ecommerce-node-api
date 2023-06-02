@@ -1,0 +1,20 @@
+{
+  "name": "ecommerce-node-api",
+  "version": "1.0.0",
+  "description": "comércio eletrônico B2C - varejo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "varejo",
+    "B2C"
+  ],
+  "author": "Hesnan Avila",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "sucrase": "^3.32.0",
+    "typescript": "^5.1.3"
+  }
+}
