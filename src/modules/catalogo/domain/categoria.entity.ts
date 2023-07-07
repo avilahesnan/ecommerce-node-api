@@ -17,6 +17,18 @@ export class Categoria implements ICategoria {
     }
 
     private set nome(value: string) {
+        if (value === null || value === undefined) {
+            throw new Error(`${value} é nulo ou indefinido.`);
+        }
+
+        if (value.trim().length < 3) {
+            throw new Error(`O nome da categoria não possui um tamanho mínimo válido.`);
+        }
+        
+        if (value.trim().length > 50) {
+            throw new Error(`O nome da categoria não possui um tamanho máximo válido.`);
+        }
+
         this._nome = value;
     }
 
