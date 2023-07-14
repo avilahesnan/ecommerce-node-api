@@ -1,8 +1,8 @@
 export class DomainException extends Error {
-    constructor(message: string = ' ⚠️ Exceção de domínio genérica') {
+    constructor(message: string) {
         super(message)
         this.name = 'DomainException'
-        this.message = message;
+        this.message = '⚠️ Exceção de domínio genérica';
         Error.captureStackTrace(this, this.constructor)
     }
 }
