@@ -1,4 +1,8 @@
-import { NomeCategoriaNuloOuIndefinido, NomeCategoriaTamanhoMaximoInvalido, NomeCategoriaTamanhoMinimoInvalido } from "./categoria.exception";
+import { 
+    NomeCategoriaNuloOuIndefinido,
+    NomeCategoriaTamanhoMaximoInvalido,
+    NomeCategoriaTamanhoMinimoInvalido 
+} from "./categoria.exception";
 import { CreateCategoriaProps, ICategoria } from "./categoria.types";
 
 export class Categoria implements ICategoria {
