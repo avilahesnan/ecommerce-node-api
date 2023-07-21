@@ -4,18 +4,10 @@ import {
     NomeCategoriaTamanhoMinimoInvalido 
 } from "./categoria.exception";
 import { CreateCategoriaProps, ICategoria } from "./categoria.types";
+import { Entity } from "../../../shared/domain/entity";
 
-export class Categoria implements ICategoria {
-    private _id: string = '';
+export class Categoria extends Entity<ICategoria> implements ICategoria {
     private _nome: string = '';
-
-    public get id(): string {
-        return this._id;
-    }
-
-    private set id(value: string) {
-        this._id = value;
-    }
 
     public get nome(): string {
         return this._nome;
@@ -38,13 +30,12 @@ export class Categoria implements ICategoria {
     }
 
     private constructor(props: ICategoria) {
-        this.id = props.id;
+        super(props.id);
         this.nome = props.nome;
     }
 
     public static create(props: CreateCategoriaProps): Categoria {
-        let id = "1";
         let { nome } = props;
-        return new Categoria({id, nome});
+        return new Categoria({ nome });
     }
 }
