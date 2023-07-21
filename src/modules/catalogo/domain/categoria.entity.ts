@@ -3,7 +3,7 @@ import {
     NomeCategoriaTamanhoMaximoInvalido,
     NomeCategoriaTamanhoMinimoInvalido 
 } from "./categoria.exception";
-import { CreateCategoriaProps, ICategoria } from "./categoria.types";
+import { CreateCategoriaProps, ICategoria, RecoverCategoriaProps } from "./categoria.types";
 import { Entity } from "../../../shared/domain/entity";
 
 export class Categoria extends Entity<ICategoria> implements ICategoria {
@@ -37,5 +37,9 @@ export class Categoria extends Entity<ICategoria> implements ICategoria {
     public static create(props: CreateCategoriaProps): Categoria {
         let { nome } = props;
         return new Categoria({ nome });
+    }
+
+    public static recover(props: RecoverCategoriaProps): Categoria {
+        return new Categoria(props);
     }
 }

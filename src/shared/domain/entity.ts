@@ -1,4 +1,5 @@
 import { randomUUID } from "crypto";
+import { IDEntityUUIDInvalid } from "./domain.exception";
 
 const isEntity = (v: any): v is Entity<any> => {
     return v instanceof Entity;
@@ -12,6 +13,10 @@ export abstract class Entity<T> {
     }
 
     private set id(value: string) {
+        if (!Entity.validUUID(value)) {
+            throw new IDEntityUUIDInvalid();
+        }
+        
         this._id = value;
     }
 
@@ -33,6 +38,11 @@ export abstract class Entity<T> {
         }
 
         return this._id == object._id;
+    }
+
+    public static validUUID(UUIDD: string): boolean {
+        let padraoUUID: RegExp = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+        return padraoUUID.test(UUIDD);
     }
 
 }

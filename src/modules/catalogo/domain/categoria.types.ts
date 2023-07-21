@@ -4,3 +4,5 @@ export interface ICategoria {
 }
 
 export type CreateCategoriaProps = Omit<ICategoria, "id">;
+
+export type RecoverCategoriaProps = Required<ICategoria>;
