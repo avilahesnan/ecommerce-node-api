@@ -1,12 +1,13 @@
 import { Categoria } from "./modules/catalogo/domain/categoria.entity";
+import { CategoriaMap } from "./modules/catalogo/mappers/categoria.map";
 import { DomainException } from "./shared/domain/domain.exception";
-import { writeFile } from "fs";
+import { writeFile, readFile } from "fs";
 
 
 try {
 
     let categoria: Categoria;
-    categoria = Categoria.create({nome:'cama'});
+    categoria = Categoria.create({nome:'alimento'});
     console.log(categoria);
 
     let propsCategoria = {
@@ -17,9 +18,21 @@ try {
     console.log(categoria2);
     console.log(categoria.equals(categoria2));
 
-    writeFile('categorias.json', JSON.stringify(categoria), function(error:any){  
+    let arrayCategorias = [];
+    arrayCategorias.push(categoria.toDTO());
+    arrayCategorias.push(categoria2.toDTO());
+
+    writeFile('categorias.json', JSON.stringify(arrayCategorias), function(error:any){  
         if (error) throw error;
         console.log('Arquivo Salvo com Sucesso!');
+        readFile('categorias.json', (error, data) => {
+            if (error) throw error;
+            console.log('Leitura de Arquivo!');
+            let categoriaSalvas: [] = JSON.parse(data.toString());
+            categoriaSalvas.forEach(categoriaJSON => {
+                console.log(CategoriaMap.toDomain(categoriaJSON));
+            });
+        });
     });
 
 

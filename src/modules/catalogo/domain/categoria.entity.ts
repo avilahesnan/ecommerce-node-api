@@ -5,6 +5,7 @@ import {
 } from "./categoria.exception";
 import { CreateCategoriaProps, ICategoria, RecoverCategoriaProps } from "./categoria.types";
 import { Entity } from "../../../shared/domain/entity";
+import { CategoriaMap } from "../mappers/categoria.map";
 
 export class Categoria extends Entity<ICategoria> implements ICategoria {
     private _nome: string = '';
@@ -41,5 +42,9 @@ export class Categoria extends Entity<ICategoria> implements ICategoria {
 
     public static recover(props: RecoverCategoriaProps): Categoria {
         return new Categoria(props);
+    }
+
+    public toDTO(): ICategoria {
+        return CategoriaMap.toDTO(this);
     }
 }
