@@ -30,7 +30,7 @@ describe ('Entidade de Domínio: Categoria (create)', () => {
     })
 });
 
-describe('Entidade de Domínio: Categoria (Recover)', () => {
+describe ('Entidade de Domínio: Categoria (Recover)', () => {
 
     test('Deve Recuperar Uma Categoria Válida', async () => {
 
