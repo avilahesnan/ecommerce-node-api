@@ -51,7 +51,8 @@ finally {
 
 try {
     let produto: Produto;
-    produto = Produto.create({nome:'Geladeira', descricao:'Um geladeira muito bom', valor:2000, categoria:[]});
+    let categoria = Categoria.create({nome:'Qualquer'});
+    produto = Produto.create({nome:'Geladeira', descricao:'Um geladeira muito bom', valor:2000, categoria:[categoria]});
     console.log(produto);
 }
 catch (error:any) {
