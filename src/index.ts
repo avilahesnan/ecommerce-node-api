@@ -1,11 +1,11 @@
 import { Categoria } from "./modules/catalogo/domain/categoria.entity";
+import { Produto } from "./modules/catalogo/domain/produto.entity";
 import { CategoriaMap } from "./modules/catalogo/mappers/categoria.map";
 import { DomainException } from "./shared/domain/domain.exception";
 import { writeFile, readFile } from "fs";
 
 
 try {
-
     let categoria: Categoria;
     categoria = Categoria.create({nome:'alimento'});
     console.log(categoria);
@@ -33,9 +33,26 @@ try {
                 console.log(CategoriaMap.toDomain(categoriaJSON));
             });
         });
-    });
+    }); 
+}
+catch (error:any) {
+    if (error instanceof DomainException) {
+        console.log('Exceção de Domínio---------------------');
+        console.log(error.message);
+    }
+    else {
+        console.log('Outras Exceções ----------------------');
+        console.log(error.message);
+    }
+}
+finally {
+    console.log('Ação que deve ser executada em caso de sucesso e em caso de exceção');
+}
 
-
+try {
+    let produto: Produto;
+    produto = Produto.create({nome:'Geladeira', descricao:'Um geladeira muito bom', valor:2000, categoria:[]});
+    console.log(produto);
 }
 catch (error:any) {
     if (error instanceof DomainException) {
