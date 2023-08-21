@@ -9,7 +9,7 @@ import { NomeDescricaoTamanhoMaximoInvalido,
     ValorMinimoInvalido} from "./produto.exception";
 import { CreateProdutoProps, IProduto} from "./produto.types";
 
-export class Produto implements IProduto {
+export class Produto extends Entity<IProduto> implements IProduto {
     private _nome: string = '';
     private _descricao: string = '';
     private _valor: number = 0;
@@ -67,11 +67,13 @@ export class Produto implements IProduto {
         }
         this._categoria = value;
     }
+    
     private constructor(props: IProduto) {
-       this.nome = props.nome;
-       this.descricao = props.descricao;
-       this.valor = props.valor;
-       this.categoria = props.categoria;
+        super(props.id);
+        this.nome = props.nome;
+        this.descricao = props.descricao;
+        this.valor = props.valor;
+        this.categoria = props.categoria;
     }
 
     public static create(props: CreateProdutoProps): Produto {
