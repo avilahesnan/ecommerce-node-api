@@ -71,7 +71,6 @@ describe ('Entidade de Domínio: Produto (create)', () => {
             .toThrowError(ValorMinimoInvalido)
     })
 
-
     test('Não Deve Criar Produto Com Descrição Inválido - Tamanho Máximo', () => {
         const categoria = Categoria.create({nome:'Qualquer'});
         const produtoInvalida: CreateProdutoProps = {
