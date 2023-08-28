@@ -1,13 +1,25 @@
-import { describe, expect, test } from "vitest";
+import { beforeAll, describe, expect, test } from "vitest";
 import { CreateCategoriaProps, RecoverCategoriaProps } from "./categoria.types";
 import { Categoria } from "./categoria.entity";
 import { NomeCategoriaTamanhoMaximoInvalido, NomeCategoriaTamanhoMinimoInvalido } from "./categoria.exception";
 import { IDEntityUUIDInvalid } from "../../../../shared/domain/domain.exception";
+import { faker } from '@faker-js/faker';
+
+let nomeCategoriaValida: string;
+let nomeCategoriaTamanhoMaximoInvalido: string;
+let nomeCategoriaTamanhoMinimoInvalido: string;
+let UUIDValido: string;
+let UUIDInvalido: string;
+
+beforeAll(async () => {
+    nomeCategoriaValida = faker.string.alpha({length:{min:3,max:50}});
+    nomeCategoriaTamanhoMaximoInvalido = faker.string.alpha({length:{min:51, max:51}});
+})
 
 describe ('Entidade de Domínio: Categoria (create)', () => {
     test('Deve Criar Uma Categoria Válida - ', async () => {
         const categoriaValida: CreateCategoriaProps = {
-            nome: 'Alimento'
+            nome: faker.string.alpha({length:{min:3,max:50}})
         }
         expect(Categoria.create(categoriaValida))
             .to.be.instanceOf(Categoria)
