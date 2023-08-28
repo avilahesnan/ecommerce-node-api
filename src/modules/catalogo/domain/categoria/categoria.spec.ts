@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { CreateCategoriaProps, RecoverCategoriaProps } from "./categoria.types";
 import { Categoria } from "./categoria.entity";
 import { NomeCategoriaTamanhoMaximoInvalido, NomeCategoriaTamanhoMinimoInvalido } from "./categoria.exception";
-import { IDEntityUUIDInvalid } from "../../../shared/domain/domain.exception";
+import { IDEntityUUIDInvalid } from "../../../../shared/domain/domain.exception";
 
 describe ('Entidade de Domínio: Categoria (create)', () => {
     test('Deve Criar Uma Categoria Válida - ', async () => {

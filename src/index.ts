@@ -1,5 +1,5 @@
-import { Categoria } from "./modules/catalogo/domain/categoria.entity";
-import { Produto } from "./modules/catalogo/domain/produto.entity";
+import { Categoria } from "./modules/catalogo/domain/categoria/categoria.entity";
+import { Produto } from "./modules/catalogo/domain/produto/produto.entity";
 import { CategoriaMap } from "./modules/catalogo/mappers/categoria.map";
 import { DomainException } from "./shared/domain/domain.exception";
 import { writeFile, readFile } from "fs";

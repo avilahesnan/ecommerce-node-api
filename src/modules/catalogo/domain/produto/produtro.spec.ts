@@ -8,7 +8,7 @@ import { NomeDescricaoTamanhoMaximoInvalido,
     QuantidadeCategoriasMaximoInvalido,
     QuantidadeCategoriasMinimoInvalido,
     ValorMinimoInvalido} from "./produto.exception";
-import { Categoria } from "./categoria.entity";
+import { Categoria } from "../categoria/categoria.entity";
 
 describe ('Entidade de Domínio: Produto (create)', () => {
     test('Deve Criar um Produto Válido - ', async () => {
@@ -17,7 +17,7 @@ describe ('Entidade de Domínio: Produto (create)', () => {
             nome: 'Geladeira',
             descricao: 'Uma Geladeira muito boa',
             valor: 2000,
-            categoria: [categoria]
+            categorias: [categoria]
         }
         expect(Produto.create(produtoValido))
             .to.be.instanceOf(Produto)
@@ -29,7 +29,7 @@ describe ('Entidade de Domínio: Produto (create)', () => {
             nome: 'Alli',
             descricao: 'Uma Geladeira muito boa',
             valor: 2000,
-            categoria: [categoria]
+            categorias: [categoria]
         }
         expect(() => Produto.create(produtoInvalida))
             .toThrowError(NomeProdutoTamanhoMinimoInvalido)
@@ -41,7 +41,7 @@ describe ('Entidade de Domínio: Produto (create)', () => {
             nome: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
             descricao: 'Uma Geladeira muito boa',
             valor: 2000,
-            categoria: [categoria]
+            categorias: [categoria]
         }
         expect(() => Produto.create(produtoInvalida))
             .toThrowError(NomeProdutoTamanhoMaximoInvalido)
@@ -53,7 +53,7 @@ describe ('Entidade de Domínio: Produto (create)', () => {
             nome: 'AllioFAF',
             descricao: '123456789',
             valor: 2000,
-            categoria: [categoria]
+            categorias: [categoria]
         }
         expect(() => Produto.create(produtoInvalida))
             .toThrowError(NomeDescricaoTamanhoMinimoInvalido)
@@ -65,7 +65,7 @@ describe ('Entidade de Domínio: Produto (create)', () => {
             nome: 'AllioFAF',
             descricao: '12345678910',
             valor: -1,
-            categoria: [categoria]
+            categorias: [categoria]
         }
         expect(() => Produto.create(produtoInvalida))
             .toThrowError(ValorMinimoInvalido)
@@ -78,7 +78,7 @@ describe ('Entidade de Domínio: Produto (create)', () => {
             nome: 'byyfftvgh',
             descricao: 'UmaGeladeiramuitoboaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUmaGeladeiramuitoboaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUmaGeladeiramuitoboaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUmaGeladeiramuitoboaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUmaGeladeiramuitoboaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUmaGeladeiramuitoboaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
             valor: 2000,
-            categoria: [categoria]
+            categorias: [categoria]
         }
         expect(() => Produto.create(produtoInvalida))
             .toThrowError(NomeDescricaoTamanhoMaximoInvalido)
@@ -89,7 +89,7 @@ describe ('Entidade de Domínio: Produto (create)', () => {
             nome: 'aaaaaaa',
             descricao: 'Uma Geladeira muito boa',
             valor: 2000,
-            categoria: []
+            categorias: []
         }
         expect(() => Produto.create(produtoInvalida))
             .toThrowError(QuantidadeCategoriasMinimoInvalido)
@@ -104,7 +104,7 @@ describe ('Entidade de Domínio: Produto (create)', () => {
             nome: 'AAAAAAAAA',
             descricao: 'Uma Geladeira muito boa',
             valor: 2000,
-            categoria: [categoria, categoria1, categoria2, categoria3]
+            categorias: [categoria, categoria1, categoria2, categoria3]
         }
         expect(() => Produto.create(produtoInvalida))
             .toThrowError(QuantidadeCategoriasMaximoInvalido)

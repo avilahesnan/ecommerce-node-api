@@ -1,7 +1,8 @@
-import { Categoria } from "../domain/categoria.entity";
-import { ICategoria, RecoverCategoriaProps } from "../domain/categoria.types";
+import { Categoria } from "../domain/categoria/categoria.entity";
+import { ICategoria, RecoverCategoriaProps } from "../domain/categoria/categoria.types";
 
 export class CategoriaMap {
+
     public static toDTO(categoria: Categoria): ICategoria {
         return {
             id: categoria.id,
@@ -9,7 +10,8 @@ export class CategoriaMap {
         }
     }
 
-    public static toDomain(cateogira: RecoverCategoriaProps): Categoria {
-        return Categoria.recover(cateogira);
+    public static toDomain(categoria: RecoverCategoriaProps): Categoria {
+        return Categoria.recover(categoria);
     }
+
 }

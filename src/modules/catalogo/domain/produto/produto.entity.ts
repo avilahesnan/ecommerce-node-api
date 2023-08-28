@@ -1,5 +1,6 @@
-import { Entity } from "../../../shared/domain/entity";
-import { Categoria } from "./categoria.entity";
+import { Entity } from "../../../../shared/domain/entity";
+import { ProdutoMap } from "../../mappers/produto.map";
+import { Categoria } from "../categoria/categoria.entity";
 import { NomeDescricaoTamanhoMaximoInvalido,
     NomeDescricaoTamanhoMinimoInvalido,
     NomeProdutoTamanhoMaximoInvalido,
@@ -7,13 +8,13 @@ import { NomeDescricaoTamanhoMaximoInvalido,
     QuantidadeCategoriasMaximoInvalido,
     QuantidadeCategoriasMinimoInvalido,
     ValorMinimoInvalido} from "./produto.exception";
-import { CreateProdutoProps, IProduto} from "./produto.types";
+import { CreateProdutoProps, IProduto, RecoverProdutoProps} from "./produto.types";
 
 export class Produto extends Entity<IProduto> implements IProduto {
     private _nome: string = '';
     private _descricao: string = '';
     private _valor: number = 0;
-    private _categoria: Categoria[] = [];
+    private _categorias: Categoria[] = [];
 
     public get nome(): string {
         return this._nome;
@@ -54,18 +55,18 @@ export class Produto extends Entity<IProduto> implements IProduto {
         this._valor = value;
     }
 
-    public get categoria(): Categoria[] {
-        return this._categoria;
+    public get categorias(): Categoria[] {
+        return this._categorias;
     }
 
-    private set categoria(value: Categoria[]) {
+    private set categorias(value: Categoria[]) {
         if (value.length < 1) {
             throw new QuantidadeCategoriasMinimoInvalido();
         }
         if (value.length > 3) {
             throw new QuantidadeCategoriasMaximoInvalido();
         }
-        this._categoria = value;
+        this._categorias = value;
     }
     
     private constructor(props: IProduto) {
@@ -73,14 +74,19 @@ export class Produto extends Entity<IProduto> implements IProduto {
         this.nome = props.nome;
         this.descricao = props.descricao;
         this.valor = props.valor;
-        this.categoria = props.categoria;
+        this.categorias = props.categorias;
     }
 
     public static create(props: CreateProdutoProps): Produto {
-        let { nome } = props;
-        let { descricao } = props;
-        let { valor } = props;
-        let { categoria } = props;
-        return new Produto({ nome, descricao, valor, categoria });
+        return new Produto(props);
     }
+
+    public static recover(props: RecoverProdutoProps): Produto {
+        return new Produto(props);
+    }
+
+    public toDTO(): IProduto {
+        return ProdutoMap.toDTO(this)
+    }
+
 }
