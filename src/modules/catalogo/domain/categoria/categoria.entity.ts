@@ -1,5 +1,5 @@
-import { Entity } from "../../../../shared/domain/entity";
-import { CategoriaMap } from "../../mappers/categoria.map";
+import { CategoriaMap } from "@modules/catalogo/mappers/categoria.map";
+import { Entity } from "@shared/domain/entity";
 import {
     NomeCategoriaNuloOuIndefinido,
     NomeCategoriaTamanhoMaximoInvalido,

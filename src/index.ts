@@ -1,7 +1,7 @@
-import { Categoria } from "./modules/catalogo/domain/categoria/categoria.entity";
-import { Produto } from "./modules/catalogo/domain/produto/produto.entity";
-import { CategoriaMap } from "./modules/catalogo/mappers/categoria.map";
-import { DomainException } from "./shared/domain/domain.exception";
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
+import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
+import { CategoriaMap } from "@modules/catalogo/mappers/categoria.map";
+import { DomainException } from "@shared/domain/domain.exception";
 import { writeFile, readFile } from "fs";
 
 
@@ -52,7 +52,7 @@ finally {
 try {
     let produto: Produto;
     let categoria = Categoria.create({nome:'Qualquer'});
-    produto = Produto.create({nome:'Geladeira', descricao:'Um geladeira muito bom', valor:2000, categoria:[categoria]});
+    produto = Produto.create({nome:'Geladeira', descricao:'Um geladeira muito bom', valor:2000, categorias:[categoria]});
     console.log(produto);
 }
 catch (error:any) {
