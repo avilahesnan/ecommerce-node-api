@@ -6,6 +6,7 @@ const isEntity = (v: any): v is Entity<any> => {
 };
 
 export abstract class Entity<T> {
+    
     private _id!: string;
 
     public get id(): string {

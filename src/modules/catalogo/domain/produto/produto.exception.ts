@@ -1,6 +1,5 @@
 import { DomainException } from "@shared/domain/domain.exception";
 
-
 export class ProdutoException extends DomainException {
   constructor(message:string = '⚠️ Exceção de Domínio Genérica da Entidade Produto') {
     super(message);
@@ -34,41 +33,41 @@ export class NomeProdutoTamanhoMaximoInvalido extends ProdutoException {
 }
 
 export class NomeDescricaoTamanhoMinimoInvalido extends ProdutoException {
-    public constructor(message:string = '⚠️ O nome da Descricao não possui um tamanho mínimo válido.') {
-      super(message);
-      this.name = 'NomeDescricaoTamanhoMinimoInvalido'
-      this.message = message;
-    }
+  public constructor(message:string = '⚠️ O nome da Descricao não possui um tamanho mínimo válido.') {
+    super(message);
+    this.name = 'NomeDescricaoTamanhoMinimoInvalido'
+    this.message = message;
   }
+}
   
 export class NomeDescricaoTamanhoMaximoInvalido extends ProdutoException {
-    public constructor(message:string = '⚠️ O nome da Descricao não possui um tamanho máximo válido.') {
-      super(message);
-      this.name = 'NomeDescricaoTamanhoMaximoInvalido'
-      this.message = message;
-    }
+  public constructor(message:string = '⚠️ O nome da Descricao não possui um tamanho máximo válido.') {
+    super(message);
+    this.name = 'NomeDescricaoTamanhoMaximoInvalido'
+    this.message = message;
   }
+}
 
 export class ValorMinimoInvalido extends ProdutoException {
-    public constructor(message:string = '⚠️ O valor não possui o valor mínimo válido.') {
-      super(message);
-      this.name = 'ValorMinimoInvalido'
-      this.message = message;
-    }
+  public constructor(message:string = '⚠️ O valor não possui o valor mínimo válido.') {
+    super(message);
+    this.name = 'ValorMinimoInvalido'
+    this.message = message;
+  }
 }
 
 export class QuantidadeCategoriasMaximoInvalido extends ProdutoException {
-    public constructor(message:string = '⚠️ As categorias não possui um tamanho máximo válido.') {
-      super(message);
-      this.name = 'QuantidadeCategoriasMaximoInvalido'
-      this.message = message;
-    }
+  public constructor(message:string = '⚠️ As categorias não possui um tamanho máximo válido.') {
+    super(message);
+    this.name = 'QuantidadeCategoriasMaximoInvalido'
+    this.message = message;
   }
+}
   
 export class QuantidadeCategoriasMinimoInvalido extends ProdutoException {
-      public constructor(message:string = '⚠️ As categorias não possui um tamanho mínimo válido.') {
-        super(message);
-        this.name = 'QuantidadeCategoriasMinimoInvalido'
-        this.message = message;
-      }
-    }
+  public constructor(message:string = '⚠️ As categorias não possui um tamanho mínimo válido.') {
+    super(message);
+    this.name = 'QuantidadeCategoriasMinimoInvalido'
+    this.message = message;
+  }
+}

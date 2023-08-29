@@ -20,6 +20,7 @@ beforeAll(async () => {
 })
 
 describe('Entidade de Domínio: Categoria (create)', () => {
+
     test('Deve Criar Uma Categoria Válida - ', async () => {
         const categoriaValida: CreateCategoriaProps = {
             nome: nomeCategoriaValida
@@ -94,5 +95,4 @@ describe('Entidade de Domínio: Categoria (Recover)', () => {
             .toThrowError(NomeCategoriaTamanhoMaximoInvalido);
 
     });
-
 });

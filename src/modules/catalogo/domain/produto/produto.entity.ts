@@ -1,5 +1,5 @@
-import { Entity } from "@shared/domain/entity";
 import { ProdutoMap } from "@modules/catalogo/mappers/produto.map";
+import { Entity } from "@shared/domain/entity";
 import { Categoria } from "../categoria/categoria.entity";
 import {
     NomeDescricaoTamanhoMaximoInvalido,
@@ -13,6 +13,7 @@ import {
 import { CreateProdutoProps, IProduto, RecoverProdutoProps } from "./produto.types";
 
 export class Produto extends Entity<IProduto> implements IProduto {
+    
     private _nome: string = '';
     private _descricao: string = '';
     private _valor: number = 0;

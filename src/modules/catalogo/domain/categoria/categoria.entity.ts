@@ -8,6 +8,7 @@ import {
 import { CreateCategoriaProps, ICategoria, RecoverCategoriaProps } from "./categoria.types";
 
 export class Categoria extends Entity<ICategoria> implements ICategoria {
+
     private _nome: string = '';
 
     public get nome(): string {
@@ -47,4 +48,5 @@ export class Categoria extends Entity<ICategoria> implements ICategoria {
     public toDTO(): ICategoria {
         return CategoriaMap.toDTO(this);
     }
+
 }

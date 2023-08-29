@@ -44,7 +44,8 @@ beforeAll(async () => {
     quantidadeCategoriasMaximoInvalido = faker.helpers.arrayElements<Categoria>([categoriaValida01,categoriaValida02,categoriaValida03,categoriaValida04], {min:4, max:4});
 })
 
-describe ('Entidade de Domínio: Produto (create)', () => {
+describe ('Entidade de Domínio: Produto (create)', () => { 
+    
     test('Deve Criar um Produto Válido - ', async () => {
         const categoria = Categoria.create({nome:'Qualquer'});
         const produtoValido: CreateProdutoProps = {

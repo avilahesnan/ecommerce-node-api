@@ -1,6 +1,5 @@
 import { DomainException } from "@shared/domain/domain.exception";
 
-
 export class CategoriaException extends DomainException {
   constructor(message:string = '⚠️ Exceção de Domínio Genérica da Entidade Categoria') {
     super(message);
