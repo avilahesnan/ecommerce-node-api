@@ -1,14 +1,16 @@
 import { Entity } from "../../../../shared/domain/entity";
 import { ProdutoMap } from "../../mappers/produto.map";
 import { Categoria } from "../categoria/categoria.entity";
-import { NomeDescricaoTamanhoMaximoInvalido,
+import {
+    NomeDescricaoTamanhoMaximoInvalido,
     NomeDescricaoTamanhoMinimoInvalido,
     NomeProdutoTamanhoMaximoInvalido,
     NomeProdutoTamanhoMinimoInvalido,
     QuantidadeCategoriasMaximoInvalido,
     QuantidadeCategoriasMinimoInvalido,
-    ValorMinimoInvalido} from "./produto.exception";
-import { CreateProdutoProps, IProduto, RecoverProdutoProps} from "./produto.types";
+    ValorMinimoInvalido
+} from "./produto.exception";
+import { CreateProdutoProps, IProduto, RecoverProdutoProps } from "./produto.types";
 
 export class Produto extends Entity<IProduto> implements IProduto {
     private _nome: string = '';

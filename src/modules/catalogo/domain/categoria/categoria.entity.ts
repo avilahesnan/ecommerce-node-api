@@ -1,11 +1,11 @@
-import { 
-    NomeCategoriaNuloOuIndefinido,
-    NomeCategoriaTamanhoMaximoInvalido,
-    NomeCategoriaTamanhoMinimoInvalido 
-} from "./categoria.exception";
-import { CreateCategoriaProps, ICategoria, RecoverCategoriaProps } from "./categoria.types";
 import { Entity } from "../../../../shared/domain/entity";
 import { CategoriaMap } from "../../mappers/categoria.map";
+import {
+    NomeCategoriaNuloOuIndefinido,
+    NomeCategoriaTamanhoMaximoInvalido,
+    NomeCategoriaTamanhoMinimoInvalido
+} from "./categoria.exception";
+import { CreateCategoriaProps, ICategoria, RecoverCategoriaProps } from "./categoria.types";
 
 export class Categoria extends Entity<ICategoria> implements ICategoria {
     private _nome: string = '';

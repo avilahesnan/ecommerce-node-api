@@ -1,9 +1,9 @@
+import { faker } from '@faker-js/faker';
 import { beforeAll, describe, expect, test } from "vitest";
-import { CreateCategoriaProps, RecoverCategoriaProps } from "./categoria.types";
+import { IDEntityUUIDInvalid } from "../../../../shared/domain/domain.exception";
 import { Categoria } from "./categoria.entity";
 import { NomeCategoriaTamanhoMaximoInvalido, NomeCategoriaTamanhoMinimoInvalido } from "./categoria.exception";
-import { IDEntityUUIDInvalid } from "../../../../shared/domain/domain.exception";
-import { faker } from '@faker-js/faker';
+import { CreateCategoriaProps, RecoverCategoriaProps } from "./categoria.types";
 
 let nomeCategoriaValida: string;
 let nomeCategoriaTamanhoMaximoInvalido: string;
@@ -12,14 +12,14 @@ let UUIDValido: string;
 let UUIDInvalido: string;
 
 beforeAll(async () => {
-    nomeCategoriaValida = faker.string.alpha({length:{min:3,max:50}});
-    nomeCategoriaTamanhoMinimoInvalido = faker.string.alpha({length:{min:0, max:2}});
-    nomeCategoriaTamanhoMaximoInvalido = faker.string.alpha({length:{min:51, max:51}});
+    nomeCategoriaValida = faker.string.alpha({ length: { min: 3, max: 50 } });
+    nomeCategoriaTamanhoMinimoInvalido = faker.string.alpha({ length: { min: 0, max: 2 } });
+    nomeCategoriaTamanhoMaximoInvalido = faker.string.alpha({ length: { min: 51, max: 51 } });
     UUIDValido = faker.string.uuid();
-    UUIDInvalido = faker.string.alpha({length:{min:1, max:20}});
+    UUIDInvalido = faker.string.alpha({ length: { min: 1, max: 20 } });
 })
 
-describe ('Entidade de Domínio: Categoria (create)', () => {
+describe('Entidade de Domínio: Categoria (create)', () => {
     test('Deve Criar Uma Categoria Válida - ', async () => {
         const categoriaValida: CreateCategoriaProps = {
             nome: nomeCategoriaValida
@@ -30,7 +30,7 @@ describe ('Entidade de Domínio: Categoria (create)', () => {
 
     test('Não Deve Criar Categoria Com Nome Inválido - Tamanho Mínimo', () => {
         const categoriaInvalida: CreateCategoriaProps = {
-            nome: nomeCategoriaTamanhoMaximoInvalido
+            nome: nomeCategoriaTamanhoMinimoInvalido
         }
         expect(() => Categoria.create(categoriaInvalida))
             .toThrowError(NomeCategoriaTamanhoMinimoInvalido)
@@ -45,7 +45,7 @@ describe ('Entidade de Domínio: Categoria (create)', () => {
     })
 });
 
-describe ('Entidade de Domínio: Categoria (Recover)', () => {
+describe('Entidade de Domínio: Categoria (Recover)', () => {
 
     test('Deve Recuperar Uma Categoria Válida', async () => {
 

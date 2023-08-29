@@ -1,6 +1,5 @@
-import { RecoverProdutoProps } from "../domain/produto/produto.types";
 import { Produto } from "../domain/produto/produto.entity";
-import { IProduto } from "../domain/produto/produto.types";
+import { IProduto, RecoverProdutoProps } from "../domain/produto/produto.types";
 
 export class ProdutoMap {
 
