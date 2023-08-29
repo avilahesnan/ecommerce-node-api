@@ -13,13 +13,16 @@ let UUIDInvalido: string;
 
 beforeAll(async () => {
     nomeCategoriaValida = faker.string.alpha({length:{min:3,max:50}});
+    nomeCategoriaTamanhoMinimoInvalido = faker.string.alpha({length:{min:0, max:2}});
     nomeCategoriaTamanhoMaximoInvalido = faker.string.alpha({length:{min:51, max:51}});
+    UUIDValido = faker.string.uuid();
+    UUIDInvalido = faker.string.alpha({length:{min:1, max:20}});
 })
 
 describe ('Entidade de Domínio: Categoria (create)', () => {
     test('Deve Criar Uma Categoria Válida - ', async () => {
         const categoriaValida: CreateCategoriaProps = {
-            nome: faker.string.alpha({length:{min:3,max:50}})
+            nome: nomeCategoriaValida
         }
         expect(Categoria.create(categoriaValida))
             .to.be.instanceOf(Categoria)
@@ -27,7 +30,7 @@ describe ('Entidade de Domínio: Categoria (create)', () => {
 
     test('Não Deve Criar Categoria Com Nome Inválido - Tamanho Mínimo', () => {
         const categoriaInvalida: CreateCategoriaProps = {
-            nome: 'Al'
+            nome: nomeCategoriaTamanhoMaximoInvalido
         }
         expect(() => Categoria.create(categoriaInvalida))
             .toThrowError(NomeCategoriaTamanhoMinimoInvalido)
@@ -35,7 +38,7 @@ describe ('Entidade de Domínio: Categoria (create)', () => {
 
     test('Não Deve Criar Categoria Com Nome Inválido - Tamanho Máximo', () => {
         const categoriaInvalida: CreateCategoriaProps = {
-            nome: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+            nome: nomeCategoriaTamanhoMaximoInvalido
         }
         expect(() => Categoria.create(categoriaInvalida))
             .toThrowError(NomeCategoriaTamanhoMaximoInvalido)
@@ -47,8 +50,8 @@ describe ('Entidade de Domínio: Categoria (Recover)', () => {
     test('Deve Recuperar Uma Categoria Válida', async () => {
 
         const categoriaValida: RecoverCategoriaProps = {
-            id: '5edbc79d-b724-4a39-a29b-0bfb2386920a',
-            nome: 'cama'
+            id: UUIDValido,
+            nome: nomeCategoriaValida
         };
 
         expect(Categoria.recover(categoriaValida))
@@ -59,8 +62,8 @@ describe ('Entidade de Domínio: Categoria (Recover)', () => {
     test('Não Deve Recuperar Categoria Com ID Inválido (UUID Inválido)', async () => {
 
         const categoriaIdInvalido: RecoverCategoriaProps = {
-            id: '1234',
-            nome: 'cama'
+            id: UUIDInvalido,
+            nome: nomeCategoriaValida
         };
 
         expect(() => Categoria.recover(categoriaIdInvalido))
@@ -71,8 +74,8 @@ describe ('Entidade de Domínio: Categoria (Recover)', () => {
     test('Não Deve Recuperar Categoria Com Nome Inválido (Tamanho Mínimo)', async () => {
 
         const categoriaNomeInvalido: RecoverCategoriaProps = {
-            id: '5edbc79d-b724-4a39-a29b-0bfb2386920a',
-            nome: 'ma'
+            id: UUIDValido,
+            nome: nomeCategoriaTamanhoMinimoInvalido
         };
 
         expect(() => Categoria.recover(categoriaNomeInvalido))
@@ -83,8 +86,8 @@ describe ('Entidade de Domínio: Categoria (Recover)', () => {
     test('Não Deve Recover Categoria Com Nome Inválido (Tamanho Máximo)', async () => {
 
         const categoriaNomeInvalido: RecoverCategoriaProps = {
-            id: '5edbc79d-b724-4a39-a29b-0bfb2386920a',
-            nome: '123456789123456789123456789123456789123456789123456'
+            id: UUIDValido,
+            nome: nomeCategoriaTamanhoMaximoInvalido
         };
 
         expect(() => Categoria.recover(categoriaNomeInvalido))
