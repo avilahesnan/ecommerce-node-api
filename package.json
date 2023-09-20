@@ -9,6 +9,9 @@
     "test:run": "vitest run",
     "test:ui": "vitest --ui"
   },
+  "prisma": {
+    "schema": "./src/main/infra/database/orm/prisma/schema.prisma"
+  },
   "keywords": [
     "varejo",
     "B2C"
@@ -19,9 +22,13 @@
     "@faker-js/faker": "^8.0.2",
     "@types/node": "^20.2.5",
     "@vitest/ui": "^0.33.0",
+    "prisma": "^5.3.1",
     "sucrase": "^3.32.0",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.3",
     "vitest": "^0.33.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.3.1"
   }
 }

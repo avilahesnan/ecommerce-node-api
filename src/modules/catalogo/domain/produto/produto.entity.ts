@@ -4,6 +4,7 @@ import { Categoria } from "../categoria/categoria.entity";
 import {
     NomeDescricaoTamanhoMaximoInvalido,
     NomeDescricaoTamanhoMinimoInvalido,
+    NomeProdutoNuloOuIndefinido,
     NomeProdutoTamanhoMaximoInvalido,
     NomeProdutoTamanhoMinimoInvalido,
     QuantidadeCategoriasMaximoInvalido,
@@ -24,6 +25,9 @@ export class Produto extends Entity<IProduto> implements IProduto {
     }
 
     private set nome(value: string) {
+        if (value === null || value === undefined) {
+            throw new NomeProdutoNuloOuIndefinido();
+        }
         if (value.length < 5) {
             throw new NomeProdutoTamanhoMinimoInvalido();
         }

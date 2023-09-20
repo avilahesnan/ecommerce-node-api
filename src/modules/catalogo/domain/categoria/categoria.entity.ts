@@ -17,15 +17,15 @@ export class Categoria extends Entity<ICategoria> implements ICategoria {
 
     private set nome(value: string) {
         if (value === null || value === undefined) {
-            throw new NomeCategoriaNuloOuIndefinido;
+            throw new NomeCategoriaNuloOuIndefinido();
         }
 
         if (value.trim().length < 3) {
-            throw new NomeCategoriaTamanhoMinimoInvalido;
+            throw new NomeCategoriaTamanhoMinimoInvalido();
         }
         
         if (value.trim().length > 50) {
-            throw new NomeCategoriaTamanhoMaximoInvalido;
+            throw new NomeCategoriaTamanhoMaximoInvalido();
         }
 
         this._nome = value;
