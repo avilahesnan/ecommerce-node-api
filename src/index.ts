@@ -1,27 +1,26 @@
 import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
+import { CategoriaPrismaRepository } from "@modules/catalogo/infra/database/categoria.prisma.repository";
 import { PrismaClient } from "@prisma/client";
 import { DomainException } from "@shared/domain/domain.exception";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+    log: ['query', 'info'],
+    errorFormat: 'pretty'
+});
 
 async function main() {
-    let categoria: Categoria;
-    categoria = Categoria.create({nome: 'mesa'});
-
-    await prisma.categoria.create({
-        data: {
-            id: categoria.id,
-            nome: categoria.nome
+    
+    prisma.$connect().then(
+        async () => {
+            console.log('Postgress Connected');
         }
-    })
+    );
 
-    // const categoriaRecuperada = await prisma.categoria.update({
-    //     where: {id: ''},
-    //     data: { nome: 'banho'},
-    // })
+    const categoriaRepo = new CategoriaPrismaRepository(prisma);
 
-    const listarCategorias = await prisma.categoria.findMany();
-    console.log(listarCategorias);
+    const categoriaRecu= await categoriaRepo.recoverByUuid("899bc441-36c0-4f13-9580-ef72277d9137");
+
+    console.log(categoriaRecu);
 }
 
 main()
