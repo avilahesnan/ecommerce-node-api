@@ -4,6 +4,7 @@ import { IRepository } from "@shared/domain/repository.interface";
 import { PrismaRepository } from "@shared/infra/database/prisma.repository";
 
 export class CategoriaPrismaRepository extends PrismaRepository implements IRepository<Categoria> {
+
     async recoverByUuid(uuid: string): Promise<Categoria | null> {
         const categoriaRecovered = await this._datasource.categoria.findUnique({
                 where: {
@@ -68,7 +69,7 @@ export class CategoriaPrismaRepository extends PrismaRepository implements IRepo
                 id: uuid
             }
         })
-        if (categoriaDeleted) {
+        if (categoriaDeleted.id) {
             return true
         }
         return false

@@ -16,17 +16,35 @@ async function main() {
         }
     );
 
-    const categoriaRepo = new CategoriaPrismaRepository(prisma);
+    // const categoriaRepo = new CategoriaPrismaRepository(prisma);
 
-    const categoria: Categoria = Categoria.create({ nome: 'banho'})
+    // const categoria: Categoria = Categoria.create({ nome: 'banho'})
+
+    // const categoria = Categoria.recover({
+    //     id: "",
+    //     nome: ""
+    // })
     
-    const categoriaInse = await categoriaRepo.insert(categoria)
+    // const categoriaInse = await categoriaRepo.insert(categoria)
 
-    const categoriaRecu = await categoriaRepo.recoverByUuid("899bc441-36c0-4f13-9580-ef72277d9137");
+    // const categoriaRecu = await categoriaRepo.recoverByUuid("");
     
-    const categoriaExi = await categoriaRepo.exists("899bc441-36c0-4f13-9580-ef72277d9137");
+    // const categoriaExi = await categoriaRepo.exists("");
 
-    console.log(categoriaExi)
+    // const categoriaDel = await categoriaRepo.delete("");
+    
+    // const categoriaUp = await categoriaRepo.update(categoria.id, categoria)
+
+    // const categoriaAll = await categoriaRepo.recoverAll();
+
+
+    // console.log(categoriaAll)
+    // console.log(categoriaExi)
+    // console.log(categoriaRecu)
+    // console.log(categoriaInse)
+    // console.log(categoriaDel)
+    // console.log(categoriaUp)
+
 }
 
 main()
