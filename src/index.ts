@@ -18,9 +18,15 @@ async function main() {
 
     const categoriaRepo = new CategoriaPrismaRepository(prisma);
 
-    const categoriaRecu= await categoriaRepo.recoverByUuid("899bc441-36c0-4f13-9580-ef72277d9137");
+    const categoria: Categoria = Categoria.create({ nome: 'banho'})
+    
+    const categoriaInse = await categoriaRepo.insert(categoria)
 
-    console.log(categoriaRecu);
+    const categoriaRecu = await categoriaRepo.recoverByUuid("899bc441-36c0-4f13-9580-ef72277d9137");
+    
+    const categoriaExi = await categoriaRepo.exists("899bc441-36c0-4f13-9580-ef72277d9137");
+
+    console.log(categoriaExi)
 }
 
 main()

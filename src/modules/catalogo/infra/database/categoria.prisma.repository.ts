@@ -18,20 +18,60 @@ export class CategoriaPrismaRepository extends PrismaRepository implements IRepo
         }
         return null
     }
-    recoverAll(): Promise<Categoria[]> {
-        throw new Error("Method not implemented.");
+
+    async recoverAll(): Promise<Array<Categoria>> {
+        const categoriaRecovereds = await this._datasource.categoria.findMany()
+        const categorias = categoriaRecovereds.map(
+            (categoria) => CategoriaMap.toDomain({
+                id: categoria.id,
+                nome: categoria.nome
+            })
+        )
+        return categorias
     }
-    exists(uuid: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
+
+    async exists(uuid: string): Promise<boolean> {
+        const categoriaExisting = await this.recoverByUuid(uuid)
+        if (categoriaExisting) {
+            return true
+        }
+        return false
     }
-    insert(entity: Categoria): Promise<Categoria> {
-        throw new Error("Method not implemented.");
+
+    async insert(categoria: Categoria): Promise<Categoria> {
+        const categoriaInsered = await this._datasource.categoria.create({
+                data: {
+                    id: categoria.id,
+                    nome: categoria.nome
+                }
+            })
+        return categoria
     }
-    update(uuid: string, entity: Partial<Categoria>): Promise<boolean> {
-        throw new Error("Method not implemented.");
+
+    async update(uuid: string, categoria: Categoria): Promise<boolean> {
+        const categoriaUpdated = await this._datasource.categoria.update({
+            where: {
+                id: uuid
+            },
+            data: CategoriaMap.toDTO(categoria)
+        })
+        if (categoriaUpdated) {
+            return true
+        }
+        return false
+        
     }
-    delete(uuid: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
+
+    async delete(uuid: string): Promise<boolean> {
+        const categoriaDeleted = await this._datasource.categoria.delete({
+            where: {
+                id: uuid
+            }
+        })
+        if (categoriaDeleted) {
+            return true
+        }
+        return false
     }
     
 }
