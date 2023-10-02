@@ -27,15 +27,15 @@ async function main() {
     
     // const categoriaInse = await categoriaRepo.insert(categoria)
 
-    // const categoriaRecu = await categoriaRepo.recoverByUuid("");
+    // const categoriaRecu: Categoria | null = await categoriaRepo.recoverByUuid("");
     
-    // const categoriaExi = await categoriaRepo.exists("");
+    // const categoriaExi: boolean = await categoriaRepo.exists("");
 
-    // const categoriaDel = await categoriaRepo.delete("");
+    // const categoriaDel: boolean = await categoriaRepo.delete("");
     
-    // const categoriaUp = await categoriaRepo.update(categoria.id, categoria)
+    // const categoriaUp: boolean = await categoriaRepo.update(categoria.id, categoria)
 
-    // const categoriaAll = await categoriaRepo.recoverAll();
+    // const categoriaAll: Array<Categoria> = await categoriaRepo.recoverAll();
 
 
     // console.log(categoriaAll)

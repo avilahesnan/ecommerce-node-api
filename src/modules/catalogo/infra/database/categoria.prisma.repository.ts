@@ -12,10 +12,7 @@ export class CategoriaPrismaRepository extends PrismaRepository implements IRepo
                 }
             })
         if (categoriaRecovered) {
-            return CategoriaMap.toDomain({
-                id: categoriaRecovered.id,
-                nome: categoriaRecovered.nome
-            })
+            return CategoriaMap.fromPrismaModeltoDomain(categoriaRecovered)
         }
         return null
     }
