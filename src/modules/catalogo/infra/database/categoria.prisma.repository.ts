@@ -20,10 +20,7 @@ export class CategoriaPrismaRepository extends PrismaRepository implements IRepo
     async recoverAll(): Promise<Array<Categoria>> {
         const categoriaRecovereds = await this._datasource.categoria.findMany()
         const categorias = categoriaRecovereds.map(
-            (categoria) => CategoriaMap.toDomain({
-                id: categoria.id,
-                nome: categoria.nome
-            })
+            (categoria) => CategoriaMap.fromPrismaModeltoDomain(categoria)
         )
         return categorias
     }

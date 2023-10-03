@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { Produto } from "../domain/produto/produto.entity";
 import { IProduto, RecoverProdutoProps } from "../domain/produto/produto.types";
 
@@ -17,4 +18,13 @@ export class ProdutoMap {
         return Produto.recover(produto)
     }
 
+    // public static fromPrismaModeltoDomain(produto: Prisma.ProdutoCreateInput): Produto {
+    //     return ProdutoMap.toDomain ({
+    //         id: produto.id,
+    //         nome: produto.nome,
+    //         descricao: produto.descricao,
+    //         valor: produto.valor,
+    //         categorias: produto.categorias
+    //     });
+    // }
 }
