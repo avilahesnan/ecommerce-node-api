@@ -53,8 +53,7 @@ export class CategoriaPrismaRepository extends PrismaRepository implements IRepo
         if (categoriaUpdated) {
             return true
         }
-        return false
-        
+        return false   
     }
 
     async delete(uuid: string): Promise<boolean> {

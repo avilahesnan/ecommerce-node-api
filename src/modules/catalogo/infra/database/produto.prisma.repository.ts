@@ -45,7 +45,15 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
     }
     
     async recoverAll(): Promise<Produto[]> {
-        const produtoRecovereds = await this._datasource.produto.findMany()
+        const produtoRecovereds = await this._datasource.produto.findMany({
+            include: {
+                categorias: {
+                    include: {
+                        categoria: true
+                    }
+                }
+            }
+        })
         const produtos = produtoRecovereds.map(
             (produto) => ProdutoMap.toDomain({
                 id: produto.id,

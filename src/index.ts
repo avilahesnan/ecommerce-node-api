@@ -1,5 +1,7 @@
 import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
+import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
 import { CategoriaPrismaRepository } from "@modules/catalogo/infra/database/categoria.prisma.repository";
+import { ProdutoPrismaRepository } from "@modules/catalogo/infra/database/produto.prisma.repository";
 import { PrismaClient } from "@prisma/client";
 import { DomainException } from "@shared/domain/domain.exception";
 
@@ -15,28 +17,54 @@ async function main() {
             console.log('Postgress Connected');
         }
     );
+   
+    const categoriaRepo = new CategoriaPrismaRepository(prisma)
+    const produtoRepo = new ProdutoPrismaRepository(prisma)
 
-    // const categoriaRepo = new CategoriaPrismaRepository(prisma);
+    /// Categoria ///
 
-    // const categoria: Categoria = Categoria.create({ nome: 'banho'})
+    const categoria: Categoria = Categoria.create({ nome: 'banho'})
 
-    // const categoria = Categoria.recover({
+    // const categoriaRe = Categoria.recover({
     //     id: "",
     //     nome: ""
     // })
-    
-    // const categoriaInse = await categoriaRepo.insert(categoria)
 
-    // const categoriaRecu: Categoria | null = await categoriaRepo.recoverByUuid("");
+    const categoriaInse = await categoriaRepo.insert(categoria)
     
-    // const categoriaExi: boolean = await categoriaRepo.exists("");
-
-    // const categoriaDel: boolean = await categoriaRepo.delete("");
+    // const categoriaRecu: Categoria | null = await categoriaRepo.recoverByUuid("")
+    
+    // const categoriaExi: boolean = await categoriaRepo.exists("")
+    
+    // const categoriaDel: boolean = await categoriaRepo.delete("")
     
     // const categoriaUp: boolean = await categoriaRepo.update(categoria.id, categoria)
+    
+    //const categoriaAll: Array<Categoria> = await categoriaRepo.recoverAll()
+    
+    /// Produto ///
 
-    // const categoriaAll: Array<Categoria> = await categoriaRepo.recoverAll();
+    const produto: Produto = Produto.create({nome: 'toalha', descricao: 'toalha de banho', valor: 50, categorias: [categoria]})
 
+    // const produtoRe = Produto.recover({
+    //     id: "",
+    //     nome: "",
+    //     descricao: "",
+    //     valor: 50,
+    //     categorias: []
+    // })
+
+    const produtoInse = await produtoRepo.insert(produto)
+
+    //const produtoRecu: Produto | null = await produtoRepo.recoverByUuid("")
+
+    //const prdotutoExi: boolean = await produtoRepo.exists("")
+
+    //const produtoDel: boolean = await produtoRepo.delete("")
+
+    //const produtoUp: boolean = await produtoRepo.update(produto.id, produto)
+
+    //const produtoAll: Array<Produto> = await produtoRepo.recoverAll()
 
     // console.log(categoriaAll)
     // console.log(categoriaExi)
@@ -44,6 +72,11 @@ async function main() {
     // console.log(categoriaInse)
     // console.log(categoriaDel)
     // console.log(categoriaUp)
+    // console.log(produtoAll)
+    //console.log(prdotutoExi)
+    // console.log(produtoRecu)
+    // console.log(produtoInse)
+    // console.log(produtoDel)
 
 }
 
