@@ -3,6 +3,7 @@ import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
 import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface";
 import { ProdutoMap } from "@modules/catalogo/mappers/produto.map";
 import { PrismaRepository } from "@shared/infra/database/prisma.repository";
+import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.types";
 
 export class ProdutoPrismaRepository extends PrismaRepository implements IProdutoRepository<Produto> {
     
@@ -19,54 +20,23 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
             where: {
                 id: uuid
             },
-            include: {
-                categorias: {
-                    include: {
-                        categoria: true
-                    }
-                }
-            }
+            include: produtoIncludeCategoriaPrisma
         })
         if (produtoRecovered) {
-            return ProdutoMap.toDomain({
-                id: produtoRecovered.id,
-                nome: produtoRecovered.nome,
-                descricao: produtoRecovered.descricao,
-                valor: produtoRecovered.valor,
-                categorias: produtoRecovered.categorias.map((categorias) => {
-                    return Categoria.recover({
-                        id: categorias.produtoId,
-                        nome: categorias.categoria.nome
-                    })
-                })
-            })
+            return ProdutoMap.fromPrismaModeltoDomain(produtoRecovered)
         }
         return null
     }
     
     async recoverAll(): Promise<Produto[]> {
         const produtoRecovereds = await this._datasource.produto.findMany({
-            include: {
-                categorias: {
-                    include: {
-                        categoria: true
-                    }
-                }
-            }
+            where: {
+                dataExclusao: null
+            },
+            include: produtoIncludeCategoriaPrisma
         })
         const produtos = produtoRecovereds.map(
-            (produto) => ProdutoMap.toDomain({
-                id: produto.id,
-                nome: produto.nome,
-                descricao: produto.descricao,
-                valor: produto.valor,
-                categorias: produto.categorias.map((categorias) => {
-                    return Categoria.recover({
-                        id: categorias.produtoId,
-                        nome: categorias.categoria.nome
-                    })
-                })
-            })
+            (produto) => ProdutoMap.fromPrismaModeltoDomain(produto)
         )
         return produtos
     }
@@ -89,8 +59,7 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
                 categorias: { 
                     create: produto.categorias.map((categoria) => {
                         return {
-                            categoriaId: categoria.id,
-                            categoriaNome: categoria.nome
+                            categoriaId: categoria.id
                         }
                     }) 
                 }
@@ -104,7 +73,11 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
             where: {
                 id: uuid
             },
-            data: ProdutoMap.toDTO(produto)
+            data: {
+                nome: produto.nome,
+                descricao: produto.descricao,
+                valor: produto.valor
+            }
         })
         if (produtoUpdated) {
             return true
@@ -113,9 +86,12 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
     }
     
     async delete(uuid: string): Promise<boolean> {
-        const produtodeleted = await this._datasource.produto.delete({
+        const produtodeleted = await this._datasource.produto.update({
             where: {
                 id: uuid
+            },
+            data: {
+                dataExclusao: new Date()
             }
         })
         if(produtodeleted.id) {

@@ -23,60 +23,65 @@ async function main() {
 
     /// Categoria ///
 
-    const categoria: Categoria = Categoria.create({ nome: 'banho'})
+    //const categoriaRecuId: Categoria | null = await categoriaRepo.recoverByUuid("")
 
-    // const categoriaRe = Categoria.recover({
-    //     id: "",
-    //     nome: ""
+    //const categoria: Categoria = Categoria.create({ nome: 'banho'})
+
+    // const categoriaRecu = Categoria.recover({
+    //     id: "d48bb575-100d-40f4-b906-38a9d9cbb3c8",
+    //     nome: "banho"
     // })
 
-    const categoriaInse = await categoriaRepo.insert(categoria)
+    //const categoriaInse = await categoriaRepo.insert(categoria)
     
-    // const categoriaRecu: Categoria | null = await categoriaRepo.recoverByUuid("")
+    //const categoriaExi: boolean = await categoriaRepo.exists("")
+
+    //const categoriaUp: boolean = await categoriaRepo.update(.id,)
     
-    // const categoriaExi: boolean = await categoriaRepo.exists("")
-    
-    // const categoriaDel: boolean = await categoriaRepo.delete("")
-    
-    // const categoriaUp: boolean = await categoriaRepo.update(categoria.id, categoria)
+    //const categoriaDel: boolean = await categoriaRepo.delete("")
     
     //const categoriaAll: Array<Categoria> = await categoriaRepo.recoverAll()
     
     /// Produto ///
 
-    const produto: Produto = Produto.create({nome: 'toalha', descricao: 'toalha de banho', valor: 50, categorias: [categoria]})
+    //const produtoRecuId: Produto | null = await produtoRepo.recoverByUuid("")
 
-    // const produtoRe = Produto.recover({
-    //     id: "",
-    //     nome: "",
-    //     descricao: "",
-    //     valor: 50,
-    //     categorias: []
+    //const produto: Produto = Produto.create({nome: 'toalha', descricao: 'toalha de banho', valor: 50, categorias: []})
+
+    // const produtoRecu = Produto.recover({
+    //     id: "9fbd3b52-5200-45d8-a5df-d86a92c970f2",
+    //     nome: "toalha",
+    //     descricao: "toalha de banho",
+    //     valor: 100,
+    //     categorias: [categoriaRecu]
     // })
 
-    const produtoInse = await produtoRepo.insert(produto)
-
-    //const produtoRecu: Produto | null = await produtoRepo.recoverByUuid("")
+    //const produtoInse = await produtoRepo.insert()
 
     //const prdotutoExi: boolean = await produtoRepo.exists("")
 
-    //const produtoDel: boolean = await produtoRepo.delete("")
+    //const produtoUp: boolean = await produtoRepo.update(produtoRecu.id, produtoRecu)
 
-    //const produtoUp: boolean = await produtoRepo.update(produto.id, produto)
+    //const produtoDel: boolean = await produtoRepo.delete("")
 
     //const produtoAll: Array<Produto> = await produtoRepo.recoverAll()
 
-    // console.log(categoriaAll)
-    // console.log(categoriaExi)
-    // console.log(categoriaRecu)
-    // console.log(categoriaInse)
-    // console.log(categoriaDel)
-    // console.log(categoriaUp)
-    // console.log(produtoAll)
+
+    //console.log(categoriaRecuId)
+    //console.log(categoriaRecu)
+    //console.log(categoriaInse)
+    //console.log(categoriaExi)
+    //console.log(categoriaUp)
+    //console.log(categoriaDel)
+    //console.log(categoriaAll)
+    
+    //console.log(produtoRecuId)
+    //console.log(produtoRecu)
+    //console.log(produtoInse)
     //console.log(prdotutoExi)
-    // console.log(produtoRecu)
-    // console.log(produtoInse)
-    // console.log(produtoDel)
+    //console.log(produtoUp)
+    //console.log(produtoDel)
+    //console.log(produtoAll)
 
 }
 
