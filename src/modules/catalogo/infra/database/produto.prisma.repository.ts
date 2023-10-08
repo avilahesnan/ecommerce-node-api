@@ -35,9 +35,15 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
             },
             include: produtoIncludeCategoriaPrisma
         })
-        const produtos = produtoRecovereds.map(
-            (produto) => ProdutoMap.fromPrismaModeltoDomain(produto)
-        )
+        const produtos: Array<Produto> = []
+
+        if (produtos.length > 0) {
+            produtoRecovereds.map(
+                (produto) => {
+                    produtos.push(ProdutoMap.fromPrismaModeltoDomain(produto))
+                }
+            )
+        }
         return produtos
     }
     
