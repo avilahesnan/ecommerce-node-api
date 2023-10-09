@@ -1,6 +1,7 @@
+import { IDatasController, keyDataController } from "@shared/domain/datas.types";
 import { Categoria } from "../categoria/categoria.entity";
 
-export interface IProduto {
+export interface IProduto extends IDatasController {
     id?: string;
     nome: string;
     descricao: string;
@@ -8,6 +9,8 @@ export interface IProduto {
     categorias: Categoria[];
 }
 
-export type CreateProdutoProps = Omit<IProduto, "id">;
+export type CreateProdutoProps = Omit<IProduto, "id" | keyDataController>;
 
-export type RecoverProdutoProps = Required<IProduto>;
+export type RecoverProdutoProps = IProduto & {
+    id: NonNullable<IProduto["id"]>
+};

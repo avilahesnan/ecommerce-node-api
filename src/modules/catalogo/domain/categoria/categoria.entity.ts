@@ -10,6 +10,9 @@ import { CreateCategoriaProps, ICategoria, RecoverCategoriaProps } from "./categ
 export class Categoria extends Entity<ICategoria> implements ICategoria {
 
     private _nome: string = '';
+    private _dataCriacao?: Date | undefined;
+    private _dataAtualizacao?: Date | undefined;
+    
 
     public get nome(): string {
         return this._nome;
@@ -31,14 +34,31 @@ export class Categoria extends Entity<ICategoria> implements ICategoria {
         this._nome = value;
     }
 
+    public get dataCriacao(): Date | undefined {
+        return this._dataCriacao;
+    }
+
+    private set dataCriacao(value: Date | undefined) {
+        this._dataCriacao = value;
+    }
+
+    public get dataAtualizacao(): Date | undefined {
+        return this._dataAtualizacao;
+    }
+
+    private set dataAtualizacao(value: Date | undefined) {
+        this._dataAtualizacao = value;
+    }
+
     private constructor(props: ICategoria) {
         super(props.id);
         this.nome = props.nome;
+        this.dataCriacao = props.dataCriacao;
+        this.dataAtualizacao = props.dataAtualizacao;
     }
 
     public static create(props: CreateCategoriaProps): Categoria {
-        let { nome } = props;
-        return new Categoria({ nome });
+        return new Categoria(props);
     }
 
     public static recover(props: RecoverCategoriaProps): Categoria {

@@ -19,6 +19,9 @@ export class Produto extends Entity<IProduto> implements IProduto {
     private _descricao: string = '';
     private _valor: number = 0;
     private _categorias: Categoria[] = [];
+    private _dataCriacao?: Date | undefined;
+    private _dataAtualizacao?: Date | undefined;
+    private _dataExclusao?: Date | null | undefined;
 
     public get nome(): string {
         return this._nome;
@@ -75,6 +78,30 @@ export class Produto extends Entity<IProduto> implements IProduto {
         }
         this._categorias = value;
     }
+
+    public get dataCriacao(): Date | undefined {
+        return this._dataCriacao;
+    }
+
+    private set dataCriacao(value: Date | undefined) {
+        this._dataCriacao = value;
+    }
+
+    public get dataAtualizacao(): Date | undefined {
+        return this._dataAtualizacao;
+    }
+
+    private set dataAtualizacao(value: Date | undefined) {
+        this._dataAtualizacao = value;
+    }
+
+    public get dataExclusao(): Date | null | undefined {
+        return this._dataExclusao;
+    }
+
+    private set dataExclusao(value: Date | null | undefined) {
+        this._dataExclusao = value;
+    }
     
     private constructor(props: IProduto) {
         super(props.id);
@@ -82,6 +109,9 @@ export class Produto extends Entity<IProduto> implements IProduto {
         this.descricao = props.descricao;
         this.valor = props.valor;
         this.categorias = props.categorias;
+        this.dataCriacao = props.dataCriacao;
+        this.dataAtualizacao = props.dataAtualizacao;
+        this.dataExclusao = props.dataExclusao;
     }
 
     public static create(props: CreateProdutoProps): Produto {
@@ -94,6 +124,10 @@ export class Produto extends Entity<IProduto> implements IProduto {
 
     public toDTO(): IProduto {
         return ProdutoMap.toDTO(this)
+    }
+
+    public isDeleted(): boolean {
+        return this.dataExclusao !== null ? true : false;
     }
 
 }
