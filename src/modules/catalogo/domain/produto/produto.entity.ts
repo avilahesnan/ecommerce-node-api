@@ -1,16 +1,7 @@
 import { ProdutoMap } from "@modules/catalogo/mappers/produto.map";
 import { Entity } from "@shared/domain/entity";
 import { Categoria } from "../categoria/categoria.entity";
-import {
-    NomeDescricaoTamanhoMaximoInvalido,
-    NomeDescricaoTamanhoMinimoInvalido,
-    NomeProdutoNuloOuIndefinido,
-    NomeProdutoTamanhoMaximoInvalido,
-    NomeProdutoTamanhoMinimoInvalido,
-    QuantidadeCategoriasMaximoInvalido,
-    QuantidadeCategoriasMinimoInvalido,
-    ValorMinimoInvalido
-} from "./produto.exception";
+import { ProdutoExceptions} from "./produto.exception";
 import { CreateProdutoProps, IProduto, RecoverProdutoProps } from "./produto.types";
 
 export class Produto extends Entity<IProduto> implements IProduto {
@@ -23,19 +14,22 @@ export class Produto extends Entity<IProduto> implements IProduto {
     private _dataAtualizacao?: Date | undefined;
     private _dataExclusao?: Date | null | undefined;
 
+    public static readonly QTD_MINIMA_CATEGORIAS = 1;
+    public static readonly QTD_MAXIMA_CATEGORIAS = 3;
+
     public get nome(): string {
         return this._nome;
     }
 
     private set nome(value: string) {
         if (value === null || value === undefined) {
-            throw new NomeProdutoNuloOuIndefinido();
+            throw new ProdutoExceptions.NomeProdutoNuloOuIndefinido();
         }
         if (value.length < 5) {
-            throw new NomeProdutoTamanhoMinimoInvalido();
+            throw new ProdutoExceptions.NomeProdutoTamanhoMinimoInvalido();
         }
         if (value.length > 50) {
-            throw new NomeProdutoTamanhoMaximoInvalido();
+            throw new ProdutoExceptions.NomeProdutoTamanhoMaximoInvalido();
         }
         this._nome = value;
     }
@@ -46,10 +40,10 @@ export class Produto extends Entity<IProduto> implements IProduto {
 
     private set descricao(value: string) {
         if (value.length < 10) {
-            throw new NomeDescricaoTamanhoMinimoInvalido();
+            throw new ProdutoExceptions.NomeDescricaoTamanhoMinimoInvalido();
         }
         if (value.length > 200) {
-            throw new NomeDescricaoTamanhoMaximoInvalido();
+            throw new ProdutoExceptions.NomeDescricaoTamanhoMaximoInvalido();
         }
         this._descricao = value;
     }
@@ -60,7 +54,7 @@ export class Produto extends Entity<IProduto> implements IProduto {
     
     private set valor(value: number) {
         if (value < 0) {
-            throw new ValorMinimoInvalido();
+            throw new ProdutoExceptions.ValorMinimoInvalido();
         }
         this._valor = value;
     }
@@ -70,11 +64,11 @@ export class Produto extends Entity<IProduto> implements IProduto {
     }
 
     private set categorias(value: Categoria[]) {
-        if (value.length < 1) {
-            throw new QuantidadeCategoriasMinimoInvalido();
+        if (value.length < Produto.QTD_MINIMA_CATEGORIAS) {
+            throw new ProdutoExceptions.QuantidadeCategoriasMinimoInvalido();
         }
-        if (value.length > 3) {
-            throw new QuantidadeCategoriasMaximoInvalido();
+        if (value.length > Produto.QTD_MAXIMA_CATEGORIAS) {
+            throw new ProdutoExceptions.QuantidadeCategoriasMaximoInvalido();
         }
         this._categorias = value;
     }
@@ -128,6 +122,32 @@ export class Produto extends Entity<IProduto> implements IProduto {
 
     public isDeleted(): boolean {
         return this.dataExclusao !== null ? true : false;
+    }
+
+    public quantityCategorias(): number {
+        return this.categorias.length;
+    }
+
+    public hasCategoria(categoria: Categoria): boolean {
+        const categoriaExistente = this.categorias.find((categoriaExistente) => categoriaExistente.id === categoria.id)
+
+        if (categoriaExistente) {
+            return true;
+        }
+        return false;
+    }
+
+    public addCategoria(categoria: Categoria): Categoria {
+        if (this.quantityCategorias() >= Produto.QTD_MAXIMA_CATEGORIAS) {
+            throw new ProdutoExceptions.ProdutoJaPossuiQtdMaximaCategorias();
+        }
+
+        if (this.hasCategoria(categoria)) {
+            throw new ProdutoExceptions.ProdutoJaPossuiCategoriaInformada();
+        }
+
+        this.categorias.push(categoria);
+        return categoria;
     }
 
 }

@@ -1,6 +1,6 @@
 import { DomainException } from "@shared/domain/domain.exception";
 
-export class ProdutoException extends DomainException {
+class ProdutoException extends DomainException {
   constructor(message:string = '⚠️ Exceção de Domínio Genérica da Entidade Produto') {
     super(message);
     this.name = 'ProdutoException'
@@ -8,7 +8,7 @@ export class ProdutoException extends DomainException {
   }
 }
 
-export class NomeProdutoNuloOuIndefinido extends ProdutoException {
+class NomeProdutoNuloOuIndefinido extends ProdutoException {
   public constructor(message:string = '⚠️ O nome da Produto é nulo ou indefinido.') {
     super(message);
     this.name = 'NomeProdutoNuloOuIndefinido'
@@ -16,7 +16,7 @@ export class NomeProdutoNuloOuIndefinido extends ProdutoException {
   }
 }
 
-export class NomeProdutoTamanhoMinimoInvalido extends ProdutoException {
+class NomeProdutoTamanhoMinimoInvalido extends ProdutoException {
   public constructor(message:string = '⚠️ O nome da Produto não possui um tamanho mínimo válido.') {
     super(message);
     this.name = 'NomeProdutoTamanhoMinimoInvalido'
@@ -24,7 +24,7 @@ export class NomeProdutoTamanhoMinimoInvalido extends ProdutoException {
   }
 }
 
-export class NomeProdutoTamanhoMaximoInvalido extends ProdutoException {
+class NomeProdutoTamanhoMaximoInvalido extends ProdutoException {
   public constructor(message:string = '⚠️ O nome da Produto não possui um tamanho máximo válido.') {
     super(message);
     this.name = 'NomeProdutoTamanhoMaximoInvalido'
@@ -32,7 +32,7 @@ export class NomeProdutoTamanhoMaximoInvalido extends ProdutoException {
   }
 }
 
-export class NomeDescricaoTamanhoMinimoInvalido extends ProdutoException {
+class NomeDescricaoTamanhoMinimoInvalido extends ProdutoException {
   public constructor(message:string = '⚠️ O nome da Descricao não possui um tamanho mínimo válido.') {
     super(message);
     this.name = 'NomeDescricaoTamanhoMinimoInvalido'
@@ -40,7 +40,7 @@ export class NomeDescricaoTamanhoMinimoInvalido extends ProdutoException {
   }
 }
   
-export class NomeDescricaoTamanhoMaximoInvalido extends ProdutoException {
+class NomeDescricaoTamanhoMaximoInvalido extends ProdutoException {
   public constructor(message:string = '⚠️ O nome da Descricao não possui um tamanho máximo válido.') {
     super(message);
     this.name = 'NomeDescricaoTamanhoMaximoInvalido'
@@ -48,7 +48,7 @@ export class NomeDescricaoTamanhoMaximoInvalido extends ProdutoException {
   }
 }
 
-export class ValorMinimoInvalido extends ProdutoException {
+class ValorMinimoInvalido extends ProdutoException {
   public constructor(message:string = '⚠️ O valor não possui o valor mínimo válido.') {
     super(message);
     this.name = 'ValorMinimoInvalido'
@@ -56,7 +56,7 @@ export class ValorMinimoInvalido extends ProdutoException {
   }
 }
 
-export class QuantidadeCategoriasMaximoInvalido extends ProdutoException {
+class QuantidadeCategoriasMaximoInvalido extends ProdutoException {
   public constructor(message:string = '⚠️ As categorias não possui um tamanho máximo válido.') {
     super(message);
     this.name = 'QuantidadeCategoriasMaximoInvalido'
@@ -64,10 +64,40 @@ export class QuantidadeCategoriasMaximoInvalido extends ProdutoException {
   }
 }
   
-export class QuantidadeCategoriasMinimoInvalido extends ProdutoException {
+class QuantidadeCategoriasMinimoInvalido extends ProdutoException {
   public constructor(message:string = '⚠️ As categorias não possui um tamanho mínimo válido.') {
     super(message);
     this.name = 'QuantidadeCategoriasMinimoInvalido'
     this.message = message;
   }
+}
+
+class ProdutoJaPossuiQtdMaximaCategorias extends ProdutoException {
+  public constructor(message:string = '⚠️ O produto já possui a quantidade máxima de categorias.') {
+    super(message);
+    this.name = 'ProdutoJaPossuiQtdMaximaCategorias'
+    this.message = message;
+  }
+}
+
+class ProdutoJaPossuiCategoriaInformada extends ProdutoException {
+  public constructor(message:string = '⚠️ O produto já possui a categoria informada.') {
+    super(message);
+    this.name = 'ProdutoJaPossuiCategoriaInformada'
+    this.message = message;
+  }
+}
+
+export const ProdutoExceptions = {
+  ProdutoException: ProdutoException,
+  NomeProdutoNuloOuIndefinido: NomeProdutoNuloOuIndefinido,
+  NomeProdutoTamanhoMinimoInvalido: NomeDescricaoTamanhoMinimoInvalido,
+  NomeProdutoTamanhoMaximoInvalido: NomeDescricaoTamanhoMaximoInvalido,
+  NomeDescricaoTamanhoMinimoInvalido: NomeDescricaoTamanhoMinimoInvalido,
+  NomeDescricaoTamanhoMaximoInvalido: NomeDescricaoTamanhoMaximoInvalido,
+  ValorMinimoInvalido: ValorMinimoInvalido,
+  QuantidadeCategoriasMinimoInvalido: QuantidadeCategoriasMinimoInvalido,
+  QuantidadeCategoriasMaximoInvalido: QuantidadeCategoriasMaximoInvalido,
+  ProdutoJaPossuiQtdMaximaCategorias: ProdutoJaPossuiQtdMaximaCategorias,
+  ProdutoJaPossuiCategoriaInformada: ProdutoJaPossuiCategoriaInformada
 }
