@@ -16,6 +16,10 @@ let valorMinimoInvalido: number;
 let categoriasValidas: Categoria[];
 let quantidadeCategoriasMinimoInvalido: Categoria[];
 let quantidadeCategoriasMaximoInvalido: Categoria[];
+let UUIDvalido: string;
+let categoirasQtdValidaAptaAdicao: Array<Categoria>;
+let categoirasQtdMaxValidaInaptaAdicao: Array<Categoria>;
+let categoirasQtdValidaInaptaAdicaoDuplicacao: Array<Categoria>;
 
 beforeAll(async () => {
     nomeProdutoValido = faker.string.alpha({length:{min:5, max:50}});
@@ -34,6 +38,11 @@ beforeAll(async () => {
     categoriasValidas = faker.helpers.arrayElements<Categoria>([categoriaValida01,categoriaValida02,categoriaValida03], {min:1, max:3});
     quantidadeCategoriasMinimoInvalido = [];
     quantidadeCategoriasMaximoInvalido = faker.helpers.arrayElements<Categoria>([categoriaValida01,categoriaValida02,categoriaValida03,categoriaValida04], {min:4, max:4});
+    categoirasQtdValidaAptaAdicao = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02], {min:1, max:2});
+    categoirasQtdMaxValidaInaptaAdicao = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03], {min:3, max:3});
+    categoirasQtdValidaInaptaAdicaoDuplicacao = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02], {min:1, max:2});
+
+    UUIDvalido = faker.string.uuid();
 })
 
 describe ('Entidade de Domínio: Produto (create)', () => { 
@@ -136,4 +145,59 @@ describe ('Entidade de Domínio: Produto (create)', () => {
             .toThrowError(ProdutoExceptions.QuantidadeCategoriasMaximoInvalido)
     })
     
+})
+
+describe ('Entidade de Domínio: Adicionar Categoria ao Produto', () => {
+
+    test('Deve Adicionar Uma Categoria Válida a Um Produto Válido Apto a Ter Uma Nova Categoria', async () => {
+        
+        const produtoValidoAptoNovaCategoria: Produto = Produto.recover({
+            id: UUIDvalido,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
+            categorias: categoirasQtdValidaAptaAdicao
+        });
+
+        const categoriaValida = Categoria.create({nome:faker.string.alpha({length:{min:3,max:50}})});
+
+        expect(produtoValidoAptoNovaCategoria.addCategoria(categoriaValida))
+            .toBe(categoriaValida);
+        
+        expect(produtoValidoAptoNovaCategoria.categorias)
+            .toContain(categoriaValida);
+    });
+
+    test('Não Deve Adicionar Uma Categoria Válida a Um Produto Válido Inapto a Ter Uma Nova Categoria - Quantidade Máxima de Categorias', async () => {
+        
+        const produtoValidoInaptoNovaCategoria: Produto = Produto.recover({
+            id: UUIDvalido,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
+            categorias: categoirasQtdMaxValidaInaptaAdicao
+        });
+
+        const categoriaValida = Categoria.create({nome:faker.string.alpha({length:{min:3,max:50}})});
+
+        expect(() => produtoValidoInaptoNovaCategoria.addCategoria(categoriaValida))
+            .toThrowError(ProdutoExceptions.ProdutoJaPossuiQtdMaximaCategorias);
+
+    });
+
+    test('Não Deve Adicionar Uma Categoria Válida a Um Produto Válido Inapto a Ter Uma Nova Categoria - Categoria Já Adicionada', async () => {
+        
+        const produtoValidoInaptoNovaCategoria: Produto = Produto.recover({
+            id: UUIDvalido,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
+            categorias: categoirasQtdValidaInaptaAdicaoDuplicacao
+        });
+
+        const categoriaValida = categoirasQtdValidaInaptaAdicaoDuplicacao[0];
+
+        expect(() => produtoValidoInaptoNovaCategoria.addCategoria(categoriaValida))
+            .toThrowError(ProdutoExceptions.ProdutoJaPossuiCategoriaInformada);
+    })
 })
