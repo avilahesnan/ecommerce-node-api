@@ -2,7 +2,7 @@ import { ProdutoMap } from "@modules/catalogo/mappers/produto.map";
 import { Entity } from "@shared/domain/entity";
 import { Categoria } from "../categoria/categoria.entity";
 import { ProdutoExceptions} from "./produto.exception";
-import { CreateProdutoProps, IProduto, RecoverProdutoProps } from "./produto.types";
+import { CreateProdutoProps, IProduto, RecoverProdutoProps, StatusProduto } from "./produto.types";
 
 export class Produto extends Entity<IProduto> implements IProduto {
     
@@ -13,6 +13,7 @@ export class Produto extends Entity<IProduto> implements IProduto {
     private _dataCriacao?: Date | undefined;
     private _dataAtualizacao?: Date | undefined;
     private _dataExclusao?: Date | null | undefined;
+    private _status?: StatusProduto | undefined;
 
     public static readonly QTD_MINIMA_CATEGORIAS = 1;
     public static readonly QTD_MAXIMA_CATEGORIAS = 3;
@@ -96,6 +97,14 @@ export class Produto extends Entity<IProduto> implements IProduto {
     private set dataExclusao(value: Date | null | undefined) {
         this._dataExclusao = value;
     }
+
+    public get status(): StatusProduto | undefined {
+        return this._status;
+    }
+
+    private set status(value: StatusProduto | undefined) {
+        this._status = value;
+    }
     
     private constructor(props: IProduto) {
         super(props.id);
@@ -106,6 +115,7 @@ export class Produto extends Entity<IProduto> implements IProduto {
         this.dataCriacao = props.dataCriacao;
         this.dataAtualizacao = props.dataAtualizacao;
         this.dataExclusao = props.dataExclusao;
+        this.status = props.status;
     }
 
     public static create(props: CreateProdutoProps): Produto {
@@ -149,5 +159,21 @@ export class Produto extends Entity<IProduto> implements IProduto {
         this.categorias.push(categoria);
         return categoria;
     }
+    
+    public removeCategoria(categoria: Categoria): Categoria {
+        if (this.quantityCategorias() <= Produto.QTD_MINIMA_CATEGORIAS) {
+            throw new ProdutoExceptions.ProdutoJaPossuiQtdMinimaCategorias();
+        }
 
+        if (!this.hasCategoria(categoria)) {
+            throw new ProdutoExceptions.ProdutoNaoPossuiCategoriaInformada();
+        }
+
+        this.categorias.filter((categoriaExistente, index, arrayCategorias) => {
+            if (categoriaExistente.id === categoria.id) {
+                arrayCategorias.splice(index, 1)
+            }
+        })
+        return categoria;
+    }
 }

@@ -88,6 +88,22 @@ class ProdutoJaPossuiCategoriaInformada extends ProdutoException {
   }
 }
 
+class ProdutoJaPossuiQtdMinimaCategorias extends ProdutoException {
+  public constructor(message:string = '⚠️ O produto já possui a mínima de categoria.') {
+    super(message);
+    this.name = 'ProdutoJaPossuiQtdMinimaCategorias'
+    this.message = message;
+  }
+}
+
+class ProdutoNaoPossuiCategoriaInformada extends ProdutoException {
+  public constructor(message:string = '⚠️ O produto não possui a categoria informada.') {
+    super(message);
+    this.name = 'ProdutoNaoPossuiCategoriaInformada'
+    this.message = message;
+  }
+}
+
 export const ProdutoExceptions = {
   ProdutoException: ProdutoException,
   NomeProdutoNuloOuIndefinido: NomeProdutoNuloOuIndefinido,
@@ -99,5 +115,7 @@ export const ProdutoExceptions = {
   QuantidadeCategoriasMinimoInvalido: QuantidadeCategoriasMinimoInvalido,
   QuantidadeCategoriasMaximoInvalido: QuantidadeCategoriasMaximoInvalido,
   ProdutoJaPossuiQtdMaximaCategorias: ProdutoJaPossuiQtdMaximaCategorias,
-  ProdutoJaPossuiCategoriaInformada: ProdutoJaPossuiCategoriaInformada
+  ProdutoJaPossuiCategoriaInformada: ProdutoJaPossuiCategoriaInformada,
+  ProdutoJaPossuiQtdMinimaCategorias: ProdutoJaPossuiQtdMinimaCategorias,
+  ProdutoNaoPossuiCategoriaInformada: ProdutoNaoPossuiCategoriaInformada
 }

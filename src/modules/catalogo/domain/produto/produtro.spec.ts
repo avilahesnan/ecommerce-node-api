@@ -20,6 +20,9 @@ let UUIDvalido: string;
 let categoirasQtdValidaAptaAdicao: Array<Categoria>;
 let categoirasQtdMaxValidaInaptaAdicao: Array<Categoria>;
 let categoirasQtdValidaInaptaAdicaoDuplicacao: Array<Categoria>;
+let categoriaQtdValidaAptaRemocao: Array<Categoria>;
+let categoriaQtdMinValidaInaptaRemocao: Array<Categoria>;
+let categoriaQtdValidaInaptaRemocaoNaoAssociado: Array<Categoria>;
 
 beforeAll(async () => {
     nomeProdutoValido = faker.string.alpha({length:{min:5, max:50}});
@@ -41,6 +44,9 @@ beforeAll(async () => {
     categoirasQtdValidaAptaAdicao = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02], {min:1, max:2});
     categoirasQtdMaxValidaInaptaAdicao = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03], {min:3, max:3});
     categoirasQtdValidaInaptaAdicaoDuplicacao = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02], {min:1, max:2});
+    categoriaQtdValidaAptaRemocao = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03], {min:2, max:3});
+    categoriaQtdMinValidaInaptaRemocao = faker.helpers.arrayElements<Categoria>([categoriaValida01], {min:1, max:1});
+    categoriaQtdValidaInaptaRemocaoNaoAssociado = faker.helpers.arrayElements<Categoria>([categoriaValida01, categoriaValida02, categoriaValida03], {min:2, max:3});
 
     UUIDvalido = faker.string.uuid();
 })
@@ -182,7 +188,6 @@ describe ('Entidade de Domínio: Adicionar Categoria ao Produto', () => {
 
         expect(() => produtoValidoInaptoNovaCategoria.addCategoria(categoriaValida))
             .toThrowError(ProdutoExceptions.ProdutoJaPossuiQtdMaximaCategorias);
-
     });
 
     test('Não Deve Adicionar Uma Categoria Válida a Um Produto Válido Inapto a Ter Uma Nova Categoria - Categoria Já Adicionada', async () => {
@@ -199,5 +204,59 @@ describe ('Entidade de Domínio: Adicionar Categoria ao Produto', () => {
 
         expect(() => produtoValidoInaptoNovaCategoria.addCategoria(categoriaValida))
             .toThrowError(ProdutoExceptions.ProdutoJaPossuiCategoriaInformada);
+    })
+})
+
+describe ('Entidade de Domínio: Remover Categoria do Produto', () => {
+
+    test('Deve Remover Uma Categoria Válida de Um Produto Válido Apto a Ter Uma Categoria Removida', async () => {
+        
+        const produtoValidoAptoRemoverCategoria: Produto = Produto.recover({
+            id: UUIDvalido,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
+            categorias: categoriaQtdValidaAptaRemocao
+        })
+
+        const categoriaValida = categoriaQtdValidaAptaRemocao[0]
+
+        expect(produtoValidoAptoRemoverCategoria.removeCategoria(categoriaValida))
+            .toBe(categoriaValida)
+
+        expect(produtoValidoAptoRemoverCategoria.categorias)
+            .not.toContain(categoriaValida)
+    })
+
+    test('Não Deve Remover Uma Categoria Válida de Um Produto Válido Inapto a Ter Uma Categoria Removida - Quantidade Mínima de Categoria',async () => {
+        
+        const produtoValidoInaptoRemoverCategoria: Produto = Produto.recover({
+            id: UUIDvalido,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
+            categorias: categoriaQtdMinValidaInaptaRemocao
+        })
+
+        const categoriaValida = categoriaQtdMinValidaInaptaRemocao[0]
+
+        expect(() => produtoValidoInaptoRemoverCategoria.removeCategoria(categoriaValida))
+            .toThrowError(ProdutoExceptions.ProdutoJaPossuiQtdMinimaCategorias)
+    })
+
+    test('Não Deve Remover Uma Categoria Válida de Um Produto Válido Inapto a Ter Uma Categoria Removida - Categoria Não Associado ao Produto',async () => {
+        
+        const produtoValidoInaptoRemoverCategoria: Produto = Produto.recover({
+            id: UUIDvalido,
+            nome: nomeProdutoValido,
+            descricao: descricaoProdutoValido,
+            valor: valorProdutoValido,
+            categorias: categoriaQtdValidaInaptaRemocaoNaoAssociado
+        })
+
+        const categoriaValida = Categoria.create({nome:faker.string.alpha({length:{min:3, max:50}})})
+
+        expect(() => produtoValidoInaptoRemoverCategoria.removeCategoria(categoriaValida))
+            .toThrowError(ProdutoExceptions.ProdutoNaoPossuiCategoriaInformada)
     })
 })

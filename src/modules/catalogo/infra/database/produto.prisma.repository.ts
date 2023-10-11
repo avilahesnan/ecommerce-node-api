@@ -1,19 +1,12 @@
 import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
 import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
 import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface";
+import { StatusProduto } from "@modules/catalogo/domain/produto/produto.types";
 import { ProdutoMap } from "@modules/catalogo/mappers/produto.map";
 import { PrismaRepository } from "@shared/infra/database/prisma.repository";
 import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.types";
 
 export class ProdutoPrismaRepository extends PrismaRepository implements IProdutoRepository<Produto> {
-    
-    async recoverByCategorias(categoria: { id: string; nome: string; dataCriacao: Date; dataAtualizacao: Date; }[]): Promise<Produto> {
-        throw new Error("Method not implemented.");
-    }
-    
-    async addCategoria(categoria: { id: string; nome: string; dataCriacao: Date; dataAtualizacao: Date; }): Promise<boolean> {
-        throw new Error("Method not implemented.");
-    }
     
     async recoverByUuid(uuid: string): Promise<Produto | null> {
         const produtoRecovered = await this._datasource.produto.findUnique({
@@ -31,7 +24,8 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
     async recoverAll(): Promise<Produto[]> {
         const produtoRecovereds = await this._datasource.produto.findMany({
             where: {
-                dataExclusao: null
+                dataExclusao: null,
+                status: StatusProduto.ATIVO
             },
             include: produtoIncludeCategoriaPrisma
         })
@@ -104,6 +98,78 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
             return true
         }
         return false
+    }
+
+    async addCategoria(produto: Produto, categoria: Categoria): Promise<boolean> {
+        const categoriaProdutoAdd = await this._datasource.produtosCategorias.create({
+            data: {
+                produtoId: produto.id,
+                categoriaId: categoria.id
+            }
+        })
+        if (categoriaProdutoAdd) {
+            return true
+        }
+        return false
+    }
+
+    async removeCategoria(produto: Produto, categoria: Categoria): Promise<boolean> {
+        
+        const categoriaProdutoRemovida = await this._datasource.produtosCategorias.delete({
+            where: {
+                produtoId_categoriaId: {
+                    produtoId: produto.id,
+                    categoriaId: categoria.id
+                }
+            }
+        })
+        if (categoriaProdutoRemovida) {
+            return true
+        }
+        return false
+    }
+
+    async alterStatus(produto: Produto, status: StatusProduto): Promise<boolean> {
+        
+        const produtoStatusAlterado = await this._datasource.produto.update({
+            where: {
+                id: produto.id
+            },
+            data: {
+                status: ProdutoMap.toStatusProdutoPrisma(status)
+            }
+        })
+        if (produtoStatusAlterado.id) {
+            return true
+        }
+        return false
+    }
+
+    async recoverByCategoria(idCategoria: string): Promise<Produto[]> {
+        
+        const produtosByCategoriasRecovered = await this._datasource.produto.findMany({
+            where: {
+                dataExclusao: null,
+                status: StatusProduto.ATIVO,
+                AND: [{
+                    categorias: {
+                        some: {
+                            categoriaId: idCategoria
+                        }
+                    }
+                }]
+            },
+            include: produtoIncludeCategoriaPrisma
+        })
+
+        const produtos: Array<Produto> = []
+
+        if (produtosByCategoriasRecovered.length > 0) {
+            produtosByCategoriasRecovered.map((produto) => {
+                produtos.push(ProdutoMap.fromPrismaModeltoDomain(produto))
+            })
+        }
+        return produtos;
     }
 
 }
