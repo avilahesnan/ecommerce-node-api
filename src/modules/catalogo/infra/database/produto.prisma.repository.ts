@@ -2,27 +2,27 @@ import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
 import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
 import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface";
 import { StatusProduto } from "@modules/catalogo/domain/produto/produto.types";
-import { ProdutoMap } from "@modules/catalogo/mappers/produto.map";
+import { ProdutoMap } from "@modules/catalogo/infra/mappers/produto.map";
 import { PrismaRepository } from "@shared/infra/database/prisma.repository";
 import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.types";
 
 export class ProdutoPrismaRepository extends PrismaRepository implements IProdutoRepository<Produto> {
     
     async recoverByUuid(uuid: string): Promise<Produto | null> {
-        const produtoRecovered = await this._datasource.produto.findUnique({
+        const produtoRecuperado = await this._datasource.produto.findUnique({
             where: {
                 id: uuid
             },
             include: produtoIncludeCategoriaPrisma
         })
-        if (produtoRecovered) {
-            return ProdutoMap.fromPrismaModeltoDomain(produtoRecovered)
+        if (produtoRecuperado) {
+            return ProdutoMap.fromPrismaModeltoDomain(produtoRecuperado)
         }
         return null
     }
     
     async recoverAll(): Promise<Produto[]> {
-        const produtoRecovereds = await this._datasource.produto.findMany({
+        const produtosRecuperados = await this._datasource.produto.findMany({
             where: {
                 dataExclusao: null,
                 status: StatusProduto.ATIVO
@@ -32,7 +32,7 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
         const produtos: Array<Produto> = []
 
         if (produtos.length > 0) {
-            produtoRecovereds.map(
+            produtosRecuperados.map(
                 (produto) => {
                     produtos.push(ProdutoMap.fromPrismaModeltoDomain(produto))
                 }
@@ -42,15 +42,15 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
     }
     
     async exists(uuid: string): Promise<boolean> {
-        const produtoExisting = await this.recoverByUuid(uuid)
-        if (produtoExisting) {
+        const produtoExistente = await this.recoverByUuid(uuid)
+        if (produtoExistente) {
             return true
         }
         return false
     }
     
     async insert(produto: Produto): Promise<Produto> {
-        const produtoInsered = await this._datasource.produto.create({
+        const produtoInserido = await this._datasource.produto.create({
             data: {
                 id: produto.id,
                 nome: produto.nome,
@@ -69,7 +69,7 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
     }
     
     async update(uuid: string, produto: Produto): Promise<boolean> {
-        const produtoUpdated = await this._datasource.produto.update({
+        const produtoAtualizado = await this._datasource.produto.update({
             where: {
                 id: uuid
             },
@@ -79,14 +79,14 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
                 valor: produto.valor
             }
         })
-        if (produtoUpdated) {
+        if (produtoAtualizado) {
             return true
         }
         return false
     }
     
     async delete(uuid: string): Promise<boolean> {
-        const produtodeleted = await this._datasource.produto.update({
+        const produtoDeletado = await this._datasource.produto.update({
             where: {
                 id: uuid
             },
@@ -94,20 +94,20 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
                 dataExclusao: new Date()
             }
         })
-        if(produtodeleted.id) {
+        if(produtoDeletado.id) {
             return true
         }
         return false
     }
 
     async addCategoria(produto: Produto, categoria: Categoria): Promise<boolean> {
-        const categoriaProdutoAdd = await this._datasource.produtosCategorias.create({
+        const categoriaProdutoAdicionado = await this._datasource.produtosCategorias.create({
             data: {
                 produtoId: produto.id,
                 categoriaId: categoria.id
             }
         })
-        if (categoriaProdutoAdd) {
+        if (categoriaProdutoAdicionado) {
             return true
         }
         return false
@@ -147,7 +147,7 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
 
     async recoverByCategoria(idCategoria: string): Promise<Produto[]> {
         
-        const produtosByCategoriasRecovered = await this._datasource.produto.findMany({
+        const produtosPorCategoriasRecuperadas = await this._datasource.produto.findMany({
             where: {
                 dataExclusao: null,
                 status: StatusProduto.ATIVO,
@@ -164,8 +164,8 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
 
         const produtos: Array<Produto> = []
 
-        if (produtosByCategoriasRecovered.length > 0) {
-            produtosByCategoriasRecovered.map((produto) => {
+        if (produtosPorCategoriasRecuperadas.length > 0) {
+            produtosPorCategoriasRecuperadas.map((produto) => {
                 produtos.push(ProdutoMap.fromPrismaModeltoDomain(produto))
             })
         }

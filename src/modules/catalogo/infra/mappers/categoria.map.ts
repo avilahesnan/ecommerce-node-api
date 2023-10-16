@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
-import { Categoria } from "../domain/categoria/categoria.entity";
-import { ICategoria, RecoverCategoriaProps } from "../domain/categoria/categoria.types";
+import { Categoria } from "../../domain/categoria/categoria.entity";
+import { ICategoria, RecoverCategoriaProps } from "../../domain/categoria/categoria.types";
 
 export class CategoriaMap {
 

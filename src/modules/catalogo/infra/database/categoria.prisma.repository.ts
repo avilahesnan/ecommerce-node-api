@@ -1,40 +1,40 @@
 import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
-import { CategoriaMap } from "@modules/catalogo/mappers/categoria.map";
+import { CategoriaMap } from "@modules/catalogo/infra/mappers/categoria.map";
 import { IRepository } from "@shared/domain/repository.interface";
 import { PrismaRepository } from "@shared/infra/database/prisma.repository";
 
 export class CategoriaPrismaRepository extends PrismaRepository implements IRepository<Categoria> {
 
     async recoverByUuid(uuid: string): Promise<Categoria | null> {
-        const categoriaRecovered = await this._datasource.categoria.findUnique({
+        const categoriaRecuperada = await this._datasource.categoria.findUnique({
                 where: {
                     id: uuid
                 }
             })
-        if (categoriaRecovered) {
-            return CategoriaMap.fromPrismaModeltoDomain(categoriaRecovered)
+        if (categoriaRecuperada) {
+            return CategoriaMap.fromPrismaModeltoDomain(categoriaRecuperada)
         }
         return null
     }
 
     async recoverAll(): Promise<Array<Categoria>> {
-        const categoriaRecovereds = await this._datasource.categoria.findMany()
-        const categorias = categoriaRecovereds.map(
+        const categoriasRecuperadas = await this._datasource.categoria.findMany()
+        const categorias = categoriasRecuperadas.map(
             (categoria) => CategoriaMap.fromPrismaModeltoDomain(categoria)
         )
         return categorias
     }
 
     async exists(uuid: string): Promise<boolean> {
-        const categoriaExisting = await this.recoverByUuid(uuid)
-        if (categoriaExisting) {
+        const categoriaExistente = await this.recoverByUuid(uuid)
+        if (categoriaExistente) {
             return true
         }
         return false
     }
 
     async insert(categoria: Categoria): Promise<Categoria> {
-        const categoriaInsered = await this._datasource.categoria.create({
+        const categoriaInserida = await this._datasource.categoria.create({
                 data: {
                     id: categoria.id,
                     nome: categoria.nome
@@ -44,25 +44,25 @@ export class CategoriaPrismaRepository extends PrismaRepository implements IRepo
     }
 
     async update(uuid: string, categoria: Categoria): Promise<boolean> {
-        const categoriaUpdated = await this._datasource.categoria.update({
+        const categoriaAtualizada = await this._datasource.categoria.update({
             where: {
                 id: uuid
             },
             data: CategoriaMap.toDTO(categoria)
         })
-        if (categoriaUpdated) {
+        if (categoriaAtualizada) {
             return true
         }
         return false   
     }
 
     async delete(uuid: string): Promise<boolean> {
-        const categoriaDeleted = await this._datasource.categoria.delete({
+        const categoriaDeletada = await this._datasource.categoria.delete({
             where: {
                 id: uuid
             }
         })
-        if (categoriaDeleted.id) {
+        if (categoriaDeletada.id) {
             return true
         }
         return false

@@ -1,7 +1,7 @@
-import { Produto } from "../domain/produto/produto.entity";
-import { IProduto, RecoverProdutoProps, StatusProduto } from "../domain/produto/produto.types";
+import { Produto } from "../../domain/produto/produto.entity";
+import { IProduto, RecoverProdutoProps, StatusProduto } from "../../domain/produto/produto.types";
 import { ProdutoWithCategoriaPrisma } from "@shared/infra/database/prisma.types";
-import { Categoria } from "../domain/categoria/categoria.entity";
+import { Categoria } from "../../domain/categoria/categoria.entity";
 import { CategoriaMap } from "./categoria.map";
 import { StatusProdutoPrisma } from "@prisma/client";
 

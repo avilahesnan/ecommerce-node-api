@@ -1,14 +1,8 @@
 import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
 import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
-import { CategoriaPrismaRepository } from "@modules/catalogo/infra/database/categoria.prisma.repository";
-import { ProdutoPrismaRepository } from "@modules/catalogo/infra/database/produto.prisma.repository";
-import { PrismaClient } from "@prisma/client";
 import { DomainException } from "@shared/domain/domain.exception";
-
-const prisma = new PrismaClient({
-    log: ['query', 'info'],
-    errorFormat: 'pretty'
-});
+import { prisma } from "@main/infra/database/orm/prisma/client";
+import { categoriaRepositorio, produtoRepositorio } from "@modules/catalogo/infra/database";
 
 async function main() {
     
@@ -17,13 +11,10 @@ async function main() {
             console.log('Postgress Connected');
         }
     );
-   
-    const categoriaRepo = new CategoriaPrismaRepository(prisma)
-    const produtoRepo = new ProdutoPrismaRepository(prisma)
 
     /// Categoria ///
 
-    //const categoriaRecuId: Categoria | null = await categoriaRepo.recoverByUuid("")
+    //const categoriaRecuId: Categoria | null = await categoriaRepositorio.recoverByUuid("")
 
     //const categoria: Categoria = Categoria.create({ nome: 'banho'})
 
@@ -32,19 +23,19 @@ async function main() {
     //     nome: "banho"
     // })
 
-    //const categoriaInse = await categoriaRepo.insert(categoria)
+    //const categoriaInse = await categoriaRepositorio.insert(categoria)
     
-    //const categoriaExi: boolean = await categoriaRepo.exists("")
+    //const categoriaExi: boolean = await categoriaRepositorio.exists("")
 
-    //const categoriaUp: boolean = await categoriaRepo.update(.id,)
+    //const categoriaUp: boolean = await categoriaRepositorio.update(.id,)
     
-    //const categoriaDel: boolean = await categoriaRepo.delete("")
+    //const categoriaDel: boolean = await categoriaRepositorio.delete("")
     
-    //const categoriaAll: Array<Categoria> = await categoriaRepo.recoverAll()
+    //const categoriaAll: Array<Categoria> = await categoriaRepositorio.recoverAll()
     
     /// Produto ///
 
-    //const produtoRecuId: Produto | null = await produtoRepo.recoverByUuid("")
+    //const produtoRecuId: Produto | null = await produtoRepositorio.recoverByUuid("")
 
     //const produto: Produto = Produto.create({nome: 'toalha', descricao: 'toalha de banho', valor: 50, categorias: []})
 
@@ -56,15 +47,15 @@ async function main() {
     //     categorias: [categoriaRecu]
     // })
 
-    //const produtoInse = await produtoRepo.insert()
+    //const produtoInse = await produtoRepositorio.insert()
 
-    //const prdotutoExi: boolean = await produtoRepo.exists("")
+    //const prdotutoExi: boolean = await produtoRepositorio.exists("")
 
-    //const produtoUp: boolean = await produtoRepo.update(produtoRecu.id, produtoRecu)
+    //const produtoUp: boolean = await produtoRepositorio.update(produtoRecu.id, produtoRecu)
 
-    //const produtoDel: boolean = await produtoRepo.delete("")
+    //const produtoDel: boolean = await produtoRepositorio.delete("")
 
-    //const produtoAll: Array<Produto> = await produtoRepo.recoverAll()
+    //const produtoAll: Array<Produto> = await produtoRepositorio.recoverAll()
 
 
     //console.log(categoriaRecuId)

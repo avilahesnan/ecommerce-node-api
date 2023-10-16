@@ -107,8 +107,8 @@ class ProdutoNaoPossuiCategoriaInformada extends ProdutoException {
 export const ProdutoExceptions = {
   ProdutoException: ProdutoException,
   NomeProdutoNuloOuIndefinido: NomeProdutoNuloOuIndefinido,
-  NomeProdutoTamanhoMinimoInvalido: NomeDescricaoTamanhoMinimoInvalido,
-  NomeProdutoTamanhoMaximoInvalido: NomeDescricaoTamanhoMaximoInvalido,
+  NomeProdutoTamanhoMinimoInvalido: NomeProdutoTamanhoMinimoInvalido,
+  NomeProdutoTamanhoMaximoInvalido: NomeProdutoTamanhoMaximoInvalido,
   NomeDescricaoTamanhoMinimoInvalido: NomeDescricaoTamanhoMinimoInvalido,
   NomeDescricaoTamanhoMaximoInvalido: NomeDescricaoTamanhoMaximoInvalido,
   ValorMinimoInvalido: ValorMinimoInvalido,

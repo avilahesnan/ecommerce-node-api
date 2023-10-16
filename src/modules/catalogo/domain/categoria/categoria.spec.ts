@@ -19,80 +19,85 @@ beforeAll(async () => {
     UUIDInvalido = faker.string.alpha({ length: { min: 1, max: 20 } });
 })
 
-describe('Entidade de Domínio: Categoria (create)', () => {
+describe('Entidade de Domínio: Categoria', () => {
 
-    test('Deve Criar Uma Categoria Válida - ', async () => {
-        const categoriaValida: CreateCategoriaProps = {
-            nome: nomeCategoriaValida
-        }
-        expect(Categoria.create(categoriaValida))
-            .to.be.instanceOf(Categoria)
+    describe('Categoria (create)', () => {
+
+        test('Deve Criar Uma Categoria Válida - ', async () => {
+            const categoriaValida: CreateCategoriaProps = {
+                nome: nomeCategoriaValida
+            }
+            expect(Categoria.create(categoriaValida))
+                .to.be.instanceOf(Categoria)
+        });
+    
+        test('Não Deve Criar Categoria Com Nome Inválido - Tamanho Mínimo', () => {
+            const categoriaInvalida: CreateCategoriaProps = {
+                nome: nomeCategoriaTamanhoMinimoInvalido
+            }
+            expect(() => Categoria.create(categoriaInvalida))
+                .toThrowError(NomeCategoriaTamanhoMinimoInvalido)
+        })
+    
+        test('Não Deve Criar Categoria Com Nome Inválido - Tamanho Máximo', () => {
+            const categoriaInvalida: CreateCategoriaProps = {
+                nome: nomeCategoriaTamanhoMaximoInvalido
+            }
+            expect(() => Categoria.create(categoriaInvalida))
+                .toThrowError(NomeCategoriaTamanhoMaximoInvalido)
+        })
+    });
+    
+    describe('Categoria (Recover)', () => {
+    
+        test('Deve Recuperar Uma Categoria Válida', async () => {
+    
+            const categoriaValida: RecoverCategoriaProps = {
+                id: UUIDValido,
+                nome: nomeCategoriaValida
+            };
+    
+            expect(Categoria.recover(categoriaValida))
+                .to.be.instanceof(Categoria);
+    
+        });
+    
+        test('Não Deve Recuperar Categoria Com ID Inválido (UUID Inválido)', async () => {
+    
+            const categoriaIdInvalido: RecoverCategoriaProps = {
+                id: UUIDInvalido,
+                nome: nomeCategoriaValida
+            };
+    
+            expect(() => Categoria.recover(categoriaIdInvalido))
+                .toThrowError(IDEntityUUIDInvalid);
+    
+        });
+    
+        test('Não Deve Recuperar Categoria Com Nome Inválido (Tamanho Mínimo)', async () => {
+    
+            const categoriaNomeInvalido: RecoverCategoriaProps = {
+                id: UUIDValido,
+                nome: nomeCategoriaTamanhoMinimoInvalido
+            };
+    
+            expect(() => Categoria.recover(categoriaNomeInvalido))
+                .toThrowError(NomeCategoriaTamanhoMinimoInvalido);
+    
+        });
+    
+        test('Não Deve Recover Categoria Com Nome Inválido (Tamanho Máximo)', async () => {
+    
+            const categoriaNomeInvalido: RecoverCategoriaProps = {
+                id: UUIDValido,
+                nome: nomeCategoriaTamanhoMaximoInvalido
+            };
+    
+            expect(() => Categoria.recover(categoriaNomeInvalido))
+                .toThrowError(NomeCategoriaTamanhoMaximoInvalido);
+    
+        });
     });
 
-    test('Não Deve Criar Categoria Com Nome Inválido - Tamanho Mínimo', () => {
-        const categoriaInvalida: CreateCategoriaProps = {
-            nome: nomeCategoriaTamanhoMinimoInvalido
-        }
-        expect(() => Categoria.create(categoriaInvalida))
-            .toThrowError(NomeCategoriaTamanhoMinimoInvalido)
-    })
-
-    test('Não Deve Criar Categoria Com Nome Inválido - Tamanho Máximo', () => {
-        const categoriaInvalida: CreateCategoriaProps = {
-            nome: nomeCategoriaTamanhoMaximoInvalido
-        }
-        expect(() => Categoria.create(categoriaInvalida))
-            .toThrowError(NomeCategoriaTamanhoMaximoInvalido)
-    })
 });
 
-describe('Entidade de Domínio: Categoria (Recover)', () => {
-
-    test('Deve Recuperar Uma Categoria Válida', async () => {
-
-        const categoriaValida: RecoverCategoriaProps = {
-            id: UUIDValido,
-            nome: nomeCategoriaValida
-        };
-
-        expect(Categoria.recover(categoriaValida))
-            .to.be.instanceof(Categoria);
-
-    });
-
-    test('Não Deve Recuperar Categoria Com ID Inválido (UUID Inválido)', async () => {
-
-        const categoriaIdInvalido: RecoverCategoriaProps = {
-            id: UUIDInvalido,
-            nome: nomeCategoriaValida
-        };
-
-        expect(() => Categoria.recover(categoriaIdInvalido))
-            .toThrowError(IDEntityUUIDInvalid);
-
-    });
-
-    test('Não Deve Recuperar Categoria Com Nome Inválido (Tamanho Mínimo)', async () => {
-
-        const categoriaNomeInvalido: RecoverCategoriaProps = {
-            id: UUIDValido,
-            nome: nomeCategoriaTamanhoMinimoInvalido
-        };
-
-        expect(() => Categoria.recover(categoriaNomeInvalido))
-            .toThrowError(NomeCategoriaTamanhoMinimoInvalido);
-
-    });
-
-    test('Não Deve Recover Categoria Com Nome Inválido (Tamanho Máximo)', async () => {
-
-        const categoriaNomeInvalido: RecoverCategoriaProps = {
-            id: UUIDValido,
-            nome: nomeCategoriaTamanhoMaximoInvalido
-        };
-
-        expect(() => Categoria.recover(categoriaNomeInvalido))
-            .toThrowError(NomeCategoriaTamanhoMaximoInvalido);
-
-    });
-});
