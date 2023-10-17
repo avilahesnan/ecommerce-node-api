@@ -3,6 +3,7 @@ import { Entity } from "@shared/domain/entity";
 import { Categoria } from "../categoria/categoria.entity";
 import { ProdutoExceptions} from "./produto.exception";
 import { CreateProdutoProps, IProduto, RecoverProdutoProps, StatusProduto } from "./produto.types";
+import { RecoverCategoriaProps } from "../categoria/categoria.types";
 
 export class Produto extends Entity<IProduto> implements IProduto {
     
@@ -124,7 +125,7 @@ export class Produto extends Entity<IProduto> implements IProduto {
         this.nome = props.nome;
         this.descricao = props.descricao;
         this.valor = props.valor;
-        this.categorias = props.categorias;
+        this.categorias = props.categorias.map((categoria) => { return Categoria.recover(categoria as RecoverCategoriaProps)});
         this.dataCriacao = props.dataCriacao;
         this.dataAtualizacao = props.dataAtualizacao;
         this.dataExclusao = props.dataExclusao;
