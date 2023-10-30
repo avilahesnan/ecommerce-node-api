@@ -16,8 +16,8 @@ export interface IProduto extends IDatasController {
 
 }
 
-export type CreateProdutoProps = Omit<IProduto, "id" | keyDataController | "status">;
+export type CreateProdutoProps = Omit<IProduto, "id" | keyDataController | "status">
 
 export type RecoverProdutoProps = IProduto & {
     id: NonNullable<IProduto["id"]>
-};
+}

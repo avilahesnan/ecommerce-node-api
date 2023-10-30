@@ -4,4 +4,4 @@ export interface IDatasController {
     dataExclusao?: Date | null;
 }
 
-export type keyDataController = keyof IDatasController;
+export type keyDataController = keyof IDatasController

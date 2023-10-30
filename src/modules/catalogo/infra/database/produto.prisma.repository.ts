@@ -31,7 +31,7 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
         })
         const produtos: Array<Produto> = []
 
-        if (produtos.length > 0) {
+        if (produtosRecuperados.length > 0) {
             produtosRecuperados.map(
                 (produto) => {
                     produtos.push(ProdutoMap.fromPrismaModeltoDomain(produto))
@@ -169,7 +169,7 @@ export class ProdutoPrismaRepository extends PrismaRepository implements IProdut
                 produtos.push(ProdutoMap.fromPrismaModeltoDomain(produto))
             })
         }
-        return produtos;
+        return produtos
     }
 
 }

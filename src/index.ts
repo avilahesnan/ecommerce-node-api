@@ -10,7 +10,7 @@ async function main() {
         async () => {
             console.log('Postgress Connected');
         }
-    );
+    )
 
     /// Categoria ///
 

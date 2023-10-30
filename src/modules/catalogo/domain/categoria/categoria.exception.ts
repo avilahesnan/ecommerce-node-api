@@ -31,3 +31,10 @@ export class NomeCategoriaTamanhoMaximoInvalido extends CategoriaException {
     this.message = message;
   }
 }
+
+export const categoriaExceptions = {
+  CategoriaException: CategoriaException,
+  NomeCategoriaNuloOuIndefinido: NomeCategoriaNuloOuIndefinido,
+  NomeCategoriaTamanhoMinimoInvalido: NomeCategoriaTamanhoMinimoInvalido,
+  NomeCategoriaTamanhoMaximoInvalido: NomeCategoriaTamanhoMaximoInvalido
+}

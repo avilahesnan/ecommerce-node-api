@@ -6,5 +6,5 @@ import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.rep
 import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
 import { ProdutoPrismaRepository } from "./produto.prisma.repository";
 
-export const categoriaRepositorio: ICategoriaRepository<Categoria> = new CategoriaPrismaRepository(prisma);
-export const produtoRepositorio: IProdutoRepository<Produto> = new ProdutoPrismaRepository(prisma);
+export const categoriaRepositorio: ICategoriaRepository<Categoria> = new CategoriaPrismaRepository(prisma)
+export const produtoRepositorio: IProdutoRepository<Produto> = new ProdutoPrismaRepository(prisma)

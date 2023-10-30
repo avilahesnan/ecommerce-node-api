@@ -3,7 +3,7 @@ import { IDEntityUUIDInvalid } from "./domain.exception";
 
 const isEntity = (v: any): v is Entity<any> => {
     return v instanceof Entity;
-};
+}
 
 export abstract class Entity<T> {
     

@@ -5,8 +5,8 @@ export interface ICategoria extends IDatasController {
     nome: string;
 }
 
-export type CreateCategoriaProps = Omit<ICategoria, "id" | keyDataController>;
+export type CreateCategoriaProps = Omit<ICategoria, "id" | keyDataController>
 
 export type RecoverCategoriaProps = ICategoria & {
     id: NonNullable<ICategoria["id"]>
-};
+}
