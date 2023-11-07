@@ -3,6 +3,9 @@ import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
 import { DomainException } from "@shared/domain/domain.exception";
 import { prisma } from "@main/infra/database/orm/prisma/client";
 import { categoriaRepositorio, produtoRepositorio } from "@modules/catalogo/infra/database";
+import { recuperarCategoriaPorIdUseCase, recuperarTodasCategoriasUseCase } from "@modules/catalogo/application/use-case";
+
+
 
 async function main() {
     
@@ -14,9 +17,11 @@ async function main() {
 
     /// Categoria ///
 
-    //const categoriaRecuId: Categoria | null = await categoriaRepositorio.recoverByUuid("")
+    console.log(await recuperarCategoriaPorIdUseCase.execute("110d4541-1ef8-4fbc-94d4-f0d2f5fbcb6d"))
 
-    //const categoria: Categoria = Categoria.create({ nome: 'banho'})
+
+    console.log(await recuperarTodasCategoriasUseCase.execute())
+    
 
     // const categoriaRecu = Categoria.recover({
     //     id: "d48bb575-100d-40f4-b906-38a9d9cbb3c8",
