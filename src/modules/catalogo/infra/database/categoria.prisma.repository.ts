@@ -40,7 +40,7 @@ export class CategoriaPrismaRepository extends PrismaRepository implements IRepo
                     nome: categoria.nome
                 }
             })
-        return categoria
+        return CategoriaMap.fromPrismaModeltoDomain(categoriaInserida)
     }
 
     async update(uuid: string, categoria: Categoria): Promise<boolean> {

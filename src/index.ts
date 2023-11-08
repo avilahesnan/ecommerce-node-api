@@ -3,7 +3,7 @@ import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
 import { DomainException } from "@shared/domain/domain.exception";
 import { prisma } from "@main/infra/database/orm/prisma/client";
 import { categoriaRepositorio, produtoRepositorio } from "@modules/catalogo/infra/database";
-import { recuperarCategoriaPorIdUseCase, recuperarTodasCategoriasUseCase } from "@modules/catalogo/application/use-case";
+import { atualizarCategoriaUseCase, deletarCategoriaUseCase, inserirCategoriaUseCase, recupearProdutoPorIdUseCase, recuperarCategoriaPorIdUseCase, recuperarTodasCategoriasUseCase } from "@modules/catalogo/application/use-case";
 
 
 
@@ -17,30 +17,23 @@ async function main() {
 
     /// Categoria ///
 
-    console.log(await recuperarCategoriaPorIdUseCase.execute("110d4541-1ef8-4fbc-94d4-f0d2f5fbcb6d"))
+    //console.log(await recuperarCategoriaPorIdUseCase.execute("110d4541-1ef8-4fbc-94d4-f0d2f5fbcb6d"))
 
-
-    console.log(await recuperarTodasCategoriasUseCase.execute())
+    //console.log(await recuperarTodasCategoriasUseCase.execute())
     
+    //console.log(await inserirCategoriaUseCase.execute({nome: 'Cama'}))
 
-    // const categoriaRecu = Categoria.recover({
-    //     id: "d48bb575-100d-40f4-b906-38a9d9cbb3c8",
-    //     nome: "banho"
-    // })
+    // console.log(await atualizarCategoriaUseCase.execute({
+    //     id: '110d4541-1ef8-4fbc-94d4-f0d2f5fbcb6d',
+    //     nome: 'mesa'
+    // }))
 
-    //const categoriaInse = await categoriaRepositorio.insert(categoria)
-    
-    //const categoriaExi: boolean = await categoriaRepositorio.exists("")
+    //console.log(await deletarCategoriaUseCase.execute("110d4541-1ef8-4fbc-94d4-f0d2f5fbcb6d"))
 
-    //const categoriaUp: boolean = await categoriaRepositorio.update(.id,)
-    
-    //const categoriaDel: boolean = await categoriaRepositorio.delete("")
-    
-    //const categoriaAll: Array<Categoria> = await categoriaRepositorio.recoverAll()
     
     /// Produto ///
 
-    //const produtoRecuId: Produto | null = await produtoRepositorio.recoverByUuid("")
+    console.log(await recupearProdutoPorIdUseCase.execute("9fbd3b52-5200-45d8-a5df-d86a92c970f2"))
 
     //const produto: Produto = Produto.create({nome: 'toalha', descricao: 'toalha de banho', valor: 50, categorias: []})
 
@@ -62,14 +55,6 @@ async function main() {
 
     //const produtoAll: Array<Produto> = await produtoRepositorio.recoverAll()
 
-
-    //console.log(categoriaRecuId)
-    //console.log(categoriaRecu)
-    //console.log(categoriaInse)
-    //console.log(categoriaExi)
-    //console.log(categoriaUp)
-    //console.log(categoriaDel)
-    //console.log(categoriaAll)
     
     //console.log(produtoRecuId)
     //console.log(produtoRecu)
