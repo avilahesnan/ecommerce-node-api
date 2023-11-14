@@ -1,11 +1,10 @@
-import { RecoverProdutoProps } from "@modules/catalogo/domain/produto/produto.types";
-import { IUseCase } from "@shared/application/use-case.interface";
-import { ProdutoApplicationExceptions } from "../../exception/produto.application.exception";
 import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
 import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface";
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
+import { RecoverProdutoProps, StatusProduto } from "@modules/catalogo/domain/produto/produto.types";
+import { IUseCase } from "@shared/application/use-case.interface";
+import { ProdutoApplicationExceptions } from "../../exception/produto.application.exception";
 
-export class AddCategoriaProdutoUseCase implements IUseCase<RecoverProdutoProps, boolean> {
+export class AlterStatusProdutoUseCase implements IUseCase<RecoverProdutoProps, boolean> {
     
     private _produtoRepositorio: IProdutoRepository<Produto>
 
@@ -22,12 +21,11 @@ export class AddCategoriaProdutoUseCase implements IUseCase<RecoverProdutoProps,
 
         const produto: Produto = Produto.recover(produtoProps)
 
-        const categoria: Categoria = Categoria.create({nome: 'Mesa'})
+        const status: StatusProduto = StatusProduto.ATIVO
 
-        const produtoCategoriaAdicionada = await this._produtoRepositorio.addCategoria(produto, categoria)
+        const statusAlteradoProduto = await this._produtoRepositorio.alterStatus(produto, status)
 
-        return produtoCategoriaAdicionada
+        return statusAlteradoProduto
     }
-    
-    
+
 }

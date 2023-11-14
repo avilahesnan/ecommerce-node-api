@@ -3,7 +3,7 @@ import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
 import { DomainException } from "@shared/domain/domain.exception";
 import { prisma } from "@main/infra/database/orm/prisma/client";
 import { categoriaRepositorio, produtoRepositorio } from "@modules/catalogo/infra/database";
-import { atualizarCategoriaUseCase, atualizarProdutoUseCase, deletarCategoriaUseCase, deletarProdutoUseCase, inserirCategoriaUseCase, inserirProdutoUseCase, recupearProdutoPorIdUseCase, recuperarCategoriaPorIdUseCase, recuperarTodasCategoriasUseCase, recuperarTodosProdutosUseCase } from "@modules/catalogo/application/use-case";
+import { adicionarCategoriaProdutoUseCase, alterarStatusProdutoUseCase, atualizarCategoriaUseCase, atualizarProdutoUseCase, deletarCategoriaUseCase, deletarProdutoUseCase, inserirCategoriaUseCase, inserirProdutoUseCase, recupearProdutoPorIdUseCase, recuperarCategoriaPorIdUseCase, recuperarProdutosPorCategoriaUseCase, recuperarTodasCategoriasUseCase, recuperarTodosProdutosUseCase } from "@modules/catalogo/application/use-case";
 
 
 
@@ -43,6 +43,8 @@ async function main() {
     
     /// Product ///
 
+    let categoria01 = await recuperarCategoriaPorIdUseCase.execute("8780ae8d-0d56-43d0-a45b-1a1143bb324f")
+
     /// Recover Product By Id ///
 
     //console.log(await recupearProdutoPorIdUseCase.execute("9fbd3b52-5200-45d8-a5df-d86a92c970f2"))
@@ -53,8 +55,7 @@ async function main() {
     
     /// Insert Product ///
 
-    // let categoria01 = await recuperarCategoriaPorIdUseCase.execute("8780ae8d-0d56-43d0-a45b-1a1143bb324f")
-    // console.log(await inserirProdutoUseCase.execute({nome: 'Iphone', descricao: 'Um ótimo smartphone', valor: 3.500, categorias: [categoria01]}))
+    // console.log(await inserirProdutoUseCase.execute({nome: 'Iphone', descricao: 'Um ótimo smartphone', valor: 3, categorias: [categoria01]}))
 
     /// Update Product ///
 
@@ -62,13 +63,31 @@ async function main() {
     //     id: "9fbd3b52-5200-45d8-a5df-d86a92c970f2",
     //     nome: 'Iphone 16',
     //     descricao: 'Um ótimo smartphone',
-    //     valor: 3.500,
+    //     valor: 3,
     //     categorias: [categoria01]
     // }))
 
     /// Delete Product (Soft Delete) ///
     
     //console.log(await deletarProdutoUseCase.execute("d82d82fc-b06f-4e33-b932-52f66afe3270"))
+
+    /// Add Category Product ///
+
+    /// Remove Category Product ///
+
+    /// Alter Status Product ///
+
+    // console.log(await alterarStatusProdutoUseCase.execute({
+    //     id: "9fbd3b52-5200-45d8-a5df-d86a92c970f2",
+    //     nome: 'Iphone 16',
+    //     descricao: 'Um ótimo smartphone',
+    //     valor: 3,
+    //     categorias: [categoria01]
+    // }))
+
+    /// Recover Product By Category ///
+
+    // console.log(await recuperarProdutosPorCategoriaUseCase.execute("8780ae8d-0d56-43d0-a45b-1a1143bb324f"))
 
 
 }
