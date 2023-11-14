@@ -9,6 +9,7 @@ import { RecoverAllProdutosUseCase } from "./recover-all-produtos/recover-all-pr
 import { InsertProdutoUseCase } from "./insert-produto/insert-produto.use-case";
 import { UpdateProdutoUseCase } from "./update-produto/update-produto.use-case";
 import { DeleteProdutoUseCase } from "./delete-produto/delete-produto.use-case";
+import { AddCategoriaProdutoUseCase } from "./add-categoria-produto/add-categoria-produto.use-case";
 
 export const recuperarCategoriaPorIdUseCase = new RecoverCategoriaByIdUseCase(categoriaRepositorio)
 export const recuperarTodasCategoriasUseCase = new RecoverAllCategoriasUseCase(categoriaRepositorio)
@@ -21,3 +22,4 @@ export const recuperarTodosProdutosUseCase = new RecoverAllProdutosUseCase(produ
 export const inserirProdutoUseCase = new InsertProdutoUseCase(produtoRepositorio)
 export const atualizarProdutoUseCase = new UpdateProdutoUseCase(produtoRepositorio)
 export const deletarProdutoUseCase = new DeleteProdutoUseCase(produtoRepositorio)
+//export const adicionarCategoriaProdutoUseCase = new AddCategoriaProdutoUseCase(produtoRepositorio)
