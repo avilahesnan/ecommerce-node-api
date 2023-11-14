@@ -26,5 +26,4 @@ export class RecoverProdutoByIdUseCase implements IUseCase<string, IProduto> {
         return ProdutoMap.toDTO(produto as Produto)
     }
 
-
 }

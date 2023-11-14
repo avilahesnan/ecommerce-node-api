@@ -22,7 +22,10 @@ export class AddCategoriaProdutoUseCase implements IUseCase<RecoverProdutoProps,
 
         const produto: Produto = Produto.recover(produtoProps)
 
-        const categoria: Categoria = Categoria.create({nome: 'Mesa'})
+        const categoria: Categoria = Categoria.recover({
+            id: "8780ae8d-0d56-43d0-a45b-1a1143bb324f",
+            nome: "Cama"
+        })
 
         const produtoCategoriaAdicionada = await this._produtoRepositorio.addCategoria(produto, categoria)
 

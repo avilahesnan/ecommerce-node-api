@@ -21,5 +21,4 @@ export class RecoverAllCategoriasUseCase implements IUseCase<void, Array<ICatego
 
     }
 
-
 } 

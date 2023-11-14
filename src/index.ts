@@ -3,7 +3,7 @@ import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
 import { DomainException } from "@shared/domain/domain.exception";
 import { prisma } from "@main/infra/database/orm/prisma/client";
 import { categoriaRepositorio, produtoRepositorio } from "@modules/catalogo/infra/database";
-import { adicionarCategoriaProdutoUseCase, alterarStatusProdutoUseCase, atualizarCategoriaUseCase, atualizarProdutoUseCase, deletarCategoriaUseCase, deletarProdutoUseCase, inserirCategoriaUseCase, inserirProdutoUseCase, recupearProdutoPorIdUseCase, recuperarCategoriaPorIdUseCase, recuperarProdutosPorCategoriaUseCase, recuperarTodasCategoriasUseCase, recuperarTodosProdutosUseCase } from "@modules/catalogo/application/use-case";
+import { adicionarCategoriaProdutoUseCase, alterarStatusProdutoUseCase, atualizarCategoriaUseCase, atualizarProdutoUseCase, deletarCategoriaUseCase, deletarProdutoUseCase, inserirCategoriaUseCase, inserirProdutoUseCase, recupearProdutoPorIdUseCase, recuperarCategoriaPorIdUseCase, recuperarProdutosPorCategoriaUseCase, recuperarTodasCategoriasUseCase, recuperarTodosProdutosUseCase, removerCategoriaProdutoUseCase } from "@modules/catalogo/application/use-case";
 
 
 
@@ -15,7 +15,9 @@ async function main() {
         }
     )
 
+    ////////////////
     /// Category ///
+    ////////////////
 
     /// Recover Category By Id ///
 
@@ -40,10 +42,14 @@ async function main() {
 
     //console.log(await deletarCategoriaUseCase.execute("110d4541-1ef8-4fbc-94d4-f0d2f5fbcb6d"))
 
-    
+    ///////////////
     /// Product ///
+    ///////////////
 
-    let categoria01 = await recuperarCategoriaPorIdUseCase.execute("8780ae8d-0d56-43d0-a45b-1a1143bb324f")
+    /// Variables ///
+
+    // let categoria01 = await recuperarCategoriaPorIdUseCase.execute("8780ae8d-0d56-43d0-a45b-1a1143bb324f")
+    // let categoria02 = await recuperarCategoriaPorIdUseCase.execute("d48bb575-100d-40f4-b906-38a9d9cbb3c8")
 
     /// Recover Product By Id ///
 
@@ -73,7 +79,23 @@ async function main() {
 
     /// Add Category Product ///
 
+    // console.log(await adicionarCategoriaProdutoUseCase.execute({
+    //     id: "9fbd3b52-5200-45d8-a5df-d86a92c970f2",
+    //     nome: "Iphone 16",
+    //     descricao: "Um ótimo smartphone",
+    //     valor: 3,
+    //     categorias: [categoria01]
+    // }))
+
     /// Remove Category Product ///
+
+    // console.log(await removerCategoriaProdutoUseCase.execute({
+    //     id: "d82d82fc-b06f-4e33-b932-52f66afe3270",
+    //     nome: "Iphone",
+    //     descricao: "Um ótimo smartphone",
+    //     valor: 3,
+    //     categorias: [categoria01]
+    // }))
 
     /// Alter Status Product ///
 
@@ -82,7 +104,7 @@ async function main() {
     //     nome: 'Iphone 16',
     //     descricao: 'Um ótimo smartphone',
     //     valor: 3,
-    //     categorias: [categoria01]
+    //     categorias: [categoria02]
     // }))
 
     /// Recover Product By Category ///
