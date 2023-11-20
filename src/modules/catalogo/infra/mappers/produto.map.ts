@@ -13,7 +13,7 @@ export class ProdutoMap {
             nome: produto.nome,
             descricao: produto.descricao,
             valor: produto.valor,
-            categorias: produto.categorias,
+            categorias: produto.categorias.map((categoria) => CategoriaMap.toDomain(categoria)),
             dataCriacao: produto.dataCriacao,
             dataAtualizacao: produto.dataAtualizacao,
             dataExclusao: produto.dataExclusao,
