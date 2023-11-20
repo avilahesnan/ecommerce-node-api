@@ -1,8 +1,8 @@
-import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
-import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface";
-import { RecoverProdutoProps, StatusProduto } from "@modules/catalogo/domain/produto/produto.types";
-import { IUseCase } from "@shared/application/use-case.interface";
-import { ProdutoApplicationExceptions } from "../../exception/produto.application.exception";
+import { Produto } from "@modules/catalogo/domain/produto/produto.entity"
+import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface"
+import { RecoverProdutoProps, StatusProduto } from "@modules/catalogo/domain/produto/produto.types"
+import { IUseCase } from "@shared/application/use-case.interface"
+import { ProdutoApplicationExceptions } from "../../exception/produto.application.exception"
 
 export class AlterStatusProdutoUseCase implements IUseCase<RecoverProdutoProps, boolean> {
     
@@ -13,6 +13,7 @@ export class AlterStatusProdutoUseCase implements IUseCase<RecoverProdutoProps, 
     }
 
     async execute(produtoProps: RecoverProdutoProps): Promise<boolean> {
+
         const existeProduto: boolean = await this._produtoRepositorio.exists(produtoProps.id)
 
         if (!existeProduto) {
@@ -27,5 +28,4 @@ export class AlterStatusProdutoUseCase implements IUseCase<RecoverProdutoProps, 
 
         return statusAlteradoProduto
     }
-
 }

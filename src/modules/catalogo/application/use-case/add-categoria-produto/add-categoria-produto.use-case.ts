@@ -1,9 +1,9 @@
-import { RecoverProdutoProps } from "@modules/catalogo/domain/produto/produto.types";
-import { IUseCase } from "@shared/application/use-case.interface";
-import { ProdutoApplicationExceptions } from "../../exception/produto.application.exception";
-import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
-import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface";
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
+import { RecoverProdutoProps } from "@modules/catalogo/domain/produto/produto.types"
+import { IUseCase } from "@shared/application/use-case.interface"
+import { ProdutoApplicationExceptions } from "../../exception/produto.application.exception"
+import { Produto } from "@modules/catalogo/domain/produto/produto.entity"
+import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface"
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity"
 
 export class AddCategoriaProdutoUseCase implements IUseCase<RecoverProdutoProps, boolean> {
     
@@ -14,6 +14,7 @@ export class AddCategoriaProdutoUseCase implements IUseCase<RecoverProdutoProps,
     }
 
     async execute(produtoProps: RecoverProdutoProps): Promise<boolean> {
+
         const existeProduto: boolean = await this._produtoRepositorio.exists(produtoProps.id)
 
         if (!existeProduto) {
@@ -30,7 +31,5 @@ export class AddCategoriaProdutoUseCase implements IUseCase<RecoverProdutoProps,
         const produtoCategoriaAdicionada = await this._produtoRepositorio.addCategoria(produto, categoria)
 
         return produtoCategoriaAdicionada
-    }
-    
-    
+    }   
 }

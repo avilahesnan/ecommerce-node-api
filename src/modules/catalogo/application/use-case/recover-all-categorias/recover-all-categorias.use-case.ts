@@ -1,8 +1,8 @@
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
-import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface";
-import { ICategoria } from "@modules/catalogo/domain/categoria/categoria.types";
-import { CategoriaMap } from "@modules/catalogo/infra/mappers/categoria.map";
-import { IUseCase } from "@shared/application/use-case.interface";
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity"
+import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface"
+import { ICategoria } from "@modules/catalogo/domain/categoria/categoria.types"
+import { CategoriaMap } from "@modules/catalogo/infra/mappers/categoria.map"
+import { IUseCase } from "@shared/application/use-case.interface"
 
 export class RecoverAllCategoriasUseCase implements IUseCase<void, Array<ICategoria>> {
     
@@ -12,13 +12,12 @@ export class RecoverAllCategoriasUseCase implements IUseCase<void, Array<ICatego
         this._categoriaRepositorio = repositorio
     }
 
-    async execute(): Promise<ICategoria[]> {    
+    async execute(): Promise<ICategoria[]> {  
+          
         const todasCategorias: Array<Categoria> = await this._categoriaRepositorio.recoverAll()
         
         const todasCategoriasDTO = todasCategorias.map((categoria) => CategoriaMap.toDTO(categoria))
 
         return todasCategoriasDTO
-
     }
-
 } 

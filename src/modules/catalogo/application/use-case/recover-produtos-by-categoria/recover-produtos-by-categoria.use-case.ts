@@ -1,11 +1,11 @@
-import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
-import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface";
-import { IProduto } from "@modules/catalogo/domain/produto/produto.types";
-import { ProdutoMap } from "@modules/catalogo/infra/mappers/produto.map";
-import { IUseCase } from "@shared/application/use-case.interface";
-import { CategoriaApplicationExceptions } from "../../exception/categoria.application.exception";
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
-import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface";
+import { Produto } from "@modules/catalogo/domain/produto/produto.entity"
+import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface"
+import { IProduto } from "@modules/catalogo/domain/produto/produto.types"
+import { ProdutoMap } from "@modules/catalogo/infra/mappers/produto.map"
+import { IUseCase } from "@shared/application/use-case.interface"
+import { CategoriaApplicationExceptions } from "../../exception/categoria.application.exception"
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity"
+import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface"
 
 export class RecoverProdutosByCategoria implements IUseCase<string, Array<IProduto>> {
     
@@ -33,5 +33,4 @@ export class RecoverProdutosByCategoria implements IUseCase<string, Array<IProdu
 
         return todosProdutosDTO
     }
-
 }

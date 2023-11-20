@@ -1,10 +1,11 @@
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
-import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface";
-import { RecoverCategoriaProps } from "@modules/catalogo/domain/categoria/categoria.types";
-import { IUseCase } from "@shared/application/use-case.interface";
-import { CategoriaApplicationExceptions } from "../../exception/categoria.application.exception";
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity"
+import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface"
+import { RecoverCategoriaProps } from "@modules/catalogo/domain/categoria/categoria.types"
+import { IUseCase } from "@shared/application/use-case.interface"
+import { CategoriaApplicationExceptions } from "../../exception/categoria.application.exception"
 
 export class UpdateCategoriaUseCase implements IUseCase<RecoverCategoriaProps, boolean> {
+
     private _categoriaRepositorio: ICategoriaRepository<Categoria>
 
     constructor(repositorio: ICategoriaRepository<Categoria>) {
@@ -25,5 +26,4 @@ export class UpdateCategoriaUseCase implements IUseCase<RecoverCategoriaProps, b
 
         return atualizouCategoria
     }
-
 }

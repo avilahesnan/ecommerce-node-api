@@ -1,17 +1,17 @@
-import { PrismaClient } from "@prisma/client";
-import { afterEach, beforeAll, describe, expect, test, vi } from "vitest";
-import { DeepMockProxy, mockDeep, mockReset } from "vitest-mock-extended";
-import { CategoriaPrismaRepository } from "./categoria.prisma.repository";
-import { faker } from "@faker-js/faker";
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
-import { CategoriaMap } from "../mappers/categoria.map";
+import { PrismaClient } from "@prisma/client"
+import { afterEach, beforeAll, describe, expect, test, vi } from "vitest"
+import { DeepMockProxy, mockDeep, mockReset } from "vitest-mock-extended"
+import { CategoriaPrismaRepository } from "./categoria.prisma.repository"
+import { faker } from "@faker-js/faker"
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity"
+import { CategoriaMap } from "../mappers/categoria.map"
 
-const prismaMock: DeepMockProxy<PrismaClient> = mockDeep<PrismaClient>();
-let categoriaRepositorio: CategoriaPrismaRepository;
-let UUIDValido: string;
-let nomeCategoriaValido: string;
-let dataCriacaoCategoria: Date;
-let dataAtualizacaoCategoria: Date;
+const prismaMock: DeepMockProxy<PrismaClient> = mockDeep<PrismaClient>()
+let categoriaRepositorio: CategoriaPrismaRepository
+let UUIDValido: string
+let nomeCategoriaValido: string
+let dataCriacaoCategoria: Date
+let dataAtualizacaoCategoria: Date
 
 describe('Repositório Prisma: Categoria', () => {
 
@@ -209,5 +209,4 @@ describe('Repositório Prisma: Categoria', () => {
                 })
         })
     })
-
 })

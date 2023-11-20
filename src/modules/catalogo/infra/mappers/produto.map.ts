@@ -1,9 +1,9 @@
-import { Produto } from "../../domain/produto/produto.entity";
-import { IProduto, RecoverProdutoProps, StatusProduto } from "../../domain/produto/produto.types";
-import { ProdutoWithCategoriaPrisma } from "@shared/infra/database/prisma.types";
-import { Categoria } from "../../domain/categoria/categoria.entity";
-import { CategoriaMap } from "./categoria.map";
-import { StatusProdutoPrisma } from "@prisma/client";
+import { Produto } from "../../domain/produto/produto.entity"
+import { IProduto, RecoverProdutoProps, StatusProduto } from "../../domain/produto/produto.types"
+import { ProdutoWithCategoriaPrisma } from "@shared/infra/database/prisma.types"
+import { Categoria } from "../../domain/categoria/categoria.entity"
+import { CategoriaMap } from "./categoria.map"
+import { StatusProdutoPrisma } from "@prisma/client"
 
 export class ProdutoMap {
 
@@ -32,7 +32,7 @@ export class ProdutoMap {
         produto.categorias.map((categoria) => {
             categorias.push(CategoriaMap.fromPrismaModeltoDomain(categoria.categoria))
         })
-
+        
         return this.toDomain({
             id: produto.id,
             nome: produto.nome,
@@ -48,6 +48,5 @@ export class ProdutoMap {
 
     public static toStatusProdutoPrisma(status: StatusProduto): StatusProdutoPrisma {
         return StatusProdutoPrisma[status.toString() as keyof typeof StatusProdutoPrisma]
-    }
-    
+    }   
 }

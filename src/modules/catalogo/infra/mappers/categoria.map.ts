@@ -1,6 +1,6 @@
-import { Prisma } from "@prisma/client";
-import { Categoria } from "../../domain/categoria/categoria.entity";
-import { ICategoria, RecoverCategoriaProps } from "../../domain/categoria/categoria.types";
+import { Prisma } from "@prisma/client"
+import { Categoria } from "../../domain/categoria/categoria.entity"
+import { ICategoria, RecoverCategoriaProps } from "../../domain/categoria/categoria.types"
 
 export class CategoriaMap {
 
@@ -14,7 +14,7 @@ export class CategoriaMap {
     }
 
     public static toDomain(categoria: RecoverCategoriaProps): Categoria {
-        return Categoria.recover(categoria);
+        return Categoria.recover(categoria)
     }
 
     public static fromPrismaModeltoDomain(categoriaPrisma: Prisma.CategoriaCreateInput): Categoria {
@@ -23,7 +23,6 @@ export class CategoriaMap {
             nome: categoriaPrisma.nome,
             dataCriacao: categoriaPrisma.dataCriacao as Date,
             dataAtualizacao: categoriaPrisma.dataAtualizacao as Date
-        });
+        })
     }
-
 }

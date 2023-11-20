@@ -1,11 +1,12 @@
-import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
-import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface";
-import { RecoverProdutoProps } from "@modules/catalogo/domain/produto/produto.types";
-import { IUseCase } from "@shared/application/use-case.interface";
-import { ProdutoApplicationExceptions } from "../../exception/produto.application.exception";
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
+import { Produto } from "@modules/catalogo/domain/produto/produto.entity"
+import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface"
+import { RecoverProdutoProps } from "@modules/catalogo/domain/produto/produto.types"
+import { IUseCase } from "@shared/application/use-case.interface"
+import { ProdutoApplicationExceptions } from "../../exception/produto.application.exception"
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity"
 
 export class RemoveCategoriaProdutoUseCase implements IUseCase<RecoverProdutoProps, boolean> {
+
     private _produtoRepositorio: IProdutoRepository<Produto>
 
     constructor(repositorio: IProdutoRepository<Produto>){
@@ -13,6 +14,7 @@ export class RemoveCategoriaProdutoUseCase implements IUseCase<RecoverProdutoPro
     }
 
     async execute(produtoProps: RecoverProdutoProps): Promise<boolean> {
+
         const existeProduto: boolean = await this._produtoRepositorio.exists(produtoProps.id)
 
         if (!existeProduto) {
@@ -30,5 +32,4 @@ export class RemoveCategoriaProdutoUseCase implements IUseCase<RecoverProdutoPro
 
         return produtoCategoriaRemovida
     }
-
 }

@@ -1,9 +1,9 @@
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
-import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
-import { DomainException } from "@shared/domain/domain.exception";
-import { prisma } from "@main/infra/database/orm/prisma/client";
-import { categoriaRepositorio, produtoRepositorio } from "@modules/catalogo/infra/database";
-import { adicionarCategoriaProdutoUseCase, alterarStatusProdutoUseCase, atualizarCategoriaUseCase, atualizarProdutoUseCase, deletarCategoriaUseCase, deletarProdutoUseCase, inserirCategoriaUseCase, inserirProdutoUseCase, recupearProdutoPorIdUseCase, recuperarCategoriaPorIdUseCase, recuperarProdutosPorCategoriaUseCase, recuperarTodasCategoriasUseCase, recuperarTodosProdutosUseCase, removerCategoriaProdutoUseCase } from "@modules/catalogo/application/use-case";
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity"
+import { Produto } from "@modules/catalogo/domain/produto/produto.entity"
+import { DomainException } from "@shared/domain/domain.exception"
+import { prisma } from "@main/infra/database/orm/prisma/client"
+import { categoriaRepositorio, produtoRepositorio } from "@modules/catalogo/infra/database"
+import { adicionarCategoriaProdutoUseCase, alterarStatusProdutoUseCase, atualizarCategoriaUseCase, atualizarProdutoUseCase, deletarCategoriaUseCase, deletarProdutoUseCase, inserirCategoriaUseCase, inserirProdutoUseCase, recupearProdutoPorIdUseCase, recuperarCategoriaPorIdUseCase, recuperarProdutosPorCategoriaUseCase, recuperarTodasCategoriasUseCase, recuperarTodosProdutosUseCase, removerCategoriaProdutoUseCase } from "@modules/catalogo/application/use-case"
 
 
 
@@ -11,7 +11,7 @@ async function main() {
     
     prisma.$connect().then(
         async () => {
-            console.log('Postgress Connected');
+            console.log('Postgress Connected')
         }
     )
 

@@ -1,8 +1,8 @@
 export class ApplicationException extends Error {
     constructor(message:string = '⚠️ Exceção de aplicação genérica') {
-        super(message);
+        super(message)
         this.name = 'ApplicationException'
-        this.message = message;
+        this.message = message
         Error.captureStackTrace(this, this.constructor)
-      }
+    }
 }

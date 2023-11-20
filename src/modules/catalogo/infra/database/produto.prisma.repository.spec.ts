@@ -1,36 +1,36 @@
-import { PrismaClient } from "@prisma/client";
-import { afterEach, beforeAll, describe, expect, test, vi } from "vitest";
-import { DeepMockProxy, mockDeep, mockReset } from "vitest-mock-extended";
-import { ProdutoPrismaRepository } from "./produto.prisma.repository";
-import { faker } from "@faker-js/faker";
-import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
-import { ProdutoMap } from "../mappers/produto.map";
-import { StatusProduto } from "@modules/catalogo/domain/produto/produto.types";
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
-import { CategoriaMap } from "../mappers/categoria.map";
-import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.types";
+import { PrismaClient } from "@prisma/client"
+import { afterEach, beforeAll, describe, expect, test, vi } from "vitest"
+import { DeepMockProxy, mockDeep, mockReset } from "vitest-mock-extended"
+import { ProdutoPrismaRepository } from "./produto.prisma.repository"
+import { faker } from "@faker-js/faker"
+import { Produto } from "@modules/catalogo/domain/produto/produto.entity"
+import { ProdutoMap } from "../mappers/produto.map"
+import { StatusProduto } from "@modules/catalogo/domain/produto/produto.types"
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity"
+import { CategoriaMap } from "../mappers/categoria.map"
+import { produtoIncludeCategoriaPrisma } from "@shared/infra/database/prisma.types"
 
 
-const prismaMock: DeepMockProxy<PrismaClient> = mockDeep<PrismaClient>();
-let produtoRepositorio: ProdutoPrismaRepository;
-let UUIDProdutoValido: string;
-let UUIDCategoriaValido: string;
-let UUIDProduto: string;
-let UUIDCategoria: string;
-let nomeProdutoValido: string;
-let nomeCategoriaValido: string;
-let descricaoProdutoValida: string;
-let valorProdutoValido: number;
-let categoriasProdutoValidas: Array<Categoria>;
-let dataCriacaoProduto: Date;
-let dataAtualizacaoProduto: Date;
-let dataCriacaoCategoria: Date;
-let dataAtualizacaoCategoria: Date;
-let dataCriacao: Date;
-let dataAtualizacao: Date;
-let dataExclusaoProduto: Date;
-let statusProdutoValido: StatusProduto;
-let categoriaOpcional: Categoria;
+const prismaMock: DeepMockProxy<PrismaClient> = mockDeep<PrismaClient>()
+let produtoRepositorio: ProdutoPrismaRepository
+let UUIDProdutoValido: string
+let UUIDCategoriaValido: string
+let UUIDProduto: string
+let UUIDCategoria: string
+let nomeProdutoValido: string
+let nomeCategoriaValido: string
+let descricaoProdutoValida: string
+let valorProdutoValido: number
+let categoriasProdutoValidas: Array<Categoria>
+let dataCriacaoProduto: Date
+let dataAtualizacaoProduto: Date
+let dataCriacaoCategoria: Date
+let dataAtualizacaoCategoria: Date
+let dataCriacao: Date
+let dataAtualizacao: Date
+let dataExclusaoProduto: Date
+let statusProdutoValido: StatusProduto
+let categoriaOpcional: Categoria
 
 describe('Repositório Prisma: Produto', () => {
 
@@ -547,6 +547,5 @@ describe('Repositório Prisma: Produto', () => {
             expect(prismaMock.produto.findMany)
                 .toHaveBeenCalledTimes(1)
         })
-    })
-    
+    })   
 })

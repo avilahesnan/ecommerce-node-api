@@ -1,7 +1,7 @@
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
-import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface";
-import { IUseCase } from "@shared/application/use-case.interface";
-import { CategoriaApplicationExceptions } from "../../exception/categoria.application.exception";
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity"
+import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface"
+import { IUseCase } from "@shared/application/use-case.interface"
+import { CategoriaApplicationExceptions } from "../../exception/categoria.application.exception"
 
 export class DeleteCategoriaUseCase implements IUseCase<string, boolean> {
     private _categoriaRepositorio: ICategoriaRepository<Categoria>
@@ -11,6 +11,7 @@ export class DeleteCategoriaUseCase implements IUseCase<string, boolean> {
     }
     
     async execute(uuid: string): Promise<boolean> {
+
         const existeCategoria: boolean = await this._categoriaRepositorio.exists(uuid)
 
         if (!existeCategoria) {
@@ -21,5 +22,4 @@ export class DeleteCategoriaUseCase implements IUseCase<string, boolean> {
 
         return deletouCategoria
     }
-    
 }

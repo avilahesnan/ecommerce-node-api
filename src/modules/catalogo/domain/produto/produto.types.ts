@@ -1,5 +1,5 @@
-import { IDatasController, keyDataController } from "@shared/domain/datas.types";
-import { ICategoria } from "../categoria/categoria.types";
+import { IDatasController, keyDataController } from "@shared/domain/datas.types"
+import { ICategoria } from "../categoria/categoria.types"
 
 export enum StatusProduto {
     ATIVO = "ATIVO",
@@ -7,12 +7,12 @@ export enum StatusProduto {
 }
 
 export interface IProduto extends IDatasController {
-    id?: string;
-    nome: string;
-    descricao: string;
-    valor: number;
-    categorias: Array<ICategoria>;
-    status?: StatusProduto;
+    id?: string
+    nome: string
+    descricao: string
+    valor: number
+    categorias: Array<ICategoria>
+    status?: StatusProduto
 
 }
 

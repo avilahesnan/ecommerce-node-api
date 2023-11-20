@@ -1,8 +1,8 @@
-import { Produto } from "@modules/catalogo/domain/produto/produto.entity";
-import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface";
-import { RecoverProdutoProps } from "@modules/catalogo/domain/produto/produto.types";
-import { IUseCase } from "@shared/application/use-case.interface";
-import { ProdutoApplicationExceptions } from "../../exception/produto.application.exception";
+import { Produto } from "@modules/catalogo/domain/produto/produto.entity"
+import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface"
+import { RecoverProdutoProps } from "@modules/catalogo/domain/produto/produto.types"
+import { IUseCase } from "@shared/application/use-case.interface"
+import { ProdutoApplicationExceptions } from "../../exception/produto.application.exception"
 
 export class UpdateProdutoUseCase implements IUseCase<RecoverProdutoProps, boolean> {
 
@@ -26,5 +26,4 @@ export class UpdateProdutoUseCase implements IUseCase<RecoverProdutoProps, boole
 
         return atualizouProduto
     }
-
 }

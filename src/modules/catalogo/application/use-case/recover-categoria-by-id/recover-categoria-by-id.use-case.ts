@@ -1,9 +1,9 @@
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
-import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface";
-import { ICategoria } from "@modules/catalogo/domain/categoria/categoria.types";
-import { CategoriaMap } from "@modules/catalogo/infra/mappers/categoria.map";
-import { IUseCase } from "@shared/application/use-case.interface";
-import { CategoriaApplicationExceptions } from "../../exception/categoria.application.exception";
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity"
+import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface"
+import { ICategoria } from "@modules/catalogo/domain/categoria/categoria.types"
+import { CategoriaMap } from "@modules/catalogo/infra/mappers/categoria.map"
+import { IUseCase } from "@shared/application/use-case.interface"
+import { CategoriaApplicationExceptions } from "../../exception/categoria.application.exception"
 
 export class RecoverCategoriaByIdUseCase implements IUseCase<string, ICategoria> {
 
@@ -14,6 +14,7 @@ export class RecoverCategoriaByIdUseCase implements IUseCase<string, ICategoria>
     }
     
     async execute(uuid: string): Promise<ICategoria> {
+        
         const existeCategoria: boolean = await this._categoriaRepositorio.exists(uuid)
 
         if (!existeCategoria) {
@@ -24,5 +25,4 @@ export class RecoverCategoriaByIdUseCase implements IUseCase<string, ICategoria>
 
         return CategoriaMap.toDTO(categoria as Categoria)
     }
-
 }
