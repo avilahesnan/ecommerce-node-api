@@ -25,7 +25,7 @@ async function main() {
 
     /// Recover All Categories ///
 
-    //console.log(await recuperarTodasCategoriasUseCase.execute())
+    // console.log(await recuperarTodasCategoriasUseCase.execute())
 
     /// Insert Category ///
 
@@ -57,7 +57,7 @@ async function main() {
 
     /// Recover All Product ///
 
-    //console.log(await recuperarTodosProdutosUseCase.execute())
+    // console.log(await recuperarTodosProdutosUseCase.execute())
     
     /// Insert Product ///
 
