@@ -45,8 +45,8 @@ export abstract class Entity<T> {
 
     public static validUUID(UUIDD: string): boolean {
         
-        let padraoUUID: RegExp = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+        let defaultUUID: RegExp = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
-        return padraoUUID.test(UUIDD)
+        return defaultUUID.test(UUIDD)
     }
 }

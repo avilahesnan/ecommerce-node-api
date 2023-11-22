@@ -1,11 +1,6 @@
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity"
-import { Produto } from "@modules/catalogo/domain/produto/produto.entity"
 import { DomainException } from "@shared/domain/domain.exception"
 import { prisma } from "@main/infra/database/orm/prisma/client"
-import { categoriaRepositorio, produtoRepositorio } from "@modules/catalogo/infra/database"
-import { adicionarCategoriaProdutoUseCase, alterarStatusProdutoUseCase, atualizarCategoriaUseCase, atualizarProdutoUseCase, deletarCategoriaUseCase, deletarProdutoUseCase, inserirCategoriaUseCase, inserirProdutoUseCase, recupearProdutoPorIdUseCase, recuperarCategoriaPorIdUseCase, recuperarProdutosPorCategoriaUseCase, recuperarTodasCategoriasUseCase, recuperarTodosProdutosUseCase, removerCategoriaProdutoUseCase } from "@modules/catalogo/application/use-case"
-
-
+import { addCategoryProductUseCase, alterStatusProductUseCase, deleteCategoryUseCase, deleteProductUseCase, insertCategoryUseCase, insertProductUseCase, recoverAllCategoriesUseCase, recoverAllProductsUseCase, recoverCategoryByIdUseCase, recoverProductByIdUseCase, recoverProductsByCategoryUseCase, removeCategoryProductUseCase, updateCategoryUseCase, updateProductUseCase } from "@modules/catalogo/application/use-cases"
 
 async function main() {
     
@@ -21,26 +16,26 @@ async function main() {
 
     /// Recover Category By Id ///
 
-    //console.log(await recuperarCategoriaPorIdUseCase.execute("8780ae8d-0d56-43d0-a45b-1a1143bb324f"))
+    // console.log(await recoverCategoryByIdUseCase.execute("a22a6030-bf2f-424b-b72e-2ca49e774094"))
 
     /// Recover All Categories ///
 
-    // console.log(await recuperarTodasCategoriasUseCase.execute())
+    // console.log(await recoverAllCategoriesUseCase.execute())
 
     /// Insert Category ///
 
-    //console.log(await inserirCategoriaUseCase.execute({nome: 'Cama'}))
+    // console.log(await insertCategoryUseCase.execute({name: 'Banho'}))
 
     /// Update Category ///
 
-    // console.log(await atualizarCategoriaUseCase.execute({
-    //     id: '110d4541-1ef8-4fbc-94d4-f0d2f5fbcb6d',
-    //     nome: 'mesa'
+    // console.log(await updateCategoryUseCase.execute({
+    //     id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
+    //     name: "Banho"
     // }))
 
     /// Delele Category (Hard Delete) ///
 
-    //console.log(await deletarCategoriaUseCase.execute("110d4541-1ef8-4fbc-94d4-f0d2f5fbcb6d"))
+    // console.log(await deleteCategoryUseCase.execute("f939b2ff-1167-47b6-a2f5-b59626ebf81c"))
 
     ///////////////
     /// Product ///
@@ -48,68 +43,68 @@ async function main() {
 
     /// Variables ///
 
-    // let categoria01 = await recuperarCategoriaPorIdUseCase.execute("8780ae8d-0d56-43d0-a45b-1a1143bb324f")
-    // let categoria02 = await recuperarCategoriaPorIdUseCase.execute("d48bb575-100d-40f4-b906-38a9d9cbb3c8")
+    // let category01 = await recoverCategoryByIdUseCase.execute("a22a6030-bf2f-424b-b72e-2ca49e774094")
+    // let category02 = await recoverCategoryByIdUseCase.execute("1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60")
 
     /// Recover Product By Id ///
 
-    //console.log(await recupearProdutoPorIdUseCase.execute("9fbd3b52-5200-45d8-a5df-d86a92c970f2"))
+    // console.log(await recoverProductByIdUseCase.execute("575dbd2f-1e73-419b-9f66-b08d943b4a5a"))
 
     /// Recover All Product ///
 
-    // console.log(await recuperarTodosProdutosUseCase.execute())
+    // console.log(await recoverAllProductsUseCase.execute())
     
     /// Insert Product ///
 
-    // console.log(await inserirProdutoUseCase.execute({nome: 'Iphone', descricao: 'Um ótimo smartphone', valor: 3, categorias: [categoria01]}))
+    // console.log(await insertProductUseCase.execute({name: 'Iphone', description: 'Um ótimo smartphone', value: 3000, categories: [category01]}))
 
     /// Update Product ///
 
-    // console.log(await atualizarProdutoUseCase.execute({
-    //     id: "9fbd3b52-5200-45d8-a5df-d86a92c970f2",
-    //     nome: 'Iphone 16',
-    //     descricao: 'Um ótimo smartphone',
-    //     valor: 3,
-    //     categorias: [categoria01]
+    // console.log(await updateProductUseCase.execute({
+    //     id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
+    //     name: "Iphone",
+    //     description: "Um ótimo smartphone",
+    //     value: 3500,
+    //     categories: [category01]
     // }))
 
     /// Delete Product (Soft Delete) ///
     
-    //console.log(await deletarProdutoUseCase.execute("d82d82fc-b06f-4e33-b932-52f66afe3270"))
+    // console.log(await deleteProductUseCase.execute("1e4f386b-d4dd-4a1d-949c-0ad29cbaf38a"))
 
     /// Add Category Product ///
 
-    // console.log(await adicionarCategoriaProdutoUseCase.execute({
-    //     id: "9fbd3b52-5200-45d8-a5df-d86a92c970f2",
-    //     nome: "Iphone 16",
-    //     descricao: "Um ótimo smartphone",
-    //     valor: 3,
-    //     categorias: [categoria01]
+    // console.log(await addCategoryProductUseCase.execute({
+    //     id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
+    //     name: "Iphone",
+    //     description: "Um ótimo smartphone",
+    //     value: 3500,
+    //     categories: [category01]
     // }))
 
     /// Remove Category Product ///
 
-    // console.log(await removerCategoriaProdutoUseCase.execute({
-    //     id: "d82d82fc-b06f-4e33-b932-52f66afe3270",
-    //     nome: "Iphone",
-    //     descricao: "Um ótimo smartphone",
-    //     valor: 3,
-    //     categorias: [categoria01]
+    // console.log(await removeCategoryProductUseCase.execute({
+    //     id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
+    //     name: "Iphone",
+    //     description: "Um ótimo smartphone",
+    //     value: 3500,
+    //     categories: [category01]
     // }))
 
     /// Alter Status Product ///
 
-    // console.log(await alterarStatusProdutoUseCase.execute({
-    //     id: "9fbd3b52-5200-45d8-a5df-d86a92c970f2",
-    //     nome: 'Iphone 16',
-    //     descricao: 'Um ótimo smartphone',
-    //     valor: 3,
-    //     categorias: [categoria02]
+    // console.log(await alterStatusProductUseCase.execute({
+    //     id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
+    //     name: "Iphone",
+    //     description: "Um ótimo smartphone",
+    //     value: 3500,
+    //     categories: [category01]
     // }))
 
     /// Recover Product By Category ///
 
-    // console.log(await recuperarProdutosPorCategoriaUseCase.execute("8780ae8d-0d56-43d0-a45b-1a1143bb324f"))
+    // console.log(await recoverProductsByCategoryUseCase.execute("06e7b01d-28d6-423f-91b4-2a21063a2a72"))
 
 
 }
@@ -120,11 +115,11 @@ main()
     })
     .catch(async (error) => {
         if (error instanceof DomainException) {
-            console.log('Execeção de Domínio');
+            console.log('Domain Exception!');
             console.log(error.message);
         }
         else {
-            console.log('Outras Execeções');
+            console.log('Other Exceptions!');
             console.log(error.message)
         }
         await prisma.$disconnect()

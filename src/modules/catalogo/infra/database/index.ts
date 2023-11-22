@@ -1,10 +1,10 @@
-import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity"
-import { ICategoriaRepository } from "@modules/catalogo/domain/categoria/categoria.repository.interface"
-import { CategoriaPrismaRepository } from "./categoria.prisma.repository"
 import { prisma } from "@main/infra/database/orm/prisma/client"
-import { IProdutoRepository } from "@modules/catalogo/domain/produto/produto.repository.interface"
-import { Produto } from "@modules/catalogo/domain/produto/produto.entity"
-import { ProdutoPrismaRepository } from "./produto.prisma.repository"
+import { Category } from "@modules/catalogo/domain/category/category.entity"
+import { ICategoryRepository } from "@modules/catalogo/domain/category/category.repository.interface"
+import { Product } from "@modules/catalogo/domain/product/product.entity"
+import { IProductRepository } from "@modules/catalogo/domain/product/product.repository.interface"
+import { ProductPrismaRepository } from "./product.prisma.repository"
+import { CategoryPrismaRepository } from "./category.prisma.repository"
 
-export const categoriaRepositorio: ICategoriaRepository<Categoria> = new CategoriaPrismaRepository(prisma)
-export const produtoRepositorio: IProdutoRepository<Produto> = new ProdutoPrismaRepository(prisma)
+export const categoryRepository: ICategoryRepository<Category> = new CategoryPrismaRepository(prisma)
+export const productRepository: IProductRepository<Product> = new ProductPrismaRepository(prisma)

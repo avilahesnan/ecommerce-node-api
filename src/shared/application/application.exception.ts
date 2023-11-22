@@ -1,5 +1,5 @@
 export class ApplicationException extends Error {
-    constructor(message:string = '⚠️ Exceção de aplicação genérica') {
+    constructor(message:string = '⚠️ Generic Application Exception.') {
         super(message)
         this.name = 'ApplicationException'
         this.message = message

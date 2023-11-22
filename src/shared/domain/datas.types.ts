@@ -1,7 +1,7 @@
 export interface IDatasController {
-    dataCriacao?: Date
-    dataAtualizacao?: Date
-    dataExclusao?: Date | null
+    dateCreated?: Date
+    dateUpdated?: Date
+    dateDeletion?: Date | null
 }
 
 export type keyDataController = keyof IDatasController
