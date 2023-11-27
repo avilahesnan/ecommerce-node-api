@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client"
+import { Prisma } from "@prisma/client";
 
 export const productIncludeCategoryPrisma = Prisma.validator<Prisma.ProductInclude>()({
     categories: {
@@ -6,8 +6,8 @@ export const productIncludeCategoryPrisma = Prisma.validator<Prisma.ProductInclu
             category: true
         }
     }
-})
+});
 
 export type ProductWithCategoryPrisma = Prisma.ProductGetPayload<{
     include: typeof productIncludeCategoryPrisma
-}>
+}>;
