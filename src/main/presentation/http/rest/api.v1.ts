@@ -1,12 +1,11 @@
+import { categoryRouter } from "@modules/catalog/presentation/http/rest/category.routes";
 import express, { Router } from "express";
 
 export const apiV1Router: Router = express.Router();
 
 apiV1Router.use(
     '/categories',
-    function (request, response, next) {
-        response.json({"entity":"Categories"});
-    }
+    categoryRouter
 );
 
 apiV1Router.use(

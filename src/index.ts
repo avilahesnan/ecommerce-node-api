@@ -117,11 +117,10 @@ main()
         if (error instanceof DomainException) {
             console.log('Domain Exception!');
             console.log(error.message);
-        }
-        else {
+        } else {
             console.log('Other Exceptions!');
             console.log(error.message);
-        };
+        }
         await prisma.$disconnect();
         process.exit(1);
     });

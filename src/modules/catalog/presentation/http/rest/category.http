@@ -1,0 +1,6 @@
+@host = localhost
+@port = 3000
+@apiversion = api/v1
+
+### Recuperar Um Categoria por ID
+GET http://{{host}}:{{port}}/{{apiversion}}/categories/06e7b01d-28d6-423f-91b4-2a21063a2a72
