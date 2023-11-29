@@ -4,3 +4,14 @@
 
 ### Recuperar Um Categoria por ID
 GET http://{{host}}:{{port}}/{{apiversion}}/categories/06e7b01d-28d6-423f-91b4-2a21063a2a72
+
+### Recuperar Todas as Categorias
+GET http://{{host}}:{{port}}/{{apiversion}}/categories
+
+### Inserir Uma Categoria
+POST http://{{host}}:{{port}}/{{apiversion}}/categories
+Content-type: application/json
+
+{
+    "name":"Sala de Estar"
+}
