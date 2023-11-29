@@ -21,7 +21,7 @@ describe('Domain Entity: Category', () => {
         UUIDValid = faker.string.uuid();
         UUIDInvalid = faker.string.alpha({ length: { min: 1, max: 20 } });
         
-    })
+    });
 
     describe('Category (create)', () => {
 

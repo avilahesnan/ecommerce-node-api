@@ -10,7 +10,7 @@ export class RecoverAllCategoriesUseCase implements IUseCase<void, Array<ICatego
 
     constructor(repository: ICategoryRepository<Category>){
         this._categoryRepository = repository;
-    };
+    }
 
     async execute(): Promise<ICategory[]> {  
           
@@ -19,5 +19,5 @@ export class RecoverAllCategoriesUseCase implements IUseCase<void, Array<ICatego
         const allCategoriesDTO = allCategories.map((category) => CategoryMap.toDTO(category));
 
         return allCategoriesDTO;
-    };
-};
+    }
+}

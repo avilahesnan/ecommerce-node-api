@@ -10,7 +10,7 @@ export class UpdateProductUseCase implements IUseCase<RecoverProductProps, boole
 
     constructor(repository: IProductRepository<Product>){
         this._productRepository = repository;
-    };
+    }
 
     async execute(productProps: RecoverProductProps): Promise<boolean> {
         
@@ -18,12 +18,12 @@ export class UpdateProductUseCase implements IUseCase<RecoverProductProps, boole
 
         if (!existsProduct) {
             throw new ProductApplicationExceptions.ProductNotFound();
-        };
+        }
 
         const product: Product = Product.recover(productProps);
 
         const updatedProduct = await this._productRepository.update(product.id, product);
 
         return updatedProduct;
-    };
-};
+    }
+}

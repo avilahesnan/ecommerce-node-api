@@ -18,12 +18,12 @@ export class ProductMap {
             dateUpdated: product.dateUpdated,
             dateDeletion: product.dateDeletion,
             status: product.status
-        };
-    };
+        }
+    }
 
     public static toDomain(product: RecoverProductProps): Product {
         return Product.recover(product);
-    };
+    }
 
     public static fromPrismaModeltoDomain(product: ProductWithCategoryPrisma): Product {
         
@@ -48,5 +48,5 @@ export class ProductMap {
 
     public static toStatusProductPrisma(status: StatusProduct): StatusProductPrisma {
         return StatusProductPrisma[status.toString() as keyof typeof StatusProductPrisma];
-    };
-};
+    }
+}

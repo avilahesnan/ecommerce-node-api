@@ -19,10 +19,10 @@ export class ProductPrismaRepository extends PrismaRepository implements IProduc
 
         if (productRecovered) {
             return ProductMap.fromPrismaModeltoDomain(productRecovered);
-        };
+        }
 
         return null;
-    };
+    }
     
     async recoverAll(): Promise<Product[]> {
         
@@ -38,10 +38,10 @@ export class ProductPrismaRepository extends PrismaRepository implements IProduc
 
         if (productsRecovereds.length > 0) {
             productsRecovereds.map((product) => products.push(ProductMap.fromPrismaModeltoDomain(product)));
-        };
+        }
 
         return products;
-    };
+    }
     
     async exists(uuid: string): Promise<boolean> {
 
@@ -49,10 +49,10 @@ export class ProductPrismaRepository extends PrismaRepository implements IProduc
         
         if (productExtant) {
             return true;
-        };
+        }
 
         return false;
-    };
+    }
     
     async insert(product: Product): Promise<Product> {
 
@@ -66,14 +66,14 @@ export class ProductPrismaRepository extends PrismaRepository implements IProduc
                     create: product.categories.map((category) => {
                         return {
                             categoryId: category.id
-                        };
+                        }
                     }) 
                 }
             }
         });
 
         return product;
-    };
+    }
     
     async update(uuid: string, product: Product): Promise<boolean> {
 
@@ -90,10 +90,10 @@ export class ProductPrismaRepository extends PrismaRepository implements IProduc
 
         if (productUpdated) {
             return true;
-        };
+        }
 
         return false;
-    };
+    }
     
     async delete(uuid: string): Promise<boolean> {
 
@@ -108,10 +108,10 @@ export class ProductPrismaRepository extends PrismaRepository implements IProduc
 
         if(productDeleted.id) {
             return true;
-        };
+        }
 
         return false;
-    };
+    }
 
     async addCategory(product: Product, category: Category): Promise<boolean> {
 
@@ -124,10 +124,10 @@ export class ProductPrismaRepository extends PrismaRepository implements IProduc
 
         if (categoryProductAdded) {
             return true;
-        };
+        }
 
         return false;
-    };
+    }
 
     async removeCategory(product: Product, category: Category): Promise<boolean> {
         
@@ -142,10 +142,10 @@ export class ProductPrismaRepository extends PrismaRepository implements IProduc
 
         if (categoryProductRemoved) {
             return true;
-        };
+        }
 
         return false;
-    };
+    }
 
     async alterStatus(product: Product, status: StatusProduct): Promise<boolean> {
         
@@ -160,10 +160,10 @@ export class ProductPrismaRepository extends PrismaRepository implements IProduc
 
         if (productStatusAltered.id) {
             return true;
-        };
+        }
 
         return false;
-    };
+    }
 
     async recoverByCategory(idCategory: string): Promise<Product[]> {
         
@@ -182,14 +182,14 @@ export class ProductPrismaRepository extends PrismaRepository implements IProduc
             include: productIncludeCategoryPrisma
         });
 
-        const products: Array<Product> = []
+        const products: Array<Product> = [];
 
         if (productsByCategoriesRecovereds.length > 0) {
             productsByCategoriesRecovereds.map(
                 (product) => products.push(ProductMap.fromPrismaModeltoDomain(product))
                 );
-        };
+        }
         
         return products;
-    };
-};
+    }
+}

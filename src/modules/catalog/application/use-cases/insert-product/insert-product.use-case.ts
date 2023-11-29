@@ -10,7 +10,7 @@ export class InsertProductUseCase implements IUseCase<CreateProductProps, IProdu
 
     constructor(repository: IProductRepository<Product>){
         this._productRepository = repository;
-    };
+    }
 
     async execute(productProps: CreateProductProps): Promise<IProduct> {
 
@@ -19,5 +19,5 @@ export class InsertProductUseCase implements IUseCase<CreateProductProps, IProdu
         const productInserted = await this._productRepository.insert(product);
 
         return ProductMap.toDTO(productInserted);
-    };
-};
+    }
+}

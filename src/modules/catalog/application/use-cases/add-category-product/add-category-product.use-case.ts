@@ -11,7 +11,7 @@ export class AddCategoryProductUseCase implements IUseCase<RecoverProductProps, 
 
     constructor(repository: IProductRepository<Product>){
         this._productRepository = repository;
-    };
+    }
 
     async execute(productProps: RecoverProductProps): Promise<boolean> {
 
@@ -19,7 +19,7 @@ export class AddCategoryProductUseCase implements IUseCase<RecoverProductProps, 
 
         if (!existsProduct) {
             throw new ProductApplicationExceptions.ProductNotFound();
-        };
+        }
 
         const product: Product = Product.recover(productProps);
 
@@ -31,5 +31,5 @@ export class AddCategoryProductUseCase implements IUseCase<RecoverProductProps, 
         const productCategoryAdded = await this._productRepository.addCategory(product, category);
 
         return productCategoryAdded;
-    };
-};
+    }
+}

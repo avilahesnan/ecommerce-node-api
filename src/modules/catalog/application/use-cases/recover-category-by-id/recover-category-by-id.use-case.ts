@@ -11,7 +11,7 @@ export class RecoverCategoryByIdUseCase implements IUseCase<string, ICategory> {
 
     constructor(repository: ICategoryRepository<Category>){
         this._categoryRepository = repository;
-    };
+    }
     
     async execute(uuid: string): Promise<ICategory> {
         
@@ -19,10 +19,10 @@ export class RecoverCategoryByIdUseCase implements IUseCase<string, ICategory> {
 
         if (!existsCategory) {
             throw new CategoryApplicationExceptions.CategoryNotFound();
-        };
+        }
 
         const category = await this._categoryRepository.recoverByUuid(uuid);
 
         return CategoryMap.toDTO(category as Category);
-    };
-};
+    }
+}

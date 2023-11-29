@@ -8,4 +8,4 @@ export interface IProductRepository<T> extends IRepository<T> {
     removeCategory(product: Product, category: Category): Promise<boolean>;
     alterStatus(product: Product, status: StatusProduct): Promise<boolean>;
     recoverByCategory(idCategory: string): Promise<Array<Product>>;
-};
+}

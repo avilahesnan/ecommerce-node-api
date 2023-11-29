@@ -10,7 +10,7 @@ export class InsertCategoryUseCase implements IUseCase<CreateCategoryProps, ICat
 
     constructor(repository: ICategoryRepository<Category>) {
         this._categoryRepository = repository;
-    };
+    }
 
     async execute(categoryProps: CreateCategoryProps): Promise<ICategory> {
        
@@ -19,5 +19,5 @@ export class InsertCategoryUseCase implements IUseCase<CreateCategoryProps, ICat
         const categoryInserted = await this._categoryRepository.insert(category);
 
         return CategoryMap.toDTO(categoryInserted);
-    };
-};
+    }
+}

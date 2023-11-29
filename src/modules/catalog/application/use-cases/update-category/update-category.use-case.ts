@@ -10,7 +10,7 @@ export class UpdateCategoryUseCase implements IUseCase<RecoverCategoryProps, boo
 
     constructor(repository: ICategoryRepository<Category>) {
         this._categoryRepository = repository;
-    };
+    }
 
     async execute(categoryProps: RecoverCategoryProps): Promise<boolean> {
         
@@ -18,12 +18,12 @@ export class UpdateCategoryUseCase implements IUseCase<RecoverCategoryProps, boo
 
         if (!existsCategory) {
             throw new CategoryApplicationExceptions.CategoryNotFound();
-        };
+        }
 
         const category: Category = Category.recover(categoryProps);
 
         const UpdatedCategory = await this._categoryRepository.update(category.id, category);
 
         return UpdatedCategory;
-    };
-};
+    }
+}

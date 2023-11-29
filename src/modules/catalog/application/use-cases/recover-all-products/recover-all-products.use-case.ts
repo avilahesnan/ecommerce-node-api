@@ -10,7 +10,7 @@ export class RecoverAllProductsUseCase implements IUseCase<void, Array<IProduct>
 
     constructor(repository: IProductRepository<Product>){
         this._productRepository = repository;
-    };
+    }
 
     async execute(): Promise<IProduct[]> {
         
@@ -19,5 +19,5 @@ export class RecoverAllProductsUseCase implements IUseCase<void, Array<IProduct>
         const allProductsDTO = allProducts.map((product) => ProductMap.toDTO(product));
 
         return allProductsDTO;
-    };
-};
+    }
+}

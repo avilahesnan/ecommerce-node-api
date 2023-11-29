@@ -10,7 +10,7 @@ export class AlterStatusProductUseCase implements IUseCase<RecoverProductProps, 
 
     constructor(repository: IProductRepository<Product>){
         this._productRepository = repository;
-    };
+    }
 
     async execute(productProps: RecoverProductProps): Promise<boolean> {
 
@@ -18,7 +18,7 @@ export class AlterStatusProductUseCase implements IUseCase<RecoverProductProps, 
 
         if (!existsProduct) {
             throw new ProductApplicationExceptions.ProductNotFound();
-        };
+        }
 
         const product: Product = Product.recover(productProps);
 
@@ -27,5 +27,5 @@ export class AlterStatusProductUseCase implements IUseCase<RecoverProductProps, 
         const statusAlteredProduct = await this._productRepository.alterStatus(product, status);
 
         return statusAlteredProduct;
-    };
-};
+    }
+}

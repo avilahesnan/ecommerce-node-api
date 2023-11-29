@@ -17,7 +17,7 @@ export class RecoverProductsByCategory implements IUseCase<string, Array<IProduc
     ) {
         this._productRepository = repositoryProduct;
         this._categoryRepository = repositoryCategory;
-    };
+    }
 
     async execute(uuidCategory: string): Promise<IProduct[]> {
 
@@ -25,12 +25,12 @@ export class RecoverProductsByCategory implements IUseCase<string, Array<IProduc
 
         if (!existsCategory) {
             throw new CategoryApplicationExceptions.CategoryNotFound();
-        };
+        }
 
         const allProducts: Array<Product> = await this._productRepository.recoverByCategory(uuidCategory);
 
         const allProductsDTO = allProducts.map((product) => ProductMap.toDTO(product));
 
         return allProductsDTO;
-    };
-};
+    }
+}

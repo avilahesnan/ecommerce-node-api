@@ -9,7 +9,7 @@ export class  DeleteProductUseCase implements IUseCase<string, boolean> {
 
     constructor(repository: IProductRepository<Product>){
         this._productRepository = repository;
-    };
+    }
 
     async execute(uuid: string): Promise<boolean> {
 
@@ -17,10 +17,10 @@ export class  DeleteProductUseCase implements IUseCase<string, boolean> {
 
         if (!existsProduct) {
             throw new ProductApplicationExceptions.ProductNotFound();
-        };
+        }
 
         const deletedProduct: boolean = await this._productRepository.delete(uuid);
 
         return deletedProduct;
-    };
-};
+    }
+}

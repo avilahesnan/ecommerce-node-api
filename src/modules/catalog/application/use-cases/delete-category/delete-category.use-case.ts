@@ -8,7 +8,7 @@ export class DeleteCategoryUseCase implements IUseCase<string, boolean> {
 
     constructor(repository: ICategoryRepository<Category>) {
         this._categoryRepository = repository;
-    };
+    }
     
     async execute(uuid: string): Promise<boolean> {
 
@@ -16,10 +16,10 @@ export class DeleteCategoryUseCase implements IUseCase<string, boolean> {
 
         if (!existsCategory) {
             throw new CategoryApplicationExceptions.CategoryNotFound();
-        };
+        }
 
         const deletedCategory: boolean = await this._categoryRepository.delete(uuid);
 
         return deletedCategory;
-    };
-};
+    }
+}

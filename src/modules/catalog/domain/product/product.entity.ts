@@ -26,7 +26,7 @@ export class Product extends Entity<IProduct> implements IProduct {
 
     public get name(): string {
         return this._name;
-    };
+    }
 
     private set name(name: string) {
         
@@ -34,22 +34,22 @@ export class Product extends Entity<IProduct> implements IProduct {
 
         if (name === null || name === undefined) {
             throw new ProductExceptions.NameProductNullOrUndefined();
-        };
+        }
 
         if (sizeName < Product.SIZE_MINIMUM_NAME) {
             throw new ProductExceptions.NameProductSizeMinimumInvalid();
-        };
+        }
 
         if (sizeName > Product.SIZE_MAXIMUM_NAME) {
             throw new ProductExceptions.NameProductSizeMaximumInvalid();
-        };
+        }
 
         this._name = name;
-    };
+    }
 
     public get description(): string {
         return this._description;
-    };
+    }
 
     private set description(description: string) {
 
@@ -57,31 +57,31 @@ export class Product extends Entity<IProduct> implements IProduct {
 
         if (sizeDescription < Product.SIZE_MINIMUM_DESCRIPTION) {
             throw new ProductExceptions.NameDescriptionSizeMinimumInvalid();
-        };
+        }
 
         if (sizeDescription > Product.SIZE_MAXIMUM_DESCRIPTION) {
             throw new ProductExceptions.NameDescriptionSizeMaximumInvalid();
-        };
+        }
 
         this._description = description;
-    };
+    }
 
     public get value(): number {
         return this._value;
-    };
+    }
     
     private set value(value: number) {
 
         if (value < Product.VALUE_MINIMUM) {
             throw new ProductExceptions.ValueMinimumInvalid();
-        };
+        }
 
         this._value = value;
-    };
+    }
 
     public get categories(): Category[] {
         return this._categories;
-    };
+    }
 
     private set categories(categories: Category[]) {
 
@@ -89,46 +89,46 @@ export class Product extends Entity<IProduct> implements IProduct {
 
         if (qtdCategories < Product.QTD_MINIMUM_CATEGORIES) {
             throw new ProductExceptions.QuantityCategoriesMinimumInvalid();
-        };
+        }
 
         if (qtdCategories > Product.QTD_MAXIMUM_CATEGORIES) {
             throw new ProductExceptions.QuantityCategoriesMaximumInvalid();
-        };
+        }
 
         this._categories = categories;
-    };
+    }
 
     public get dateCreated(): Date | undefined {
         return this._dateCreated;
-    };
+    }
 
     private set dateCreated(dateCreated: Date | undefined) {
         this._dateCreated = dateCreated;
-    };
+    }
 
     public get dateUpdated(): Date | undefined {
         return this._dateUpdated;
-    };
+    }
 
     private set dateUpdated(dateUpdated: Date | undefined) {
         this._dateUpdated = dateUpdated;
-    };
+    }
 
     public get dateDeletion(): Date | null | undefined {
         return this._dateDeletion;
-    };
+    }
 
     private set dateDeletion(dateDeletion: Date | null | undefined) {
         this._dateDeletion = dateDeletion;
-    };
+    }
 
     public get status(): StatusProduct | undefined {
         return this._status;
-    };
+    }
 
     private set status(status: StatusProduct | undefined) {
         this._status = status;
-    };
+    }
     
     private constructor(props: IProduct) {
         super(props.id);
@@ -140,27 +140,27 @@ export class Product extends Entity<IProduct> implements IProduct {
         this.dateUpdated = props.dateUpdated;
         this.dateDeletion = props.dateDeletion;
         this.status = props.status;
-    };
+    }
 
     public static create(props: CreateProductProps): Product {
         return new Product(props);
-    };
+    }
 
     public static recover(props: RecoverProductProps): Product {
         return new Product(props);
-    };
+    }
 
     public toDTO(): IProduct {
         return ProductMap.toDTO(this);
-    };
+    }
 
     public isDeleted(): boolean {
         return this.dateDeletion !== null ? true : false;
-    };
+    }
 
     public quantityCategories(): number {
         return this.categories.length;
-    };
+    }
 
     public hasCategory(category: Category): boolean {
 
@@ -168,25 +168,25 @@ export class Product extends Entity<IProduct> implements IProduct {
 
         if (categoryExtant) {
             return true;
-        };
+        }
         
         return false;
-    };
+    }
 
     public addCategory(category: Category): Category {
 
         if (this.quantityCategories() >= Product.QTD_MAXIMUM_CATEGORIES) {
             throw new ProductExceptions.ProductAlreadyHasQtdMaximumCategories();
-        };
+        }
 
         if (this.hasCategory(category)) {
             throw new ProductExceptions.ProductAlreadyHasCategoryInformed();
-        };
+        }
 
         this.categories.push(category);
 
         return category;
-    };
+    }
     
     public removeCategory(category: Category): Category {
 
@@ -196,18 +196,18 @@ export class Product extends Entity<IProduct> implements IProduct {
 
         if (qtdCategoryInProduct <= Product.QTD_MINIMUM_CATEGORIES) {
             throw new ProductExceptions.ProductAlreadyHasQtdMinimumCategories();
-        };
+        }
 
         if (productNotHaveCategory) {
             throw new ProductExceptions.ProductNotHaveCategoryInformed();
-        };
+        }
 
         this.categories.filter((categoryExtant, index, arrayCategories) => {
             if (categoryExtant.id === category.id) {
                 arrayCategories.splice(index, 1);
-            };
+            }
         });
 
         return category;
-    };
-};
+    }
+}

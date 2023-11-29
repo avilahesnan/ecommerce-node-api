@@ -15,10 +15,10 @@ export class CategoryPrismaRepository extends PrismaRepository implements IRepos
 
         if (categoryRecovered) {
             return CategoryMap.fromPrismaModeltoDomain(categoryRecovered);
-        };
+        }
 
         return null;
-    };
+    }
 
     async recoverAll(): Promise<Array<Category>> {
         
@@ -29,7 +29,7 @@ export class CategoryPrismaRepository extends PrismaRepository implements IRepos
         );
 
         return categories;
-    };
+    }
 
     async exists(uuid: string): Promise<boolean> {
         
@@ -37,10 +37,10 @@ export class CategoryPrismaRepository extends PrismaRepository implements IRepos
         
         if (categoryExtant) {
             return true;
-        };
+        }
 
         return false;
-    };
+    }
 
     async insert(category: Category): Promise<Category> {
         
@@ -52,7 +52,7 @@ export class CategoryPrismaRepository extends PrismaRepository implements IRepos
             });
 
         return CategoryMap.fromPrismaModeltoDomain(categoryInserted);
-    };
+    }
 
     async update(uuid: string, category: Category): Promise<boolean> {
         
@@ -65,10 +65,10 @@ export class CategoryPrismaRepository extends PrismaRepository implements IRepos
 
         if (categoryUpdated) {
             return true;
-        };
+        }
 
         return false; 
-    };
+    }
 
     async delete(uuid: string): Promise<boolean> {
         
@@ -80,8 +80,8 @@ export class CategoryPrismaRepository extends PrismaRepository implements IRepos
 
         if (categoryDeleted.id) {
             return true;
-        };
+        }
 
         return false;
-    };
-};
+    }
+}

@@ -11,7 +11,7 @@ export class RecoverProductByIdUseCase implements IUseCase<string, IProduct> {
 
     constructor(repository: IProductRepository<Product>){
         this._productRepository = repository;
-    };
+    }
     
     async execute(uuid: string): Promise<IProduct> {
         
@@ -19,10 +19,10 @@ export class RecoverProductByIdUseCase implements IUseCase<string, IProduct> {
 
         if (!existsProduct) {
             throw new ProductApplicationExceptions.ProductNotFound();
-        };
+        }
 
         const product = await this._productRepository.recoverByUuid(uuid);
 
         return ProductMap.toDTO(product as Product);
-    };
-};
+    }
+}

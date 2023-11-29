@@ -10,12 +10,12 @@ export class CategoryMap {
             name: category.name,
             dateCreated: category.dateCreated,
             dateUpdated: category.dateUpdated
-        };
-    };
+        }
+    }
 
     public static toDomain(category: RecoverCategoryProps): Category {
         return Category.recover(category);
-    };
+    }
 
     public static fromPrismaModeltoDomain(categoryPrisma: Prisma.CategoryCreateInput): Category {
         return CategoryMap.toDomain ({
@@ -24,5 +24,5 @@ export class CategoryMap {
             dateCreated: categoryPrisma.dateCreated as Date,
             dateUpdated: categoryPrisma.dateUpdated as Date
         });
-    };
-};
+    }
+}

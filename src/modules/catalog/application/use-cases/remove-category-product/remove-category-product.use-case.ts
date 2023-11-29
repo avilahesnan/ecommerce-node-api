@@ -11,7 +11,7 @@ export class RemoveCategoryProductUseCase implements IUseCase<RecoverProductProp
 
     constructor(repository: IProductRepository<Product>){
         this._productRepository = repository;
-    };
+    }
 
     async execute(productProps: RecoverProductProps): Promise<boolean> {
 
@@ -19,7 +19,7 @@ export class RemoveCategoryProductUseCase implements IUseCase<RecoverProductProp
 
         if (!existsProduct) {
             throw new ProductApplicationExceptions.ProductNotFound();
-        };
+        }
 
         const product: Product = Product.recover(productProps);
 
@@ -31,5 +31,5 @@ export class RemoveCategoryProductUseCase implements IUseCase<RecoverProductProp
         const productCategoryRemoved = await this._productRepository.removeCategory(product, category);
 
         return productCategoryRemoved;
-    };
-};
+    }
+}

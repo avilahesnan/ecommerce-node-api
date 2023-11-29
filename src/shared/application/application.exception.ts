@@ -4,5 +4,5 @@ export class ApplicationException extends Error {
         this.name = 'ApplicationException';
         this.message = message;
         Error.captureStackTrace(this, this.constructor);
-    };
-};
+    }
+}
