@@ -24,10 +24,10 @@ describe('Use Case: Recover Category by ID', () => {
     test('Should Recover A Category by UUID', async () =>{
 
         const categoryInputDTO = {
-            id: "8780ae8d-0d56-43d0-a45b-1a1143bb324f",
-            name: "Cama"
+            id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
+            name: "Mesa"
         };
-
+        
         categoryRepositoryMock.exists.mockResolvedValue(true);
 
         categoryRepositoryMock.recoverByUuid.mockResolvedValue(Category.recover(categoryInputDTO));

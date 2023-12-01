@@ -21,7 +21,7 @@ describe('Use Case: Recover All Categories', () => {
         mockReset(categoryRepositoryMock);
     });
 
-    test('Should Recover All Categories', async () => {
+    test('Should Recover All Categories Without Exception', async () => {
 
         const listCategories = [{
                 id: "06e7b01d-28d6-423f-91b4-2a21063a2a72",
@@ -31,14 +31,16 @@ describe('Use Case: Recover All Categories', () => {
                 name: "Sala de Estar"
             }];
 
-        const categories: Array<Category> = listCategories.map((category) => CategoryMap.fromPrismaModeltoDomain(category)) 
+        const categories: Array<Category> = listCategories.map((category) => CategoryMap.fromPrismaModeltoDomain(category));
 
         categoryRepositoryMock.recoverAll.mockResolvedValue(categories);
 
+        const categoriesDTO = categories.map((category) => CategoryMap.toDTO(category));
+
         const categoriesOutputDTO: Array<ICategory> = await recoverAllCategoriesUseCase.execute();
 
-        // expect(categoriesOutputDTO)
-        //     .toEqual(categories);
+        expect(categoriesOutputDTO)
+            .toStrictEqual(categoriesDTO);
             
         expect(categoryRepositoryMock.recoverAll)
             .toHaveBeenCalledTimes(1);

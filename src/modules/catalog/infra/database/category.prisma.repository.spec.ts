@@ -84,7 +84,7 @@ describe('Prisma Repository: Category', () => {
             const categories: Array<Category> = listCategoriesPrisma.map((category) => CategoryMap.fromPrismaModeltoDomain(category));
 
             const allCategoriesRecovereds = await categoryRepository.recoverAll();
-
+            
             expect(allCategoriesRecovereds)
                 .toStrictEqual(categories);
             
