@@ -66,7 +66,7 @@ describe('Use Case: Delete Product', async () => {
 
         productRepositoryMock.exists.mockResolvedValue(false);
 
-        await expect(() => deleteProductUseCase.execute("a22a6030-bf2f-424b-b72e-2ca49e774094"))
+        await expect(() => deleteProductUseCase.execute(productInputDTO.id))
             .rejects
             .toThrowError(ProductApplicationExceptions.ProductNotFound);
     });

@@ -53,7 +53,7 @@ describe('Use Case: Recover Category by ID', () => {
 
         categoryRepositoryMock.exists.mockResolvedValue(false);
 
-        await expect(() => recoverCategoryByIdUseCase.execute("8780ae8d-0d56-43d0-a45b-1a1143bb324f"))
+        await expect(() => recoverCategoryByIdUseCase.execute(categoryInputDTO.id))
             .rejects
             .toThrowError(CategoryApplicationExceptions.CategoryNotFound);
    });

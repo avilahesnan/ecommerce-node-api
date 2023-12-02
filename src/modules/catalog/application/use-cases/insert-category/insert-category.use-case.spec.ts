@@ -44,6 +44,6 @@ describe('Use Case: Insert Category', () => {
             );
         
         expect(categoryRepositoryMock.insert)
-                .toHaveBeenCalledTimes(1);
+            .toHaveBeenCalledTimes(1);
     });
 });

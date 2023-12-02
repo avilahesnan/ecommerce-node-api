@@ -36,8 +36,7 @@ describe('Use Case: Recover All Product', async () => {
             value: 60,
             categories: [CategoryMap.toDomain(category)],
             dateDeletion: null
-        },
-        {
+        },{
             id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
             name: "Iphone",
             description: "Um ótimo smartphone",

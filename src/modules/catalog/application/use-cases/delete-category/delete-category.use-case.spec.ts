@@ -49,7 +49,7 @@ describe('Use Case: Delete Category', async () => {
 
         categoryRepositoryMock.exists.mockResolvedValue(false);
 
-        await expect(() => deleteCategoryUseCase.execute("a22a6030-bf2f-424b-b72e-2ca49e774094"))
+        await expect(() => deleteCategoryUseCase.execute(categoryInputDTO.id))
             .rejects
             .toThrowError(CategoryApplicationExceptions.CategoryNotFound);
     });

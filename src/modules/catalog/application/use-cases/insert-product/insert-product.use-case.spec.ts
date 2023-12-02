@@ -5,6 +5,7 @@ import { InsertProductUseCase } from "./insert-product.use-case";
 import { afterEach, beforeAll, describe, expect, test, vi } from "vitest";
 import { CreateProductProps, IProduct } from "@modules/catalog/domain/product/product.types";
 import { CategoryMap } from "@modules/catalog/infra/mappers/category.map";
+import { Category } from "@modules/catalog/domain/category/category.entity";
 
 let productRepositoryMock: MockProxy<IProductRepository<Product>>;
 let insertProductUseCase: InsertProductUseCase;
@@ -48,11 +49,14 @@ describe('Use Case: Insert Product', async () => {
             .toMatchObject(
                 expect.objectContaining({
                     id:expect.any(String),
-                    name:expect.any(String)
+                    name:expect.any(String),
+                    description:expect.any(String),
+                    value:expect.any(Number),
+                    categories:expect.any(Array<Category>)
                 })
             );
         
         expect(productRepositoryMock.insert)
-                .toHaveBeenCalledTimes(1);
+            .toHaveBeenCalledTimes(1);
     });
 });

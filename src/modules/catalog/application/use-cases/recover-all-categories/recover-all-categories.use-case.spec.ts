@@ -24,12 +24,12 @@ describe('Use Case: Recover All Categories', () => {
     test('Should Recover All Categories Without Exception', async () => {
 
         const listCategories = [{
-                id: "06e7b01d-28d6-423f-91b4-2a21063a2a72",
-                name: "Cama"
-            },{
-                id: "bb97a1e8-d09f-462f-b8e6-acb2e31af92c",
-                name: "Sala de Estar"
-            }];
+            id: "06e7b01d-28d6-423f-91b4-2a21063a2a72",
+            name: "Cama"
+        },{
+            id: "bb97a1e8-d09f-462f-b8e6-acb2e31af92c",
+            name: "Sala de Estar"
+        }];
 
         const categories: Array<Category> = listCategories.map((category) => CategoryMap.fromPrismaModeltoDomain(category));
 
