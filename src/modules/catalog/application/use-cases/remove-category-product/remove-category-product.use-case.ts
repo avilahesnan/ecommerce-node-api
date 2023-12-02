@@ -4,13 +4,17 @@ import { RecoverProductProps } from "@modules/catalog/domain/product/product.typ
 import { IUseCase } from "@shared/application/use-case.interface";
 import { Category } from "@modules/catalog/domain/category/category.entity";
 import { ProductApplicationExceptions } from "../../exceptions/product.application.exception";
+import { CategoryApplicationExceptions } from "../../exceptions/category.application.exception";
+import { ICategoryRepository } from "@modules/catalog/domain/category/category.repository.interface";
 
 export class RemoveCategoryProductUseCase implements IUseCase<RecoverProductProps, boolean> {
 
     private _productRepository: IProductRepository<Product>;
+    private _categoryRepository: ICategoryRepository<Category>;
 
-    constructor(repository: IProductRepository<Product>){
-        this._productRepository = repository;
+    constructor(repositoryProduct: IProductRepository<Product>, repositoryCategory: ICategoryRepository<Category>){
+        this._productRepository = repositoryProduct;
+        this._categoryRepository = repositoryCategory;
     }
 
     async execute(productProps: RecoverProductProps): Promise<boolean> {
@@ -21,12 +25,18 @@ export class RemoveCategoryProductUseCase implements IUseCase<RecoverProductProp
             throw new ProductApplicationExceptions.ProductNotFound();
         }
 
-        const product: Product = Product.recover(productProps);
-
         const category: Category = Category.recover({
             id: "06e7b01d-28d6-423f-91b4-2a21063a2a72",
             name: "Cama"
         });
+
+        const existsCategory: boolean = await this._categoryRepository.exists(category.id);
+
+        if (!existsCategory) {
+            throw new CategoryApplicationExceptions.CategoryNotFound();
+        }
+
+        const product: Product = Product.recover(productProps);
 
         const productCategoryRemoved = await this._productRepository.removeCategory(product, category);
 
