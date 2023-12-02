@@ -47,14 +47,14 @@ describe('Use Case: Recover Category by ID', () => {
     test('Should Throw An Exception When Trying to Recover A Category That Does Not Exist', async () => {
    
         const categoryInputDTO = {
-           id: "8780ae8d-0d56-43d0-a45b-1a1143bb324f",
-           name: "Cama"
-       };
+            id: "8780ae8d-0d56-43d0-a45b-1a1143bb324f",
+            name: "Cama"
+        };
 
-       categoryRepositoryMock.exists.mockResolvedValue(false);
+        categoryRepositoryMock.exists.mockResolvedValue(false);
 
-       await expect(() => recoverCategoryByIdUseCase.execute("8780ae8d-0d56-43d0-a45b-1a1143bb324f"))
-           .rejects
-           .toThrowError(CategoryApplicationExceptions.CategoryNotFound);
+        await expect(() => recoverCategoryByIdUseCase.execute("8780ae8d-0d56-43d0-a45b-1a1143bb324f"))
+            .rejects
+            .toThrowError(CategoryApplicationExceptions.CategoryNotFound);
    });
 });

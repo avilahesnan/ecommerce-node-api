@@ -1,5 +1,5 @@
 import { categoryRepository, productRepository } from "@modules/catalog/infra/database";
-import { RecoverProductsByCategory } from "./recover-products-by-category/recover-products-by-category.use-case";
+import { RecoverProductsByCategoryUseCase } from "./recover-products-by-category/recover-products-by-category.use-case";
 import { AlterStatusProductUseCase } from "./alter-status-product/alter-status-product.use-case";
 import { RemoveCategoryProductUseCase } from "./remove-category-product/remove-category-product.use-case";
 import { AddCategoryProductUseCase } from "./add-category-product/add-category-product.use-case";
@@ -28,4 +28,4 @@ export const deleteProductUseCase = new DeleteProductUseCase(productRepository);
 export const addCategoryProductUseCase = new AddCategoryProductUseCase(productRepository);
 export const removeCategoryProductUseCase = new RemoveCategoryProductUseCase(productRepository);
 export const alterStatusProductUseCase = new AlterStatusProductUseCase(productRepository);
-export const recoverProductsByCategoryUseCase = new RecoverProductsByCategory(productRepository, categoryRepository);
+export const recoverProductsByCategoryUseCase = new RecoverProductsByCategoryUseCase(productRepository, categoryRepository);

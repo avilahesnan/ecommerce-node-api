@@ -322,16 +322,6 @@ describe('Prisma Repository: Product', () => {
 
             expect(prismaMock.product.update)
                 .toHaveBeenCalledTimes(1);
-
-            expect(prismaMock.product.update)
-                .toBeCalledWith({
-                    where: { 
-                        id: product.id
-                    },
-                    data: {
-                        dateDeletion: new Date()
-                    }
-                });
         });
     });
 

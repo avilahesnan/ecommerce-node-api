@@ -7,7 +7,7 @@ import { IUseCase } from "@shared/application/use-case.interface";
 import { ProductMap } from "@modules/catalog/infra/mappers/product.map";
 import { CategoryApplicationExceptions } from "../../exceptions/category.application.exception";
 
-export class RecoverProductsByCategory implements IUseCase<string, Array<IProduct>> {
+export class RecoverProductsByCategoryUseCase implements IUseCase<string, Array<IProduct>> {
     
     private _productRepository: IProductRepository<Product>;
     private _categoryRepository: ICategoryRepository<Category>;
