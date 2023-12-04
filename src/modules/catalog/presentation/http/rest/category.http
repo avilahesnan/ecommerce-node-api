@@ -15,3 +15,15 @@ Content-type: application/json
 {
     "name":"Sala de Estar"
 }
+
+### Atualizar Uma Categoria
+PUT http://{{host}}:{{port}}/{{apiversion}}/categories/06e7b01d-28d6-423f-91b4-2a21063a2a72
+Content-type: application/json
+
+{
+    "id":"06e7b01d-28d6-423f-91b4-2a21063a2a72",
+    "name":"Betão coins"
+}
+
+### Deletar Uma Categoria
+DELETE http://{{host}}:{{port}}/{{apiversion}}/categories/6faa920d-8cf4-4572-8902-16e566b3faea

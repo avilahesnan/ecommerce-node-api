@@ -6,12 +6,12 @@ import { InsertCategoryUseCase } from "@modules/catalog/application/use-cases/in
 export class InsertCategoryExpressController extends ExpressController {
 
     private _insertCategoryUseCase: InsertCategoryUseCase;
- 
+
     constructor(insertCategoryUseCase: InsertCategoryUseCase) {
-        super();
-        this._insertCategoryUseCase = insertCategoryUseCase;
+      super();
+      this._insertCategoryUseCase = insertCategoryUseCase;
     }
- 
+
     async insert(request: Request, response: Response, next: NextFunction) {
       try {
         const categoryInputDTO: CreateCategoryProps = request.body;
