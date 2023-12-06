@@ -6,7 +6,6 @@ import { Category } from "@modules/catalog/domain/category/category.entity";
 import { CategoryPrismaRepository } from "./category.prisma.repository";
 import { CategoryMap } from "../mappers/category.map";
 
-
 const prismaMock: DeepMockProxy<PrismaClient> = mockDeep<PrismaClient>();
 let categoryRepository: CategoryPrismaRepository;
 let UUIDValid: string;
@@ -17,9 +16,7 @@ let dateUpdatedCategory: Date;
 describe('Prisma Repository: Category', () => {
 
     beforeAll(async () => {
-        
         categoryRepository = new CategoryPrismaRepository(prismaMock);
-
         UUIDValid = faker.string.uuid();
         nameCategoryValid = faker.string.alpha({length:{min:Category.SIZE_MINIMUM_NAME, max:Category.SIZE_MAXIMUM_NAME}});
         dateCreatedCategory = faker.date.anytime();

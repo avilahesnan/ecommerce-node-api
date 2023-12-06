@@ -23,8 +23,8 @@ apiV1Router.use(
 );
 
 apiV1Router.use(
-    '/ordereds',
+    '/orders',
     function (request, response, next) {
-        response.json({"entity":"Ordereds"});
+        response.json({"entity":"Orders"});
     }  
 );

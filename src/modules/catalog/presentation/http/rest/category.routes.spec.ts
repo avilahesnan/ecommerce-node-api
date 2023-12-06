@@ -26,7 +26,7 @@ describe('[REST] Routes Express: Category', () => {
 
     describe('GET api/v1/categories/:id', () => {
         
-        test('', async () => {
+        test('Should Return Status 200 and An Object of Type ICategory in JSON Format', async () => {
 
             const categoryInputDTO: ICategory = {
                 id: "1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60",
@@ -55,7 +55,7 @@ describe('[REST] Routes Express: Category', () => {
 
     describe('POST api/v1/categories', () => {
 
-        test('', async () => {
+        test('Should Return Status 200 and An Object of Type ICategory in JSON Format', async () => {
 
             const categoryInputDTO: CreateCategoryProps = {
                 name: "Banho"

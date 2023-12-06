@@ -27,12 +27,10 @@ let categoryQtdValidIneptRemovalNotAssociate: Array<Category>;
 describe('Domain Entity: Product', () => {
 
     beforeAll(async () => {
-
         const categoryValid01 = Category.create({name:faker.string.alpha({length:{min:Category.SIZE_MINIMUM_NAME, max:Category.SIZE_MAXIMUM_NAME}})});
         const categoryValid02 = Category.create({name:faker.string.alpha({length:{min:Category.SIZE_MINIMUM_NAME, max:Category.SIZE_MAXIMUM_NAME}})});
         const categoryValid03 = Category.create({name:faker.string.alpha({length:{min:Category.SIZE_MINIMUM_NAME, max:Category.SIZE_MAXIMUM_NAME}})});
         const categoryValid04 = Category.create({name:faker.string.alpha({length:{min:Category.SIZE_MINIMUM_NAME, max:Category.SIZE_MAXIMUM_NAME}})});
-    
         UUIDValid = faker.string.uuid();
         nameProductValid = faker.string.alpha({length:{min:Product.SIZE_MINIMUM_NAME, max:Product.SIZE_MAXIMUM_NAME}});
         nameProductSizeMinimumInvalid = faker.string.alpha({length:{min:Product.SIZE_MINIMUM_NAME-1, max:Product.SIZE_MINIMUM_NAME-1}});
@@ -51,7 +49,6 @@ describe('Domain Entity: Product', () => {
         categoryQtdValidAptRemoval = faker.helpers.arrayElements<Category>([categoryValid01, categoryValid02, categoryValid03], {min:Product.QTD_MINIMUM_CATEGORIES+1, max:Product.QTD_MAXIMUM_CATEGORIES});
         categoryQtdMinValidIneptRemoval = faker.helpers.arrayElements<Category>([categoryValid01], {min:Product.QTD_MINIMUM_CATEGORIES, max:Product.QTD_MINIMUM_CATEGORIES});
         categoryQtdValidIneptRemovalNotAssociate = faker.helpers.arrayElements<Category>([categoryValid01, categoryValid02, categoryValid03], {min:Product.QTD_MINIMUM_CATEGORIES+1, max:Product.QTD_MAXIMUM_CATEGORIES});
-    
     });
 
     describe('Product (create)', () => { 

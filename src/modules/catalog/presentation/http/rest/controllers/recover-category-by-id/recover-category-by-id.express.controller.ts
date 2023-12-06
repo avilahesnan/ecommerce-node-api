@@ -11,14 +11,14 @@ export class RecoverCategoryByIdExpressController extends ExpressController {
         super();
         this._recoverCategoryByIdUseCase = recoverCategoryByIdUseCase;
     }
- 
+
     async recover(request: Request, response: Response, next: NextFunction) {
-      try {
-        const uuid:string = request.params.id;
-        const categoryDTO: ICategory = await this._recoverCategoryByIdUseCase.execute(uuid);
-        this.sendSuccessResponse(response, categoryDTO);
-      } catch (error) {
-        next(error);
-      }
+        try {
+            const uuid:string = request.params.id;
+            const categoryDTO: ICategory = await this._recoverCategoryByIdUseCase.execute(uuid);
+            this.sendSuccessResponse(response, categoryDTO);
+        } catch (error) {
+            next(error);
+        }
     } 
 }

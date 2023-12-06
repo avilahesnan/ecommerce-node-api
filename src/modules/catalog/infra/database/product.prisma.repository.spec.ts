@@ -28,12 +28,9 @@ let categoryOptional: Category;
 describe('Prisma Repository: Product', () => {
 
     beforeAll(async () => {
-
         productRepository = new ProductPrismaRepository(prismaMock);
-
         const categoryValid01 = Category.create({name:faker.string.alpha({length:{min:Category.SIZE_MINIMUM_NAME, max:Category.SIZE_MAXIMUM_NAME}})});
         const categoryValid02 = Category.create({name:faker.string.alpha({length:{min:Category.SIZE_MINIMUM_NAME, max:Category.SIZE_MAXIMUM_NAME}})});
-        
         UUIDValid = faker.string.uuid();
         nameProductValid = faker.string.alpha({length:{min:Product.SIZE_MINIMUM_NAME, max:Product.SIZE_MAXIMUM_NAME}});
         nameCategoryValid = faker.string.alpha({length:{min:Category.SIZE_MINIMUM_NAME, max:Category.SIZE_MAXIMUM_NAME}});
@@ -45,7 +42,6 @@ describe('Prisma Repository: Product', () => {
         dateDeletionProduct = faker.date.anytime();
         statusProductValid = faker.helpers.enumValue(StatusProduct);
         categoryOptional = Category.create({name:faker.string.alpha({length:{min:Category.SIZE_MINIMUM_NAME, max:Category.SIZE_MAXIMUM_NAME}})});
-        
     });
 
     afterEach(() => {
