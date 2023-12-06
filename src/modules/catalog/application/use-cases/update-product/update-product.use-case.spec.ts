@@ -10,7 +10,7 @@ import { ProductApplicationExceptions } from "../../exceptions/product.applicati
 let productRepositoryMock: MockProxy<IProductRepository<Product>>;
 let updateProductUseCase: UpdateProductUseCase;
 
-describe('Use Case: Update Product', async () => {
+describe('Use Case: Update Product', () => {
 
     beforeAll(async () => {
         productRepositoryMock = mock<IProductRepository<Product>>();

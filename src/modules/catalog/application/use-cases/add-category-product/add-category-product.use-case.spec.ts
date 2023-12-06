@@ -14,7 +14,7 @@ let productRepositoryMock: MockProxy<IProductRepository<Product>>;
 let categoryRepositoryMock: MockProxy<ICategoryRepository<Category>>;
 let addCategoryProductUseCase: AddCategoryProductUseCase;
 
-describe('Use Case: Add Category Product', async () => {
+describe('Use Case: Add Category Product', () => {
 
     beforeAll(async () => {
         productRepositoryMock = mock<IProductRepository<Product>>();

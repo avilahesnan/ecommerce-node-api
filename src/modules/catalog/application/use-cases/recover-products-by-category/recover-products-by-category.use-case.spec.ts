@@ -15,7 +15,7 @@ let categoryRepositoryMock: MockProxy<ICategoryRepository<Category>>
 let recoverProductsByCategoryUseCase: RecoverProductsByCategoryUseCase;
 
 
-describe('Use Case: Recover Products By Category', async () => {
+describe('Use Case: Recover Products By Category', () => {
 
     beforeAll(async () => {
         productRepositoryMock = mock<IProductRepository<Product>>();

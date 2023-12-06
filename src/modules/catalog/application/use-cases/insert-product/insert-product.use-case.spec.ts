@@ -10,7 +10,7 @@ import { Category } from "@modules/catalog/domain/category/category.entity";
 let productRepositoryMock: MockProxy<IProductRepository<Product>>;
 let insertProductUseCase: InsertProductUseCase;
 
-describe('Use Case: Insert Product', async () => {
+describe('Use Case: Insert Product', () => {
 
     beforeAll(async () => {
         productRepositoryMock = mock<IProductRepository<Product>>();

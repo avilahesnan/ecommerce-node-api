@@ -8,7 +8,7 @@ import { CategoryApplicationExceptions } from "../../exceptions/category.applica
 let categoryRepositoryMock: MockProxy<ICategoryRepository<Category>>;
 let deleteCategoryUseCase: DeleteCategoryUseCase;
 
-describe('Use Case: Delete Category', async () => {
+describe('Use Case: Delete Category', () => {
     
     beforeAll(async () => {
         categoryRepositoryMock = mock<ICategoryRepository<Category>>();
