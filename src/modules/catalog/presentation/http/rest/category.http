@@ -2,13 +2,13 @@
 @port = 3000
 @apiversion = api/v1
 
-### Recuperar Um Categoria por ID
+### Recover A Category By ID
 GET http://{{host}}:{{port}}/{{apiversion}}/categories/06e7b01d-28d6-423f-91b4-2a21063a2a72
 
-### Recuperar Todas as Categorias
+### Recover All Categories
 GET http://{{host}}:{{port}}/{{apiversion}}/categories
 
-### Inserir Uma Categoria
+### Insert A Category
 POST http://{{host}}:{{port}}/{{apiversion}}/categories
 Content-type: application/json
 
@@ -16,7 +16,7 @@ Content-type: application/json
     "name":"Sala de Estar"
 }
 
-### Atualizar Uma Categoria
+### Update A Category
 PUT http://{{host}}:{{port}}/{{apiversion}}/categories/06e7b01d-28d6-423f-91b4-2a21063a2a72
 Content-type: application/json
 
@@ -25,5 +25,5 @@ Content-type: application/json
     "name":"Betão"
 }
 
-### Deletar Uma Categoria
+### Delete A Category
 DELETE http://{{host}}:{{port}}/{{apiversion}}/categories/6faa920d-8cf4-4572-8902-16e566b3faea

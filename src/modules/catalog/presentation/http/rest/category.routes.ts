@@ -1,5 +1,6 @@
 import express from 'express';
 import { deleteCategoryController, insertCategoryController, recoverAllCategoriesController, recoverCategoryByIdController, updateCategoryController } from './controllers';
+import { contentTypeMiddleware } from '@main/presentation/http/middlewares/content-type.middleware';
 
 export const categoryRouter = express.Router();
 
@@ -15,11 +16,13 @@ categoryRouter.get(
 
 categoryRouter.post(
     '/',
+    contentTypeMiddleware,
     (request, response, next) =>  insertCategoryController.insert(request, response, next)
 );
 
 categoryRouter.put(
     '/:id',
+    contentTypeMiddleware,
     (request, response, next) => updateCategoryController.update(request, response, next)
 );
 
