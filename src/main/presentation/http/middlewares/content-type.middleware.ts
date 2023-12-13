@@ -1,3 +1,4 @@
+import { HttpErrors } from "@shared/presentation/http/http.error";
 import { NextFunction, Request, Response } from "express";
 
 const allowedContentTypes = ['application/json'];
@@ -6,7 +7,7 @@ export function contentTypeMiddleware(request: Request, response: Response, next
     const contentType = request.headers['content-type'];
 
     if (!contentType || !allowedContentTypes.includes(contentType)) {
-        return response.status(415).send('Unsupported Media Type');
+        next(new HttpErrors.UnsupportedMediaTypeError());
     }
 
     next();

@@ -5,6 +5,7 @@ import { MockProxy, mock, mockReset } from "vitest-mock-extended";
 import { RecoverCategoryByIdExpressController } from "./recover-category-by-id.express.controller";
 import { ICategory } from "@modules/catalog/domain/category/category.types";
 import { CategoryApplicationExceptions } from "@modules/catalog/application/exceptions/category.application.exception";
+import { HttpErrors } from "@shared/presentation/http/http.error";
 
 let requestMock: MockProxy<Request>;
 let responseMock: MockProxy<Response>;
@@ -80,6 +81,6 @@ describe('Controller Express: Recover Category By Id', () => {
             .toHaveBeenCalled();
 
         expect(nextMock.mock.lastCall[0].name)
-            .toBe(CategoryApplicationExceptions.CategoryNotFound.name);
+            .toBe(HttpErrors.NotFoundError.name);
     });
 });

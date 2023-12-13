@@ -9,7 +9,10 @@ import { RecoverAllCategoriesExpressController } from "./controllers/recover-all
 import { UpdateCategoryExpressController } from "./controllers/update-category/update-category.express.controller";
 import { DeleteCategoryExpressController } from "./controllers/delete-category/delete-category.express.controller";
 
-let appMock: Application;
+let appMockRoute1: Application;
+let appMockRoute2: Application;
+let appMockRoute3: Application;
+let appMockRoute4: Application;
 let recoverCategoryByIdControllerMock: MockProxy<RecoverCategoryByIdExpressController>;
 let recoverAllCategoriesControllerMock: MockProxy<RecoverAllCategoriesExpressController>;
 let insertCategoryControllerMock: MockProxy<InsertCategoryExpressController>;
@@ -19,7 +22,10 @@ let deleteCategoryControllerMock: MockProxy<DeleteCategoryExpressController>;
 describe('[REST] Routes Express: Category', () => {
 
     beforeAll(async () => {
-        appMock = express();
+        appMockRoute1 = express();
+        appMockRoute2 = express();
+        appMockRoute3 = express();
+        appMockRoute4 = express();
         recoverCategoryByIdControllerMock = mock<RecoverCategoryByIdExpressController>();
         recoverAllCategoriesControllerMock = mock<RecoverAllCategoriesExpressController>();
         insertCategoryControllerMock = mock<InsertCategoryExpressController>();
@@ -49,9 +55,9 @@ describe('[REST] Routes Express: Category', () => {
                 response.status(200).json(categoryInputDTO);
             });
 
-            appMock.use('/api/v1/categories/:id', recoverCategoryByIdControllerMock.recover);
+            appMockRoute1.use('/api/v1/categories/:id', recoverCategoryByIdControllerMock.recover);
 
-            const response = await request(appMock)
+            const response = await request(appMockRoute1)
                 .get('/api/v1/categories/1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60');
 
             expect(response.status)
@@ -65,37 +71,37 @@ describe('[REST] Routes Express: Category', () => {
         });
     });
 
-    // describe('GET api/v1/categories', () => {
+    describe('GET api/v1/categories', () => {
 
-    //     test('Should Return Status 200 and All Objects of Type ICategory in JSON Format', async () => {
+        test('Should Return Status 200 and All Objects of Type ICategory in JSON Format', async () => {
 
-    //         const listCategories = [{
-    //             id: "1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60",
-    //             name: "Banho"
-    //         }, {
-    //             id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
-    //             name: "Mesa",
-    //         }];
+            const listCategories: Array<ICategory> = [{
+                id: "1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60",
+                name: "Banho"
+            }, {
+                id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
+                name: "Mesa",
+            }];
 
-    //         recoverAllCategoriesControllerMock.recover.mockImplementation(async (request, response, next) => {
-    //             response.status(200).json(listCategories);
-    //         });
+            recoverAllCategoriesControllerMock.recover.mockImplementation(async (request, response, next) => {
+                response.status(200).json(listCategories);
+            });
 
-    //         appMock.use('/api/v1/categories', recoverAllCategoriesControllerMock.recover);
+            appMockRoute2.use('/api/v1/categories', recoverAllCategoriesControllerMock.recover);
 
-    //         const response = await request(appMock)
-    //             .get('/api/v1/categories');
+            const response = await request(appMockRoute2)
+                .get('/api/v1/categories');
 
-    //         expect(response.status)
-    //             .toEqual(200);
+            expect(response.status)
+                .toEqual(200);
 
-    //         expect(response.headers["content-type"])
-    //             .toMatch(/json/);
+            expect(response.headers["content-type"])
+                .toMatch(/json/);
 
-    //         expect(response.body)
-    //             .toEqual(listCategories);
-    //     });
-    // });
+            expect(response.body)
+                .toEqual(listCategories);
+        });
+    });
 
     describe('POST api/v1/categories', () => {
 
@@ -114,9 +120,9 @@ describe('[REST] Routes Express: Category', () => {
                 response.status(200).json(categoryOutputDTO);
             });
 
-            appMock.use('/api/v1/categories', insertCategoryControllerMock.insert);
+            appMockRoute1.use('/api/v1/categories', insertCategoryControllerMock.insert);
 
-            const response = await request(appMock)
+            const response = await request(appMockRoute1)
                 .post('/api/v1/categories')
                 .send(categoryInputDTO);
 
@@ -131,61 +137,61 @@ describe('[REST] Routes Express: Category', () => {
         });
     });
 
-    // describe('PUT api/v1/categories/:id', () => {
+    describe('PUT api/v1/categories/:id', () => {
         
-    //     test('Should Return Status 200 and True', async () => {
+        test('Should Return Status 200 and True', async () => {
 
-    //         const categoryInputDTO: ICategory = {
-    //             id: "1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60",
-    //             name: "Banho"
-    //         };
+            const categoryInputDTO: ICategory = {
+                id: "1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60",
+                name: "Banho"
+            };
 
-    //         updateCategoryControllerMock.update.mockImplementation(async (request, response, next) => {
-    //             response.status(200);
-    //         });
+            updateCategoryControllerMock.update.mockImplementation(async (request, response, next) => {
+                response.status(200).json(true);
+            });
 
-    //         appMock.use('/api/v1/categories/:id', updateCategoryControllerMock.update);
+            appMockRoute3.use('/api/v1/categories/:id', updateCategoryControllerMock.update);
 
-    //         const response = await request(appMock)
-    //             .put('/api/v1/categories/1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60');
+            const response = await request(appMockRoute3)
+                .put('/api/v1/categories/1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60');
 
-    //         expect(response.status)
-    //             .toEqual(200);
+            expect(response.status)
+                .toEqual(200);
 
-    //         expect(response.headers["content-type"])
-    //             .toMatch(/boolean/);
+            expect(response.headers["content-type"])
+                .toMatch(/json/);
 
-    //         expect(response.body)
-    //             .toEqual(true);
-    //     });
-    // });
+            expect(response.body)
+                .toEqual(true);
+        });
+    });
 
-    // describe('DELETE api/v1/categories/:id', () => {
+    describe('DELETE api/v1/categories/:id', () => {
 
-    //     test('Should Return Status 200 and true', async () => {
+        test('Should Return Status 200 and true', async () => {
 
-    //         const categoryInputDTO: ICategory = {
-    //             id: "1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60",
-    //             name: "Banho"
-    //         };
+            const categoryInputDTO: ICategory = {
+                id: "1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60",
+                name: "Banho"
+            };
 
-    //         deleteCategoryControllerMock.delete.mockImplementation(async (request, response, next) => {
-    //             response.status(200);
-    //         });
+            deleteCategoryControllerMock.delete.mockImplementation(async (request, response, next) => {
+                response.status(200).json(true);
+            });
 
-    //         appMock.use('/api/v1/categories/:id', deleteCategoryControllerMock.delete);
+            appMockRoute4.use('/api/v1/categories/:id', deleteCategoryControllerMock.delete);
 
-    //         const response = await request(appMock)
-    //             .delete('/api/v1/categories/1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60');
+            const response = await request(appMockRoute4)
+                .delete('/api/v1/categories/1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60');
 
-    //         expect(response.status)
-    //             .toEqual(200);
+            expect(response.status)
+                .toEqual(200);
 
-    //         expect(response.headers["content-type"])
-    //             .toMatch(/boolean/);
+            expect(response.headers["content-type"])
+                .toMatch(/json/);
 
-    //         expect(response.body)
-    //             .toEqual(true);
-    //     });
-    // });
+            expect(response.body)
+                .toEqual(true);
+        });
+    });
 });

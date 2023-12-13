@@ -1,6 +1,7 @@
 import express from 'express';
 import { deleteCategoryController, insertCategoryController, recoverAllCategoriesController, recoverCategoryByIdController, updateCategoryController } from './controllers';
 import { contentTypeMiddleware } from '@main/presentation/http/middlewares/content-type.middleware';
+import { validInputInsertCategory } from '../middlewares/valid-input-insert-category.middleware';
 
 export const categoryRouter = express.Router();
 
@@ -17,6 +18,7 @@ categoryRouter.get(
 categoryRouter.post(
     '/',
     contentTypeMiddleware,
+    validInputInsertCategory,
     (request, response, next) =>  insertCategoryController.insert(request, response, next)
 );
 
