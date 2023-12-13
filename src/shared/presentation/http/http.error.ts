@@ -1,7 +1,7 @@
 export class HttpError extends Error {
     statusCode: number;
 
-    constructor(statusCode:number, message: string = '⚠️ Erro HTTP genérico') {
+    constructor(statusCode:number, message: string = '⚠️ Generic HTTP Error') {
         super(message);
         this.name = 'HttpError';
         this.statusCode = statusCode;
@@ -14,7 +14,7 @@ export class HttpError extends Error {
 class NotFoundError extends HttpError {
     constructor( params?: {statusCode?: number, message?: string}) {
         const { statusCode, message} = params || {};
-        super(statusCode || 404, message || '⚠️ Servidor Não Conseguiu Encontrar o Recurso Solicitado.');
+        super(statusCode || 404, message || '⚠️ Server Could Not Find the Requested Resource.');
         this.name = 'NotFoundError';
     }
 }
@@ -22,7 +22,7 @@ class NotFoundError extends HttpError {
 class UnsupportedMediaTypeError extends HttpError {
     constructor( params?: {statusCode?: number, message?: string}) {
         const { statusCode, message} = params || {};
-        super(statusCode || 415, message || '⚠️ Servidor se Recusou a Aceitar a Requisição Porque o Formato do Payload Não é Um Formato Suportado.');
+        super(statusCode || 415, message || '⚠️ Server Refused to Accept Request Because Payload Format Is Not Supported.');
         this.name = 'UnsupportedMediaTypeError';
     }
 }

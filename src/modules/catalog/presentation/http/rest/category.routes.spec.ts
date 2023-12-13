@@ -2,17 +2,14 @@ import express, { Application } from "express";
 import { MockProxy, mock, mockReset } from "vitest-mock-extended";
 import { RecoverCategoryByIdExpressController } from "./controllers/recover-category-by-id/recover-category-by-id.express.controller";
 import { InsertCategoryExpressController } from "./controllers/insert-category/insert-category.express.controller";
-import { afterEach, beforeAll, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeAll, beforeEach, describe, expect, test, vi } from "vitest";
 import { CreateCategoryProps, ICategory } from "@modules/catalog/domain/category/category.types";
 import request from 'supertest';
 import { RecoverAllCategoriesExpressController } from "./controllers/recover-all-categories/recover-all-categories.express.controller";
 import { UpdateCategoryExpressController } from "./controllers/update-category/update-category.express.controller";
 import { DeleteCategoryExpressController } from "./controllers/delete-category/delete-category.express.controller";
 
-let appMockRoute1: Application;
-let appMockRoute2: Application;
-let appMockRoute3: Application;
-let appMockRoute4: Application;
+let appMock: Application;
 let recoverCategoryByIdControllerMock: MockProxy<RecoverCategoryByIdExpressController>;
 let recoverAllCategoriesControllerMock: MockProxy<RecoverAllCategoriesExpressController>;
 let insertCategoryControllerMock: MockProxy<InsertCategoryExpressController>;
@@ -22,15 +19,15 @@ let deleteCategoryControllerMock: MockProxy<DeleteCategoryExpressController>;
 describe('[REST] Routes Express: Category', () => {
 
     beforeAll(async () => {
-        appMockRoute1 = express();
-        appMockRoute2 = express();
-        appMockRoute3 = express();
-        appMockRoute4 = express();
         recoverCategoryByIdControllerMock = mock<RecoverCategoryByIdExpressController>();
         recoverAllCategoriesControllerMock = mock<RecoverAllCategoriesExpressController>();
         insertCategoryControllerMock = mock<InsertCategoryExpressController>();
         updateCategoryControllerMock = mock<UpdateCategoryExpressController>();
         deleteCategoryControllerMock = mock<DeleteCategoryExpressController>();
+    });
+
+    beforeEach(async () => {
+        appMock = express();
     });
 
     afterEach(() => {
@@ -55,9 +52,9 @@ describe('[REST] Routes Express: Category', () => {
                 response.status(200).json(categoryInputDTO);
             });
 
-            appMockRoute1.use('/api/v1/categories/:id', recoverCategoryByIdControllerMock.recover);
+            appMock.use('/api/v1/categories/:id', recoverCategoryByIdControllerMock.recover);
 
-            const response = await request(appMockRoute1)
+            const response = await request(appMock)
                 .get('/api/v1/categories/1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60');
 
             expect(response.status)
@@ -87,9 +84,9 @@ describe('[REST] Routes Express: Category', () => {
                 response.status(200).json(listCategories);
             });
 
-            appMockRoute2.use('/api/v1/categories', recoverAllCategoriesControllerMock.recover);
+            appMock.use('/api/v1/categories', recoverAllCategoriesControllerMock.recover);
 
-            const response = await request(appMockRoute2)
+            const response = await request(appMock)
                 .get('/api/v1/categories');
 
             expect(response.status)
@@ -120,9 +117,9 @@ describe('[REST] Routes Express: Category', () => {
                 response.status(200).json(categoryOutputDTO);
             });
 
-            appMockRoute1.use('/api/v1/categories', insertCategoryControllerMock.insert);
+            appMock.use('/api/v1/categories', insertCategoryControllerMock.insert);
 
-            const response = await request(appMockRoute1)
+            const response = await request(appMock)
                 .post('/api/v1/categories')
                 .send(categoryInputDTO);
 
@@ -150,9 +147,9 @@ describe('[REST] Routes Express: Category', () => {
                 response.status(200).json(true);
             });
 
-            appMockRoute3.use('/api/v1/categories/:id', updateCategoryControllerMock.update);
+            appMock.use('/api/v1/categories/:id', updateCategoryControllerMock.update);
 
-            const response = await request(appMockRoute3)
+            const response = await request(appMock)
                 .put('/api/v1/categories/1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60');
 
             expect(response.status)
@@ -179,9 +176,9 @@ describe('[REST] Routes Express: Category', () => {
                 response.status(200).json(true);
             });
 
-            appMockRoute4.use('/api/v1/categories/:id', deleteCategoryControllerMock.delete);
+            appMock.use('/api/v1/categories/:id', deleteCategoryControllerMock.delete);
 
-            const response = await request(appMockRoute4)
+            const response = await request(appMock)
                 .delete('/api/v1/categories/1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60');
 
             expect(response.status)
