@@ -6,6 +6,7 @@ import { customMorganMiddleware } from "./middlewares/custom-morgan.middleware";
 import { errorLogger } from "./middlewares/error-logger.middleware";
 import { errorResponser } from "./middlewares/error-responser.middleware";
 import { invalidPath } from "./middlewares/invalid-path.middleware";
+import cors from "cors";
 
 export const createExpressApplication = async (): Promise<Application> => {
     const app: Application = express();
@@ -18,6 +19,10 @@ export const createExpressApplication = async (): Promise<Application> => {
     //Middlewares de Terceiros
     app.use(helmet());
     app.use(compression());
+    app.use(cors({
+        origin: 'http://localhost:5400',
+        optionsSuccessStatus: 200
+    }));
 
     //Middleware Customizados
     app.use(customMorganMiddleware);

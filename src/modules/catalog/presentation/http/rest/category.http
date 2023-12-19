@@ -27,3 +27,6 @@ Content-type: application/json
 
 ### Delete A Category
 DELETE http://{{host}}:{{port}}/{{apiversion}}/categories/bb97a1e8-d09f-462f-b8e6-acb2e31af92c
+
+### Recover All Products
+GET http://{{host}}:{{port}}/{{apiversion}}/products

@@ -13,7 +13,7 @@ export class ProductMap {
             name: product.name,
             description: product.description,
             value: product.value,
-            categories: product.categories.map((category) => CategoryMap.toDomain(category)),
+            categories: product.categories.map((category) => CategoryMap.toDTO(category)),
             dateCreated: product.dateCreated,
             dateUpdated: product.dateUpdated,
             dateDeletion: product.dateDeletion,
@@ -27,7 +27,7 @@ export class ProductMap {
 
     public static fromPrismaModeltoDomain(product: ProductWithCategoryPrisma): Product {
         
-        const categories:  Array<Category> = [];
+        const categories: Array<Category> = [];
 
         product.categories.map((category) => {
             categories.push(CategoryMap.fromPrismaModeltoDomain(category.category));

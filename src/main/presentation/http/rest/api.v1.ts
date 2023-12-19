@@ -1,4 +1,5 @@
 import { categoryRouter } from "@modules/catalog/presentation/http/rest/category.routes";
+import { productRouter } from "@modules/catalog/presentation/http/rest/product.routes";
 import express, { Router } from "express";
 
 export const apiV1Router: Router = express.Router();
@@ -10,9 +11,7 @@ apiV1Router.use(
 
 apiV1Router.use(
     '/products',
-    function (request, response, next) {
-        response.json({"entity":"Products"});
-    }  
+    productRouter 
 );
 
 apiV1Router.use(
