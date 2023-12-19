@@ -33,7 +33,7 @@ describe('Use Case: Insert Product', () => {
             name: 'Mesa grande',
             description: 'Uma mesa muito grande',
             value: 200,
-            categories: [CategoryMap.toDomain(category)]  
+            categories: [category]  
         };
 
         const product: Product = Product.create(productInputDTO);

@@ -41,13 +41,13 @@ describe('Use Case: Recover Products By Category', () => {
             name: "Almofada",
             description: "Um ótima almofada",
             value: 60,
-            categories: [CategoryMap.toDomain(category)]
+            categories: [category]
         },{
             id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
             name: "Iphone",
             description: "Um ótimo smartphone",
             value: 3500,
-            categories: [CategoryMap.toDomain(category)]
+            categories: [category]
         }];
 
         const products: Array<Product> = listProducts.map((product) => ProductMap.toDomain(product));

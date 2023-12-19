@@ -40,7 +40,7 @@ describe('Use Case: Add Category Product', () => {
             name: "Almofada",
             description: "Um ótima almofada",
             value: 60,
-            categories: [CategoryMap.toDomain(category)]
+            categories: [category]
         };
 
         productRepositoryMock.exists.mockResolvedValue(true);
@@ -76,7 +76,7 @@ describe('Use Case: Add Category Product', () => {
             name: "Almofada",
             description: "Um ótima almofada",
             value: 60,
-            categories: [CategoryMap.toDomain(category)]
+            categories: [category]
         };
 
         productRepositoryMock.exists.mockResolvedValue(false);
@@ -100,7 +100,7 @@ describe('Use Case: Add Category Product', () => {
             name: "Almofada",
             description: "Um ótima almofada",
             value: 60,
-            categories: [CategoryMap.toDomain(category)]
+            categories: [category]
         };
 
         productRepositoryMock.exists.mockResolvedValue(true);

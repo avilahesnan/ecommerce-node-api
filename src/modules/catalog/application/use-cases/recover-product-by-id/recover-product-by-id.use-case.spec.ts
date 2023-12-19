@@ -65,7 +65,7 @@ describe('Use Case: Recover Product By Id', () => {
             name: "Almofada",
             description: "Um ótima almofada",
             value: 60,
-            categories: [CategoryMap.toDomain(category)]
+            categories: [category]
         };
 
         productRepositoryMock.exists.mockResolvedValue(false);

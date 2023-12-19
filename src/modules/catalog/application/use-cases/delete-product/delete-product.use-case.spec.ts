@@ -33,7 +33,7 @@ describe('Use Case: Delete Product', () => {
             name: "Almofada",
             description: "Um ótima almofada",
             value: 60,
-            categories: [CategoryMap.toDomain(category)]
+            categories: [category]
         };
 
         productRepositoryMock.exists.mockResolvedValue(true);
@@ -61,7 +61,7 @@ describe('Use Case: Delete Product', () => {
             name: "Almofada",
             description: "Um ótima almofada",
             value: 60,
-            categories: [CategoryMap.toDomain(category)]
+            categories: [category]
         };
 
         productRepositoryMock.exists.mockResolvedValue(false);
