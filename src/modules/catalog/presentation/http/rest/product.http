@@ -7,3 +7,39 @@ GET http://{{host}}:{{port}}/{{apiversion}}/products/575dbd2f-1e73-419b-9f66-b08
 
 ### Recover All Products
 GET http://{{host}}:{{port}}/{{apiversion}}/products
+
+### Insert A Product
+POST http://{{host}}:{{port}}/{{apiversion}}/products
+Content-type: application/json
+
+{
+    "name":"Uma mesa",
+    "description": "Uma mesa muito grande",
+    "value": 500,
+    "categories": [
+        {
+            "id":"06e7b01d-28d6-423f-91b4-2a21063a2a72",
+            "name":"Betão"
+        }
+    ]
+}
+
+### Update A Product
+PUT http://{{host}}:{{port}}/{{apiversion}}/products/575dbd2f-1e73-419b-9f66-b08d943b4a5a
+Content-type: application/json
+
+{
+    "id": "575dbd2f-1e73-419b-9f66-b08d943b4a5a",
+    "name":"Uma mesa",
+    "description": "Uma mesa muito muito muito grande",
+    "value": 1000,
+    "categories": [
+        {
+            "id":"06e7b01d-28d6-423f-91b4-2a21063a2a72",
+            "name":"Betão"
+        }
+    ]
+}
+
+### Delete A Product
+DELETE http://{{host}}:{{port}}/{{apiversion}}/products/0e513d9c-83dc-4650-b5c9-62b549e11b5d
