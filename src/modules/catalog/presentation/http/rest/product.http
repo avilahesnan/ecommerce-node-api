@@ -42,4 +42,4 @@ Content-type: application/json
 }
 
 ### Delete A Product
-DELETE http://{{host}}:{{port}}/{{apiversion}}/products/0e513d9c-83dc-4650-b5c9-62b549e11b5d
+DELETE http://{{host}}:{{port}}/{{apiversion}}/products/855d3ea6-e4ca-414a-aecd-807ef0ca43ea
