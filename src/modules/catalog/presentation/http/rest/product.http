@@ -1,0 +1,9 @@
+@host = localhost
+@port = 3000
+@apiversion = api/v1
+
+### Recover Product By Id
+GET http://{{host}}:{{port}}/{{apiversion}}/products/575dbd2f-1e73-419b-9f66-b08d943b4a5a
+
+### Recover All Products
+GET http://{{host}}:{{port}}/{{apiversion}}/products
