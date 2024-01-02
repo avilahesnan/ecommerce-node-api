@@ -5,6 +5,7 @@ import { MockProxy, mock, mockReset } from "vitest-mock-extended";
 import { UpdateProductExpressController } from "./update-product.express.controller";
 import { RecoverProductProps } from "@modules/catalog/domain/product/product.types";
 import { ProductApplicationExceptions } from "@modules/catalog/application/exceptions/product.application.exception";
+import { HttpErrors } from "@shared/presentation/http/http.error";
 
 let requestMock: MockProxy<Request>;
 let responseMock: MockProxy<Response>;
@@ -96,6 +97,6 @@ describe('Controller Express: Update Product', () => {
             .toHaveBeenCalled();
 
         expect(nextMock.mock.lastCall[0].name)
-            .toBe(ProductApplicationExceptions.ProductNotFound.name);
+            .toBe(HttpErrors.NotFoundError.name);
     });
 });

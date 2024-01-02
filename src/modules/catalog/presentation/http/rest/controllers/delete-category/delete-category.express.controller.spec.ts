@@ -5,6 +5,7 @@ import { Mock, afterAll, beforeAll, describe, expect, test, vi, vitest } from "v
 import { Request, Response } from "express";
 import { ICategory } from "@modules/catalog/domain/category/category.types";
 import { CategoryApplicationExceptions } from "@modules/catalog/application/exceptions/category.application.exception";
+import { HttpErrors } from "@shared/presentation/http/http.error";
 
 let requestMock: MockProxy<Request>;
 let responseMock: MockProxy<Response>;
@@ -80,6 +81,6 @@ describe('Controller Express: Delete Category', () => {
             .toHaveBeenCalled();
 
         expect(nextMock.mock.lastCall[0].name)
-            .toBe(CategoryApplicationExceptions.CategoryNotFound.name);
+            .toBe(HttpErrors.NotFoundError.name);
     });
 });

@@ -43,3 +43,20 @@ Content-type: application/json
 
 ### Delete A Product
 DELETE http://{{host}}:{{port}}/{{apiversion}}/products/855d3ea6-e4ca-414a-aecd-807ef0ca43ea
+
+### Add Category Product
+PUT http://{{host}}:{{port}}/{{apiversion}}/products/575dbd2f-1e73-419b-9f66-b08d943b4a5a
+Content-Type: application/json
+
+{
+  "id": "575dbd2f-1e73-419b-9f66-b08d943b4a5a",
+  "name": "Uma mesa",
+  "description": "Uma mesa muito muito muito grande",
+  "value": 1000,
+  "categories": [
+    {
+        "id": "06e7b01d-28d6-423f-91b4-2a21063a2a72",
+        "name": "Betão Doido"
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import { UpdateCategoryExpressController } from "./update-category.express.contr
 import { UpdateCategoryUseCase } from "@modules/catalog/application/use-cases/update-category/update-category.use-case";
 import { RecoverCategoryProps } from "@modules/catalog/domain/category/category.types";
 import { CategoryApplicationExceptions } from "@modules/catalog/application/exceptions/category.application.exception";
+import { HttpErrors } from "@shared/presentation/http/http.error";
 
 let requestMock: MockProxy<Request>;
 let responseMock: MockProxy<Response>;
@@ -80,6 +81,6 @@ describe('Controller Express: Update Category', () => {
             .toHaveBeenCalled();
 
         expect(nextMock.mock.lastCall[0].name)
-            .toBe(CategoryApplicationExceptions.CategoryNotFound.name);
+            .toBe(HttpErrors.NotFoundError.name);
     });
 });

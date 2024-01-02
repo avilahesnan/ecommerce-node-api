@@ -1,38 +1,38 @@
-import { DeleteProductUseCase } from "@modules/catalog/application/use-cases/delete-product/delete-product.use-case";
+import { AddCategoryProductUseCase } from "@modules/catalog/application/use-cases/add-category-product/add-category-product.use-case";
 import { Request, Response } from "express";
 import { Mock, afterAll, beforeAll, describe, expect, test, vi, vitest } from "vitest";
 import { MockProxy, mock, mockReset } from "vitest-mock-extended";
-import { DeleteProductExpressController } from "./delete-product.express.controller";
+import { AddCategoryProductExpressController } from "./add-category-product.express.controller";
+import { RecoverProductProps } from "@modules/catalog/domain/product/product.types";
 import { ProductApplicationExceptions } from "@modules/catalog/application/exceptions/product.application.exception";
-import { IProduct } from "@modules/catalog/domain/product/product.types";
 import { HttpErrors } from "@shared/presentation/http/http.error";
 
 let requestMock: MockProxy<Request>;
 let responseMock: MockProxy<Response>;
 let nextMock: Mock;
-let deleteProductUseCaseMock: MockProxy<DeleteProductUseCase>;
-let deleteProductController: DeleteProductExpressController;
+let addCategoryProductUseCaseMock: MockProxy<AddCategoryProductUseCase>;
+let addCategoryProductController: AddCategoryProductExpressController;
 
-describe('Controller Express: Delete Product', () => {
+describe('Controller Express: addCategoryProduct Product', () => {
 
     beforeAll(async () => {
         requestMock = mock<Request>();
         responseMock = mock<Response>();
         nextMock = vitest.fn();
-        deleteProductUseCaseMock = mock<DeleteProductUseCase>();
-        deleteProductController = new DeleteProductExpressController(deleteProductUseCaseMock);
+        addCategoryProductUseCaseMock = mock<AddCategoryProductUseCase>();
+        addCategoryProductController = new AddCategoryProductExpressController(addCategoryProductUseCaseMock);
     });
 
     afterAll(() => {
         vi.resetAllMocks();
         mockReset(requestMock);
         mockReset(responseMock);
-        mockReset(deleteProductUseCaseMock);
+        mockReset(addCategoryProductUseCaseMock);
     });
 
-    test('Should Delete A Product', async () => {
+    test('Should Add Category A Product', async () => {
 
-        const productInputDTO: IProduct = {
+        const productInputDTO: RecoverProductProps = {
             id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
             name: "Iphone",
             description: "Um ótimo smartphone",
@@ -45,16 +45,16 @@ describe('Controller Express: Delete Product', () => {
             ]
         };
 
-        requestMock.params.id = productInputDTO.id as string;
+        requestMock.body = productInputDTO;
 
-        deleteProductUseCaseMock.execute.mockResolvedValue(true);
+        addCategoryProductUseCaseMock.execute.mockResolvedValue(true);
 
         responseMock.status.mockReturnThis();
 
-        await deleteProductController.delete(requestMock, responseMock, nextMock);
+        await addCategoryProductController.addCategoryProduct(requestMock, responseMock, nextMock);
 
-        expect(deleteProductUseCaseMock.execute)
-            .toHaveBeenCalledWith(productInputDTO.id);
+        expect(addCategoryProductUseCaseMock.execute)
+            .toHaveBeenCalledWith(productInputDTO);
 
         expect(responseMock.status)
             .toHaveBeenCalledWith(200);
@@ -69,7 +69,7 @@ describe('Controller Express: Delete Product', () => {
 
     test('Should Handle A Product Not Found Exception', async () => {
 
-        const productInputDTO: IProduct = {
+        const productInputDTO: RecoverProductProps = {
             id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
             name: "Iphone",
             description: "Um ótimo smartphone",
@@ -82,16 +82,16 @@ describe('Controller Express: Delete Product', () => {
             ]
         };
 
-        requestMock.params.id = productInputDTO.id as string;
+        requestMock.body = productInputDTO;
 
-        deleteProductUseCaseMock.execute.mockRejectedValue(new ProductApplicationExceptions.ProductNotFound());
+        addCategoryProductUseCaseMock.execute.mockRejectedValue(new ProductApplicationExceptions.ProductNotFound());
 
         responseMock.status.mockReturnThis();
 
-        await deleteProductController.delete(requestMock, responseMock, nextMock);
+        await addCategoryProductController.addCategoryProduct(requestMock, responseMock, nextMock);
 
-        expect(deleteProductUseCaseMock.execute)
-            .toHaveBeenCalledWith(productInputDTO.id);
+        expect(addCategoryProductUseCaseMock.execute)
+            .toHaveBeenCalledWith(productInputDTO);
 
         expect(nextMock)
             .toHaveBeenCalled();
