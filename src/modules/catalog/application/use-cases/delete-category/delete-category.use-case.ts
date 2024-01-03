@@ -4,6 +4,7 @@ import { IUseCase } from "@shared/application/use-case.interface";
 import { CategoryApplicationExceptions } from "../../exceptions/category.application.exception";
 
 export class DeleteCategoryUseCase implements IUseCase<string, boolean> {
+    
     private _categoryRepository: ICategoryRepository<Category>
 
     constructor(repository: ICategoryRepository<Category>) {

@@ -9,7 +9,7 @@ import { DeleteProductExpressController } from "./controllers/delete-product/del
 import { afterEach, beforeAll, beforeEach, describe, expect, test, vi } from "vitest";
 import { CreateProductProps, IProduct } from "@modules/catalog/domain/product/product.types";
 import { AddCategoryProductExpressController } from "./controllers/add-category-product/add-category-product.express.controller";
-import { addCategoryProductController } from "./controllers";
+import { RemoveCategoryProductExpressController } from "./controllers/remove-category-product/remove-category-product.express.controller";
 
 let appMock: Application;
 let recoverProductByIdControllerMock: MockProxy<RecoverProductByIdExpressController>;
@@ -18,6 +18,7 @@ let insertProductControllerMock: MockProxy<InsertProductExpressController>;
 let updateProductControllerMock: MockProxy<UpdateProductExpressController>;
 let deleteProductControllerMock: MockProxy<DeleteProductExpressController>;
 let addCategoryProductControllerMock: MockProxy<AddCategoryProductExpressController>;
+let removeCategoryProductControllerMock: MockProxy<RemoveCategoryProductExpressController>;
 
 describe('[REST] Routes Express: Product', () => {
 
@@ -28,6 +29,7 @@ describe('[REST] Routes Express: Product', () => {
         updateProductControllerMock = mock<UpdateProductExpressController>();
         deleteProductControllerMock = mock<DeleteProductExpressController>();
         addCategoryProductControllerMock = mock<AddCategoryProductExpressController>();
+        removeCategoryProductControllerMock = mock<RemoveCategoryProductExpressController>();
     });
 
     beforeEach(async () => {
@@ -42,6 +44,7 @@ describe('[REST] Routes Express: Product', () => {
         mockReset(updateProductControllerMock);
         mockReset(deleteProductControllerMock);
         mockReset(addCategoryProductControllerMock);
+        mockReset(removeCategoryProductControllerMock);
     });
 
     describe('GET api/v1/products/:id', () => {
@@ -277,6 +280,43 @@ describe('[REST] Routes Express: Product', () => {
             });
 
             appMock.use('/api/v1/products/:id', addCategoryProductControllerMock.addCategoryProduct);
+
+            const response = await request(appMock)
+                .put('/api/v1/products/855d3ea6-e4ca-414a-aecd-807ef0ca43ea');
+
+            expect(response.status)
+                .toEqual(200);
+
+            expect(response.headers["content-type"])
+                .toMatch(/json/);
+
+            expect(response.body)
+                .toEqual(true);
+        });
+    });
+
+    describe('PUT api/v1/products/:id', () => {
+        
+        test('Should Return Status 200 and True', async () => {
+
+            const productInputDTO: IProduct = {
+                id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
+                name: "Iphone",
+                description: "Um ótimo smartphone",
+                value: 3500,
+                categories: [
+                    {
+                        id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
+                        name: "Mesa",
+                    }
+                ]
+            };
+
+            removeCategoryProductControllerMock.removeCategoryProduct.mockImplementation(async (request, response, next) => {
+                response.status(200).json(true);
+            });
+
+            appMock.use('/api/v1/products/:id', removeCategoryProductControllerMock.removeCategoryProduct);
 
             const response = await request(appMock)
                 .put('/api/v1/products/855d3ea6-e4ca-414a-aecd-807ef0ca43ea');

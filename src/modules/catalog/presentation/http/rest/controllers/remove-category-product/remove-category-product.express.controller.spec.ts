@@ -1,8 +1,8 @@
-import { AddCategoryProductUseCase } from "@modules/catalog/application/use-cases/add-category-product/add-category-product.use-case";
+import { RemoveCategoryProductUseCase } from "@modules/catalog/application/use-cases/remove-category-product/remove-category-product.use-case";
 import { Request, Response } from "express";
 import { Mock, afterAll, beforeAll, describe, expect, test, vi, vitest } from "vitest";
 import { MockProxy, mock, mockReset } from "vitest-mock-extended";
-import { AddCategoryProductExpressController } from "./add-category-product.express.controller";
+import { RemoveCategoryProductExpressController } from "./remove-category-product.express.controller";
 import { RecoverProductProps } from "@modules/catalog/domain/product/product.types";
 import { ProductApplicationExceptions } from "@modules/catalog/application/exceptions/product.application.exception";
 import { HttpErrors } from "@shared/presentation/http/http.error";
@@ -10,27 +10,27 @@ import { HttpErrors } from "@shared/presentation/http/http.error";
 let requestMock: MockProxy<Request>;
 let responseMock: MockProxy<Response>;
 let nextMock: Mock;
-let addCategoryProductUseCaseMock: MockProxy<AddCategoryProductUseCase>;
-let addCategoryProductController: AddCategoryProductExpressController;
+let removeCategoryProductUseCaseMock: MockProxy<RemoveCategoryProductUseCase>;
+let removeCategoryProductController: RemoveCategoryProductExpressController;
 
-describe('Controller Express: Add Category Product', () => {
+describe('Controller Express: Remove Category Product', () => {
 
     beforeAll(async () => {
         requestMock = mock<Request>();
         responseMock = mock<Response>();
         nextMock = vitest.fn();
-        addCategoryProductUseCaseMock = mock<AddCategoryProductUseCase>();
-        addCategoryProductController = new AddCategoryProductExpressController(addCategoryProductUseCaseMock);
+        removeCategoryProductUseCaseMock = mock<RemoveCategoryProductUseCase>();
+        removeCategoryProductController = new RemoveCategoryProductExpressController(removeCategoryProductUseCaseMock);
     });
 
     afterAll(() => {
         vi.resetAllMocks();
         mockReset(requestMock);
         mockReset(responseMock);
-        mockReset(addCategoryProductUseCaseMock);
+        mockReset(removeCategoryProductUseCaseMock);
     });
 
-    test('Should Add Category A Product', async () => {
+    test('Should Remove Category A Product', async () => {
 
         const productInputDTO: RecoverProductProps = {
             id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
@@ -47,13 +47,13 @@ describe('Controller Express: Add Category Product', () => {
 
         requestMock.body = productInputDTO;
 
-        addCategoryProductUseCaseMock.execute.mockResolvedValue(true);
+        removeCategoryProductUseCaseMock.execute.mockResolvedValue(true);
 
         responseMock.status.mockReturnThis();
 
-        await addCategoryProductController.addCategoryProduct(requestMock, responseMock, nextMock);
+        await removeCategoryProductController.removeCategoryProduct(requestMock, responseMock, nextMock);
 
-        expect(addCategoryProductUseCaseMock.execute)
+        expect(removeCategoryProductUseCaseMock.execute)
             .toHaveBeenCalledWith(productInputDTO);
 
         expect(responseMock.status)
@@ -84,13 +84,13 @@ describe('Controller Express: Add Category Product', () => {
 
         requestMock.body = productInputDTO;
 
-        addCategoryProductUseCaseMock.execute.mockRejectedValue(new ProductApplicationExceptions.ProductNotFound());
+        removeCategoryProductUseCaseMock.execute.mockRejectedValue(new ProductApplicationExceptions.ProductNotFound());
 
         responseMock.status.mockReturnThis();
 
-        await addCategoryProductController.addCategoryProduct(requestMock, responseMock, nextMock);
+        await removeCategoryProductController.removeCategoryProduct(requestMock, responseMock, nextMock);
 
-        expect(addCategoryProductUseCaseMock.execute)
+        expect(removeCategoryProductUseCaseMock.execute)
             .toHaveBeenCalledWith(productInputDTO);
 
         expect(nextMock)
