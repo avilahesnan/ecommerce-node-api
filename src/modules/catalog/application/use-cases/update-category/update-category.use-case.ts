@@ -22,7 +22,7 @@ export class UpdateCategoryUseCase implements IUseCase<RecoverCategoryProps, boo
 
         const category: Category = Category.recover(categoryProps);
 
-        const UpdatedCategory = await this._categoryRepository.update(category.id, category);
+        const UpdatedCategory: boolean = await this._categoryRepository.update(category.id, category);
 
         return UpdatedCategory;
     }

@@ -275,11 +275,11 @@ describe('[REST] Routes Express: Product', () => {
                 ]
             };
 
-            addCategoryProductControllerMock.addCategoryProduct.mockImplementation(async (request, response, next) => {
+            addCategoryProductControllerMock.addCategory.mockImplementation(async (request, response, next) => {
                 response.status(200).json(true);
             });
 
-            appMock.use('/api/v1/products/:id', addCategoryProductControllerMock.addCategoryProduct);
+            appMock.use('/api/v1/products/:id', addCategoryProductControllerMock.addCategory);
 
             const response = await request(appMock)
                 .put('/api/v1/products/855d3ea6-e4ca-414a-aecd-807ef0ca43ea');
@@ -312,11 +312,11 @@ describe('[REST] Routes Express: Product', () => {
                 ]
             };
 
-            removeCategoryProductControllerMock.removeCategoryProduct.mockImplementation(async (request, response, next) => {
+            removeCategoryProductControllerMock.removeCategory.mockImplementation(async (request, response, next) => {
                 response.status(200).json(true);
             });
 
-            appMock.use('/api/v1/products/:id', removeCategoryProductControllerMock.removeCategoryProduct);
+            appMock.use('/api/v1/products/:id', removeCategoryProductControllerMock.removeCategory);
 
             const response = await request(appMock)
                 .put('/api/v1/products/855d3ea6-e4ca-414a-aecd-807ef0ca43ea');

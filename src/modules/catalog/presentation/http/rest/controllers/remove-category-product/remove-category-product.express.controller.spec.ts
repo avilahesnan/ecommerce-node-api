@@ -51,7 +51,7 @@ describe('Controller Express: Remove Category Product', () => {
 
         responseMock.status.mockReturnThis();
 
-        await removeCategoryProductController.removeCategoryProduct(requestMock, responseMock, nextMock);
+        await removeCategoryProductController.removeCategory(requestMock, responseMock, nextMock);
 
         expect(removeCategoryProductUseCaseMock.execute)
             .toHaveBeenCalledWith(productInputDTO);
@@ -88,7 +88,7 @@ describe('Controller Express: Remove Category Product', () => {
 
         responseMock.status.mockReturnThis();
 
-        await removeCategoryProductController.removeCategoryProduct(requestMock, responseMock, nextMock);
+        await removeCategoryProductController.removeCategory(requestMock, responseMock, nextMock);
 
         expect(removeCategoryProductUseCaseMock.execute)
             .toHaveBeenCalledWith(productInputDTO);

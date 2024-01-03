@@ -22,7 +22,7 @@ export class UpdateProductUseCase implements IUseCase<RecoverProductProps, boole
 
         const product: Product = Product.recover(productProps);
 
-        const updatedProduct = await this._productRepository.update(product.id, product);
+        const updatedProduct: boolean = await this._productRepository.update(product.id, product);
 
         return updatedProduct;
     }

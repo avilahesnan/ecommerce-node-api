@@ -3,7 +3,7 @@
 @apiversion = api/v1
 
 ### Recover Product By Id
-GET http://{{host}}:{{port}}/{{apiversion}}/products/575dbd2f-1e73-419b-9f66-b08d943b4a5a
+GET http://{{host}}:{{port}}/{{apiversion}}/products/72ee8a06-d039-4158-8b35-2b9d6c270b8c
 
 ### Recover All Products
 GET http://{{host}}:{{port}}/{{apiversion}}/products
@@ -25,55 +25,42 @@ Content-type: application/json
 }
 
 ### Update A Product
-PUT http://{{host}}:{{port}}/{{apiversion}}/products/575dbd2f-1e73-419b-9f66-b08d943b4a5a
+PUT http://{{host}}:{{port}}/{{apiversion}}/products/72ee8a06-d039-4158-8b35-2b9d6c270b8c
 Content-type: application/json
 
 {
-    "id": "575dbd2f-1e73-419b-9f66-b08d943b4a5a",
-    "name":"Uma mesa",
-    "description": "Uma mesa muito muito muito grande",
-    "value": 1000,
-    "categories": [
-        {
-            "id":"06e7b01d-28d6-423f-91b4-2a21063a2a72",
-            "name":"Betão"
-        }
-    ]
+  "id": "72ee8a06-d039-4158-8b35-2b9d6c270b8c",
+  "name": "Uma mesa",
+  "description": "Uma mesa muito grande",
+  "value": 500,
+  "categories": [
+    {
+      "id": "06e7b01d-28d6-423f-91b4-2a21063a2a72",
+      "name": "Betão"
+    }
+  ]
 }
 
 ### Delete A Product
 DELETE http://{{host}}:{{port}}/{{apiversion}}/products/72ee8a06-d039-4158-8b35-2b9d6c270b8c
 
 ### Add Category Product
-PUT http://{{host}}:{{port}}/{{apiversion}}/products/575dbd2f-1e73-419b-9f66-b08d943b4a5a
+POST http://{{host}}:{{port}}/{{apiversion}}/products/b0b8ebfa-0316-4d26-92e5-3cf176b69e94
 Content-Type: application/json
 
 {
-  "id": "575dbd2f-1e73-419b-9f66-b08d943b4a5a",
-  "name": "Uma mesa",
-  "description": "Uma mesa muito muito muito grande",
-  "value": 1000,
-  "categories": [
-    {
+    "id": "b0b8ebfa-0316-4d26-92e5-3cf176b69e94",
+    "name": "Uma mesa",
+    "description": "Uma mesa muito grande",
+    "value": 500,
+    "categories": [
+      {
         "id": "06e7b01d-28d6-423f-91b4-2a21063a2a72",
-        "name": "Betão Doido"
-    }
-  ]
-}
+        "name": "Betão"
+      }
+    ]
+  }
 
 ### Remove Category Product
-PUT http://{{host}}:{{port}}/{{apiversion}}/products/575dbd2f-1e73-419b-9f66-b08d943b4a5a
+DELETE http://{{host}}:{{port}}/{{apiversion}}/products/b0b8ebfa-0316-4d26-92e5-3cf176b69e94
 Content-Type: application/json
-
-{
-  "id": "575dbd2f-1e73-419b-9f66-b08d943b4a5a",
-  "name": "Uma mesa",
-  "description": "Uma mesa muito muito muito grande",
-  "value": 1000,
-  "categories": [
-    {
-        "id": "06e7b01d-28d6-423f-91b4-2a21063a2a72",
-        "name": "Betão Doido"
-    }
-  ]
-}

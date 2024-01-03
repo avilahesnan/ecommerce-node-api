@@ -24,7 +24,7 @@ export class AlterStatusProductUseCase implements IUseCase<RecoverProductProps, 
 
         const status: StatusProduct = StatusProduct.ACTIVE;
 
-        const statusAlteredProduct = await this._productRepository.alterStatus(product, status);
+        const statusAlteredProduct: boolean = await this._productRepository.alterStatus(product, status);
 
         return statusAlteredProduct;
     }

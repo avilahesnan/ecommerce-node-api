@@ -3,7 +3,7 @@
 @apiversion = api/v1
 
 ### Recover A Category By ID
-GET http://{{host}}:{{port}}/{{apiversion}}/categories/06e7b01d-28d6-423f-91b4-2a21063a2a72
+GET http://{{host}}:{{port}}/{{apiversion}}/categories/ba5cf083-5387-47c0-831f-815dae315a2f
 
 ### Recover All Categories
 GET http://{{host}}:{{port}}/{{apiversion}}/categories
@@ -17,13 +17,18 @@ Content-type: application/json
 }
 
 ### Update A Category
-PUT http://{{host}}:{{port}}/{{apiversion}}/categories/06e7b01d-28d6-423f-91b4-2a21063a2a72
+PUT http://{{host}}:{{port}}/{{apiversion}}/categories/ba5cf083-5387-47c0-831f-815dae315a2f
 Content-type: application/json
 
 {
-    "id":"06e7b01d-28d6-423f-91b4-2a21063a2a72",
+    "id":"ba5cf083-5387-47c0-831f-815dae315a2f",
     "name":"Betão"
 }
 
 ### Delete A Category
-DELETE http://{{host}}:{{port}}/{{apiversion}}/categories/5e36274c-92a3-4064-b182-35a5fe38e8e1
+DELETE http://{{host}}:{{port}}/{{apiversion}}/categories/06e7b01d-28d6-423f-91b4-2a21063a2a72
+
+
+### 1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60
+### a22a6030-bf2f-424b-b72e-2ca49e774094
+### 06e7b01d-28d6-423f-91b4-2a21063a2a72

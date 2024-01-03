@@ -29,7 +29,7 @@ export class RecoverProductsByCategoryUseCase implements IUseCase<string, Array<
 
         const allProducts: Array<Product> = await this._productRepository.recoverByCategory(uuidCategory);
 
-        const allProductsDTO = allProducts.map((product) => ProductMap.toDTO(product));
+        const allProductsDTO: Array<IProduct> = allProducts.map((product) => ProductMap.toDTO(product));
 
         return allProductsDTO;
     }

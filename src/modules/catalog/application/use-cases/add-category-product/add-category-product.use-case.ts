@@ -26,8 +26,8 @@ export class AddCategoryProductUseCase implements IUseCase<RecoverProductProps, 
         }
         
         const category: Category = Category.recover({
-            id: "06e7b01d-28d6-423f-91b4-2a21063a2a72",
-            name: "Cama"
+            id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
+            name: "Mesacasa"
         });
 
         const existsCategory: boolean = await this._categoryRepository.exists(category.id);
@@ -38,7 +38,7 @@ export class AddCategoryProductUseCase implements IUseCase<RecoverProductProps, 
 
         const product: Product = Product.recover(productProps);
 
-        const productCategoryAdded = await this._productRepository.addCategory(product, category);
+        const productCategoryAdded: boolean = await this._productRepository.addCategory(product, category);
 
         return productCategoryAdded;
     }

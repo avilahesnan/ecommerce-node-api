@@ -16,7 +16,7 @@ export class RecoverAllProductsUseCase implements IUseCase<void, Array<IProduct>
         
         const allProducts: Array<Product> = await this._productRepository.recoverAll();
 
-        const allProductsDTO = allProducts.map((product) => ProductMap.toDTO(product));
+        const allProductsDTO: Array<IProduct> = allProducts.map((product) => ProductMap.toDTO(product));
 
         return allProductsDTO;
     }

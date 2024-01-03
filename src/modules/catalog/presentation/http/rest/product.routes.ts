@@ -33,14 +33,13 @@ productRouter.delete(
     (request, response, next) => deleteProductController.delete(request, response, next)
 );
 
-productRouter.put(
+productRouter.post(
     '/:id',
     contentTypeMiddleware,
-    (request, response, next) => addCategoryProductController.addCategoryProduct(request, response, next)
+    (request, response, next) => addCategoryProductController.addCategory(request, response, next)
 );
 
-productRouter.put(
+productRouter.delete(
     '/:id',
-    contentTypeMiddleware,
-    (request, response, next) => removeCategoryProductController.removeCategoryProduct(request, response, next)
+    (request, response, next) => removeCategoryProductController.removeCategory(request, response, next)
 );

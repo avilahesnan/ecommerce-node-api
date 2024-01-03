@@ -15,7 +15,7 @@ export class AddCategoryProductExpressController extends ExpressController {
         this._addCategoryProductUseCase = addCategoryProductUseCase;
     }
 
-    async addCategoryProduct(request: Request, response: Response, next: NextFunction) {
+    async addCategory(request: Request, response: Response, next: NextFunction) {
         try {
             const productInputDTO: RecoverProductProps = request.body as RecoverProductProps;
             const categoryProductAdded: boolean = await this._addCategoryProductUseCase.execute(productInputDTO);

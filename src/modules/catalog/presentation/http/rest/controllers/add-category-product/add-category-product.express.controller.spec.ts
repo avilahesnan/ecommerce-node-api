@@ -51,7 +51,7 @@ describe('Controller Express: Add Category Product', () => {
 
         responseMock.status.mockReturnThis();
 
-        await addCategoryProductController.addCategoryProduct(requestMock, responseMock, nextMock);
+        await addCategoryProductController.addCategory(requestMock, responseMock, nextMock);
 
         expect(addCategoryProductUseCaseMock.execute)
             .toHaveBeenCalledWith(productInputDTO);
@@ -88,7 +88,7 @@ describe('Controller Express: Add Category Product', () => {
 
         responseMock.status.mockReturnThis();
 
-        await addCategoryProductController.addCategoryProduct(requestMock, responseMock, nextMock);
+        await addCategoryProductController.addCategory(requestMock, responseMock, nextMock);
 
         expect(addCategoryProductUseCaseMock.execute)
             .toHaveBeenCalledWith(productInputDTO);

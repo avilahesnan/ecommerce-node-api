@@ -15,7 +15,7 @@ export class RemoveCategoryProductExpressController extends ExpressController {
         this._removeCategoryProductUseCase = removeCategoryProductUseCase;
     }
 
-    async removeCategoryProduct(request: Request, response: Response, next: NextFunction) {
+    async removeCategory(request: Request, response: Response, next: NextFunction) {
         try {
             const productInputDTO: RecoverProductProps = request.body as RecoverProductProps;
             const categoryProductRemoved: boolean = await this._removeCategoryProductUseCase.execute(productInputDTO);

@@ -16,7 +16,7 @@ export class RecoverAllCategoriesUseCase implements IUseCase<void, Array<ICatego
           
         const allCategories: Array<Category> = await this._categoryRepository.recoverAll();
         
-        const allCategoriesDTO = allCategories.map((category) => CategoryMap.toDTO(category));
+        const allCategoriesDTO: Array<ICategory> = allCategories.map((category) => CategoryMap.toDTO(category));
 
         return allCategoriesDTO;
     }
