@@ -3,7 +3,7 @@
 @apiversion = api/v1
 
 ### Recover A Category By ID
-GET http://{{host}}:{{port}}/{{apiversion}}/categories/ba5cf083-5387-47c0-831f-815dae315a2f
+GET http://{{host}}:{{port}}/{{apiversion}}/categories/9939ed02-8e9b-4cb5-a8b6-821efc57abc9
 
 ### Recover All Categories
 GET http://{{host}}:{{port}}/{{apiversion}}/categories
@@ -13,22 +13,17 @@ POST http://{{host}}:{{port}}/{{apiversion}}/categories
 Content-type: application/json
 
 {
-    "name":"Sala de Estar"
+    "name":"Banho"
 }
 
 ### Update A Category
-PUT http://{{host}}:{{port}}/{{apiversion}}/categories/ba5cf083-5387-47c0-831f-815dae315a2f
+PUT http://{{host}}:{{port}}/{{apiversion}}/categories/6039b800-646c-4825-8dc5-b7c5f11dc0ff
 Content-type: application/json
 
 {
-    "id":"ba5cf083-5387-47c0-831f-815dae315a2f",
-    "name":"Betão"
+    "id": "6039b800-646c-4825-8dc5-b7c5f11dc0ff",
+    "name": "Mesa"
 }
 
 ### Delete A Category
-DELETE http://{{host}}:{{port}}/{{apiversion}}/categories/06e7b01d-28d6-423f-91b4-2a21063a2a72
-
-
-### 1e1ba042-fa93-40e9-9b74-2a1fdfcd4c60
-### a22a6030-bf2f-424b-b72e-2ca49e774094
-### 06e7b01d-28d6-423f-91b4-2a21063a2a72
+DELETE http://{{host}}:{{port}}/{{apiversion}}/categories/627527c7-0e4a-4038-8eb1-b1c359afb2a8

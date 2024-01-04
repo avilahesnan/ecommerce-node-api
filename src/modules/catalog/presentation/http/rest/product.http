@@ -3,7 +3,7 @@
 @apiversion = api/v1
 
 ### Recover Product By Id
-GET http://{{host}}:{{port}}/{{apiversion}}/products/72ee8a06-d039-4158-8b35-2b9d6c270b8c
+GET http://{{host}}:{{port}}/{{apiversion}}/products/dab5bed8-1241-4611-b916-8f9ed1059451
 
 ### Recover All Products
 GET http://{{host}}:{{port}}/{{apiversion}}/products
@@ -13,54 +13,75 @@ POST http://{{host}}:{{port}}/{{apiversion}}/products
 Content-type: application/json
 
 {
-    "name":"Uma mesa",
-    "description": "Uma mesa muito grande",
-    "value": 500,
+    "name":"Chuveiro elétrico",
+    "description": "Um ótimo chuveiro elétrico, super moderno",
+    "value": 450,
     "categories": [
         {
-            "id":"06e7b01d-28d6-423f-91b4-2a21063a2a72",
-            "name":"Betão"
+            "id": "1aa1a296-85bf-49be-8173-17c33b70073c",
+            "name": "Banho"
         }
     ]
 }
 
 ### Update A Product
-PUT http://{{host}}:{{port}}/{{apiversion}}/products/72ee8a06-d039-4158-8b35-2b9d6c270b8c
+PUT http://{{host}}:{{port}}/{{apiversion}}/products/dab5bed8-1241-4611-b916-8f9ed1059451
 Content-type: application/json
 
 {
-  "id": "72ee8a06-d039-4158-8b35-2b9d6c270b8c",
-  "name": "Uma mesa",
-  "description": "Uma mesa muito grande",
-  "value": 500,
+  "id": "dab5bed8-1241-4611-b916-8f9ed1059451",
+  "name": "Conjunto de banheiro",
+  "description": "Conjunto de peças para decorar o banheiro, peças de cores vivas",
+  "value": 150,
   "categories": [
     {
-      "id": "06e7b01d-28d6-423f-91b4-2a21063a2a72",
-      "name": "Betão"
+      "id": "1aa1a296-85bf-49be-8173-17c33b70073c",
+      "name": "Banho"
+    },
+    {
+      "id": "6039b800-646c-4825-8dc5-b7c5f11dc0ff",
+      "name": "Mesa"
     }
   ]
 }
 
 ### Delete A Product
-DELETE http://{{host}}:{{port}}/{{apiversion}}/products/72ee8a06-d039-4158-8b35-2b9d6c270b8c
+DELETE http://{{host}}:{{port}}/{{apiversion}}/products/19245b61-aade-443c-9176-b740e11796f4
 
 ### Add Category Product
-POST http://{{host}}:{{port}}/{{apiversion}}/products/b0b8ebfa-0316-4d26-92e5-3cf176b69e94
+POST http://{{host}}:{{port}}/{{apiversion}}/products/add-category/dab5bed8-1241-4611-b916-8f9ed1059451
 Content-Type: application/json
 
 {
-    "id": "b0b8ebfa-0316-4d26-92e5-3cf176b69e94",
-    "name": "Uma mesa",
-    "description": "Uma mesa muito grande",
-    "value": 500,
-    "categories": [
-      {
-        "id": "06e7b01d-28d6-423f-91b4-2a21063a2a72",
-        "name": "Betão"
-      }
-    ]
-  }
+  "id": "dab5bed8-1241-4611-b916-8f9ed1059451",
+  "name": "Conjunto de banheiro",
+  "description": "Conjunto de peças para decorar o banheiro, peças de cores vivas",
+  "value": 150,
+  "categories": [
+    {
+      "id": "1aa1a296-85bf-49be-8173-17c33b70073c",
+      "name": "Banho"
+    }
+  ]
+}
 
 ### Remove Category Product
-DELETE http://{{host}}:{{port}}/{{apiversion}}/products/b0b8ebfa-0316-4d26-92e5-3cf176b69e94
+DELETE http://{{host}}:{{port}}/{{apiversion}}/products/remove-category/dab5bed8-1241-4611-b916-8f9ed1059451
 Content-Type: application/json
+
+{
+  "id": "dab5bed8-1241-4611-b916-8f9ed1059451",
+  "name": "Conjunto de banheiro",
+  "description": "Conjunto de peças para decorar o banheiro, peças de cores vivas",
+  "value": 150,
+  "categories": [
+    {
+      "id": "1aa1a296-85bf-49be-8173-17c33b70073c",
+      "name": "Banho"
+    },
+    {
+      "id": "9939ed02-8e9b-4cb5-a8b6-821efc57abc9",
+      "name": "Cama"
+    }
+  ]
+}

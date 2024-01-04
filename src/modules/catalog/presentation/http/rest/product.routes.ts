@@ -34,12 +34,13 @@ productRouter.delete(
 );
 
 productRouter.post(
-    '/:id',
+    '/:add-category/:id',
     contentTypeMiddleware,
     (request, response, next) => addCategoryProductController.addCategory(request, response, next)
 );
 
 productRouter.delete(
-    '/:id',
+    '/:remove-category/:id',
+    contentTypeMiddleware,
     (request, response, next) => removeCategoryProductController.removeCategory(request, response, next)
 );

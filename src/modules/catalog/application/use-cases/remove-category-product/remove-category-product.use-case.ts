@@ -26,8 +26,8 @@ export class RemoveCategoryProductUseCase implements IUseCase<RecoverProductProp
         }
 
         const category: Category = Category.recover({
-            id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
-            name: "Mesacasa"
+            id: "9939ed02-8e9b-4cb5-a8b6-821efc57abc9",
+            name: "Cama"
         });
 
         const existsCategory: boolean = await this._categoryRepository.exists(category.id);

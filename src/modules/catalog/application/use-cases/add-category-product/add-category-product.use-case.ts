@@ -26,8 +26,8 @@ export class AddCategoryProductUseCase implements IUseCase<RecoverProductProps, 
         }
         
         const category: Category = Category.recover({
-            id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
-            name: "Mesacasa"
+            id: "6039b800-646c-4825-8dc5-b7c5f11dc0ff",
+            name: "Mesa"
         });
 
         const existsCategory: boolean = await this._categoryRepository.exists(category.id);
