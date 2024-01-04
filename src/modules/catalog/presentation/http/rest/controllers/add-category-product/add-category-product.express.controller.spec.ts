@@ -6,6 +6,8 @@ import { AddCategoryProductExpressController } from "./add-category-product.expr
 import { RecoverProductProps } from "@modules/catalog/domain/product/product.types";
 import { ProductApplicationExceptions } from "@modules/catalog/application/exceptions/product.application.exception";
 import { HttpErrors } from "@shared/presentation/http/http.error";
+import { CategoryApplicationExceptions } from "@modules/catalog/application/exceptions/category.application.exception";
+import { ICategory } from "@modules/catalog/domain/category/category.types";
 
 let requestMock: MockProxy<Request>;
 let responseMock: MockProxy<Response>;
@@ -30,7 +32,7 @@ describe('Controller Express: Add Category Product', () => {
         mockReset(addCategoryProductUseCaseMock);
     });
 
-    test('Should Add Category A Product', async () => {
+    test('Should Add A Category To A Product', async () => {
 
         const productInputDTO: RecoverProductProps = {
             id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
@@ -92,6 +94,31 @@ describe('Controller Express: Add Category Product', () => {
 
         expect(addCategoryProductUseCaseMock.execute)
             .toHaveBeenCalledWith(productInputDTO);
+
+        expect(nextMock)
+            .toHaveBeenCalled();
+
+        expect(nextMock.mock.lastCall[0].name)
+            .toBe(HttpErrors.NotFoundError.name);
+    });
+
+    test('Should Handle A Category Not Found Exception', async () => {
+
+        const categoryInputDTO: ICategory = {
+            id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
+            name: "Mesa"
+        };
+
+        requestMock.body = categoryInputDTO;
+
+        addCategoryProductUseCaseMock.execute.mockRejectedValue(new CategoryApplicationExceptions.CategoryNotFound());
+
+        responseMock.status.mockReturnThis();
+
+        await addCategoryProductController.addCategory(requestMock, responseMock, nextMock);
+
+        expect(addCategoryProductUseCaseMock.execute)
+            .toHaveBeenCalledWith(categoryInputDTO);
 
         expect(nextMock)
             .toHaveBeenCalled();

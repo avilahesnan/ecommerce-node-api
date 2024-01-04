@@ -1,4 +1,4 @@
-import { addCategoryProductUseCase, deleteCategoryUseCase, deleteProductUseCase, insertCategoryUseCase, insertProductUseCase, recoverAllCategoriesUseCase, recoverAllProductsUseCase, recoverCategoryByIdUseCase, recoverProductByIdUseCase, removeCategoryProductUseCase, updateCategoryUseCase, updateProductUseCase } from "@modules/catalog/application/use-cases";
+import { addCategoryProductUseCase, alterStatusProductUseCase, deleteCategoryUseCase, deleteProductUseCase, insertCategoryUseCase, insertProductUseCase, recoverAllCategoriesUseCase, recoverAllProductsUseCase, recoverCategoryByIdUseCase, recoverProductByIdUseCase, recoverProductsByCategoryUseCase, removeCategoryProductUseCase, updateCategoryUseCase, updateProductUseCase } from "@modules/catalog/application/use-cases";
 import { RecoverAllCategoriesExpressController } from "./recover-all-categories/recover-all-categories.express.controller";
 import { InsertCategoryExpressController } from "./insert-category/insert-category.express.controller";
 import { UpdateCategoryExpressController } from "./update-category/update-category.express.controller";
@@ -11,6 +11,8 @@ import { UpdateProductExpressController } from "./update-product/update-product.
 import { DeleteProductExpressController } from "./delete-product/delete-product.express.controller";
 import { AddCategoryProductExpressController } from "./add-category-product/add-category-product.express.controller";
 import { RemoveCategoryProductExpressController } from "./remove-category-product/remove-category-product.express.controller";
+import { RecoverProductsByCategoryExpressController } from "./recover-products-by-category/recover-products-by-category.express.controller";
+import { AlterStatusProductExpressController } from "./alter-status-product/alter-status-product.express.controller";
 
 export const recoverCategoryByIdController = new RecoverCategoryByIdExpressController(recoverCategoryByIdUseCase);
 export const recoverAllCategoriesController = new RecoverAllCategoriesExpressController(recoverAllCategoriesUseCase);
@@ -25,3 +27,5 @@ export const updateProductController = new UpdateProductExpressController(update
 export const deleteProductController = new DeleteProductExpressController(deleteProductUseCase);
 export const addCategoryProductController = new AddCategoryProductExpressController(addCategoryProductUseCase);
 export const removeCategoryProductController = new RemoveCategoryProductExpressController(removeCategoryProductUseCase);
+export const recoverProductsByCategoryController = new RecoverProductsByCategoryExpressController(recoverProductsByCategoryUseCase);
+export const alterStatusProductController = new AlterStatusProductExpressController(alterStatusProductUseCase);

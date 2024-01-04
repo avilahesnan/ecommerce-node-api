@@ -1,5 +1,5 @@
 import express from "express"
-import { addCategoryProductController, deleteProductController, insertProductController, recoverAllProductsController, recoverProductByIdController, removeCategoryProductController, updateProductController } from "./controllers";
+import { addCategoryProductController, alterStatusProductController, deleteProductController, insertProductController, recoverAllProductsController, recoverProductByIdController, recoverProductsByCategoryController, removeCategoryProductController, updateProductController } from "./controllers";
 import { contentTypeMiddleware } from "@main/presentation/http/middlewares/content-type.middleware";
 import { validInputInsertProduct } from "../middlewares/valid-input-insert-product.middleware";
 
@@ -43,4 +43,15 @@ productRouter.delete(
     '/:remove-category/:id',
     contentTypeMiddleware,
     (request, response, next) => removeCategoryProductController.removeCategory(request, response, next)
+);
+
+productRouter.get(
+    '/:category/:id',
+    (request, response, next) => recoverProductsByCategoryController.recoverByCategory(request, response, next)
+);
+
+productRouter.put(
+    '/:status/:id',
+    contentTypeMiddleware,
+    (request, response, next) => alterStatusProductController.alterStatus(request, response, next)
 );

@@ -3,7 +3,7 @@
 @apiversion = api/v1
 
 ### Recover Product By Id
-GET http://{{host}}:{{port}}/{{apiversion}}/products/dab5bed8-1241-4611-b916-8f9ed1059451
+GET http://{{host}}:{{port}}/{{apiversion}}/products/570fa8b1-5865-41bb-aaec-2f8da430774c
 
 ### Recover All Products
 GET http://{{host}}:{{port}}/{{apiversion}}/products
@@ -25,38 +25,34 @@ Content-type: application/json
 }
 
 ### Update A Product
-PUT http://{{host}}:{{port}}/{{apiversion}}/products/dab5bed8-1241-4611-b916-8f9ed1059451
+PUT http://{{host}}:{{port}}/{{apiversion}}/products/570fa8b1-5865-41bb-aaec-2f8da430774c
 Content-type: application/json
 
 {
-  "id": "dab5bed8-1241-4611-b916-8f9ed1059451",
-  "name": "Conjunto de banheiro",
-  "description": "Conjunto de peças para decorar o banheiro, peças de cores vivas",
-  "value": 150,
-  "categories": [
-    {
-      "id": "1aa1a296-85bf-49be-8173-17c33b70073c",
-      "name": "Banho"
-    },
-    {
-      "id": "6039b800-646c-4825-8dc5-b7c5f11dc0ff",
-      "name": "Mesa"
-    }
-  ]
-}
+    "id": "570fa8b1-5865-41bb-aaec-2f8da430774c",
+    "name": "Toalha",
+    "description": "Toalha para banho",
+    "value": 50,
+    "categories": [
+      {
+        "id": "1aa1a296-85bf-49be-8173-17c33b70073c",
+        "name": "Banho"
+      }
+    ]
+  }
 
 ### Delete A Product
 DELETE http://{{host}}:{{port}}/{{apiversion}}/products/19245b61-aade-443c-9176-b740e11796f4
 
 ### Add Category Product
-POST http://{{host}}:{{port}}/{{apiversion}}/products/add-category/dab5bed8-1241-4611-b916-8f9ed1059451
+POST http://{{host}}:{{port}}/{{apiversion}}/products/add-category/570fa8b1-5865-41bb-aaec-2f8da430774c
 Content-Type: application/json
 
 {
-  "id": "dab5bed8-1241-4611-b916-8f9ed1059451",
-  "name": "Conjunto de banheiro",
-  "description": "Conjunto de peças para decorar o banheiro, peças de cores vivas",
-  "value": 150,
+  "id": "570fa8b1-5865-41bb-aaec-2f8da430774c",
+  "name": "Toalha",
+  "description": "Toalha para banho",
+  "value": 50,
   "categories": [
     {
       "id": "1aa1a296-85bf-49be-8173-17c33b70073c",
@@ -70,18 +66,35 @@ DELETE http://{{host}}:{{port}}/{{apiversion}}/products/remove-category/dab5bed8
 Content-Type: application/json
 
 {
-  "id": "dab5bed8-1241-4611-b916-8f9ed1059451",
-  "name": "Conjunto de banheiro",
-  "description": "Conjunto de peças para decorar o banheiro, peças de cores vivas",
-  "value": 150,
+  "id": "570fa8b1-5865-41bb-aaec-2f8da430774c",
+  "name": "Toalha",
+  "description": "Toalha para banho",
+  "value": 50,
   "categories": [
     {
       "id": "1aa1a296-85bf-49be-8173-17c33b70073c",
       "name": "Banho"
-    },
-    {
-      "id": "9939ed02-8e9b-4cb5-a8b6-821efc57abc9",
-      "name": "Cama"
     }
   ]
+}
+
+### Recover Products By Category
+GET http://{{host}}:{{port}}/{{apiversion}}/products/category/6039b800-646c-4825-8dc5-b7c5f11dc0ff
+
+### Alter Status Product
+PUT http://{{host}}:{{port}}/{{apiversion}}/products/status/6039b800-646c-4825-8dc5-b7c5f11dc0ff
+Content-Type: application/json
+
+{
+  "id": "570fa8b1-5865-41bb-aaec-2f8da430774c",
+  "name": "Toalha",
+  "description": "Toalha para banho",
+  "value": 50,
+  "categories": [
+    {
+      "id": "6039b800-646c-4825-8dc5-b7c5f11dc0ff",
+      "name": "Mesa"
+    }
+  ],
+  "status": "ACTIVE"
 }

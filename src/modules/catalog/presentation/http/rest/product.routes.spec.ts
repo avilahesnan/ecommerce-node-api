@@ -10,6 +10,8 @@ import { afterEach, beforeAll, beforeEach, describe, expect, test, vi } from "vi
 import { CreateProductProps, IProduct } from "@modules/catalog/domain/product/product.types";
 import { AddCategoryProductExpressController } from "./controllers/add-category-product/add-category-product.express.controller";
 import { RemoveCategoryProductExpressController } from "./controllers/remove-category-product/remove-category-product.express.controller";
+import { RecoverProductsByCategoryExpressController } from "./controllers/recover-products-by-category/recover-products-by-category.express.controller";
+import { AlterStatusProductExpressController } from "./controllers/alter-status-product/alter-status-product.express.controller";
 
 let appMock: Application;
 let recoverProductByIdControllerMock: MockProxy<RecoverProductByIdExpressController>;
@@ -19,6 +21,8 @@ let updateProductControllerMock: MockProxy<UpdateProductExpressController>;
 let deleteProductControllerMock: MockProxy<DeleteProductExpressController>;
 let addCategoryProductControllerMock: MockProxy<AddCategoryProductExpressController>;
 let removeCategoryProductControllerMock: MockProxy<RemoveCategoryProductExpressController>;
+let recoverProductsByCategoryControllerMock: MockProxy<RecoverProductsByCategoryExpressController>;
+let alterStatusProductControllerMock: MockProxy<AlterStatusProductExpressController>;
 
 describe('[REST] Routes Express: Product', () => {
 
@@ -30,6 +34,8 @@ describe('[REST] Routes Express: Product', () => {
         deleteProductControllerMock = mock<DeleteProductExpressController>();
         addCategoryProductControllerMock = mock<AddCategoryProductExpressController>();
         removeCategoryProductControllerMock = mock<RemoveCategoryProductExpressController>();
+        recoverProductsByCategoryControllerMock = mock<RecoverProductsByCategoryExpressController>();
+        alterStatusProductControllerMock = mock<AlterStatusProductExpressController>();
     });
 
     beforeEach(async () => {
@@ -45,6 +51,8 @@ describe('[REST] Routes Express: Product', () => {
         mockReset(deleteProductControllerMock);
         mockReset(addCategoryProductControllerMock);
         mockReset(removeCategoryProductControllerMock);
+        mockReset(recoverProductsByCategoryControllerMock);
+        mockReset(alterStatusProductControllerMock);
     });
 
     describe('GET api/v1/products/:id', () => {
@@ -258,7 +266,7 @@ describe('[REST] Routes Express: Product', () => {
         });
     });
 
-    describe('PUT api/v1/products/:id', () => {
+    describe('POST api/v1/products/:add-category/:id', () => {
         
         test('Should Return Status 200 and True', async () => {
 
@@ -279,10 +287,10 @@ describe('[REST] Routes Express: Product', () => {
                 response.status(200).json(true);
             });
 
-            appMock.use('/api/v1/products/:id', addCategoryProductControllerMock.addCategory);
+            appMock.use('/api/v1/products/:add-category/:id', addCategoryProductControllerMock.addCategory);
 
             const response = await request(appMock)
-                .put('/api/v1/products/855d3ea6-e4ca-414a-aecd-807ef0ca43ea');
+                .put('/api/v1/products/add-category/855d3ea6-e4ca-414a-aecd-807ef0ca43ea');
 
             expect(response.status)
                 .toEqual(200);
@@ -295,7 +303,7 @@ describe('[REST] Routes Express: Product', () => {
         });
     });
 
-    describe('PUT api/v1/products/:id', () => {
+    describe('DELETE api/v1/products/:remove-category/:id', () => {
         
         test('Should Return Status 200 and True', async () => {
 
@@ -316,10 +324,97 @@ describe('[REST] Routes Express: Product', () => {
                 response.status(200).json(true);
             });
 
-            appMock.use('/api/v1/products/:id', removeCategoryProductControllerMock.removeCategory);
+            appMock.use('/api/v1/products/:remove-category/:id', removeCategoryProductControllerMock.removeCategory);
 
             const response = await request(appMock)
-                .put('/api/v1/products/855d3ea6-e4ca-414a-aecd-807ef0ca43ea');
+                .put('/api/v1/products/remove-category/855d3ea6-e4ca-414a-aecd-807ef0ca43ea');
+
+            expect(response.status)
+                .toEqual(200);
+
+            expect(response.headers["content-type"])
+                .toMatch(/json/);
+
+            expect(response.body)
+                .toEqual(true);
+        });
+    });
+
+    describe('GET api/v1/products/:category/:id', () => {
+
+        test('Should Return Status 200 and All Objects of Type IProduct in JSON Format', async () => {
+
+            const listProducts = [{
+                id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
+                name: "Iphone",
+                description: "Um ótimo smartphone",
+                value: 3500,
+                categories: [
+                    {
+                        id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
+                        name: "Mesa",
+                    }
+                ],
+                dateDeletion: null,
+            }, {
+                id: "e64f2358-a053-4ee2-8fbb-47d691036ad8",
+                name: "Uma mesa",
+                description: "Uma mesa muito grande",
+                value: 500,
+                categories: [
+                    {
+                        id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
+                        name: "Mesa",
+                    }
+                ],
+                dateDeletion: null,
+            }];
+
+            recoverProductsByCategoryControllerMock.recoverByCategory.mockImplementation(async (request, response, next) => {
+                response.status(200).json(listProducts);
+            });
+
+            appMock.use('/api/v1/products/:category/:id', recoverProductsByCategoryControllerMock.recoverByCategory);
+
+            const response = await request(appMock)
+                .get('/api/v1/products/category/a22a6030-bf2f-424b-b72e-2ca49e774094');
+
+            expect(response.status)
+                .toEqual(200);
+
+            expect(response.headers["content-type"])
+                .toMatch(/json/);
+
+            expect(response.body)
+                .toEqual(listProducts);
+        });
+    });
+
+    describe('PUT api/v1/products/:status/:id', () => {
+        
+        test('Should Return Status 200 and True', async () => {
+
+            const productInputDTO: IProduct = {
+                id: "855d3ea6-e4ca-414a-aecd-807ef0ca43ea",
+                name: "Iphone",
+                description: "Um ótimo smartphone",
+                value: 3500,
+                categories: [
+                    {
+                        id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
+                        name: "Mesa",
+                    }
+                ]
+            };
+
+            alterStatusProductControllerMock.alterStatus.mockImplementation(async (request, response, next) => {
+                response.status(200).json(true);
+            });
+
+            appMock.use('/api/v1/products/:status/:id', alterStatusProductControllerMock.alterStatus);
+
+            const response = await request(appMock)
+                .put('/api/v1/products/status/855d3ea6-e4ca-414a-aecd-807ef0ca43ea');
 
             expect(response.status)
                 .toEqual(200);
