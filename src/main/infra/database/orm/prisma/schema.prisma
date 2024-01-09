@@ -50,3 +50,20 @@ enum StatusProductPrisma {
   ACTIVE
   OFF
 }
+
+model User {
+  id              String @id @db.Uuid
+  name            String @db.VarChar(50)
+  email           String @unique
+  password        String
+  type            TypeUserPrisma @map("type-user")
+  dateCreated     DateTime @default(now()) @map("date_created")
+  dateUpdated     DateTime @updatedAt @map("date_updated")
+
+  @@map("users")
+}
+
+enum TypeUserPrisma {
+  CLIENT
+  ADM
+}

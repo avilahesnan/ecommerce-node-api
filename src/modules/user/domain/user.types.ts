@@ -18,3 +18,5 @@ export type CreateUserProps = Omit<IUser, 'id' | keyDataController>;
 export type RecoverUserProps = IUser & {
     id: NonNullable<IUser['id']>
 };
+
+export type CredenciaisUserProps = Omit<IUser, "id" | "name" | "type" | keyDataController>;
