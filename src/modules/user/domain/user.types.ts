@@ -19,4 +19,4 @@ export type RecoverUserProps = IUser & {
     id: NonNullable<IUser['id']>
 };
 
-export type CredenciaisUserProps = Omit<IUser, "id" | "name" | "type" | keyDataController>;
+export type CredentialsUserProps = Omit<IUser, "id" | "name" | "type" | keyDataController>;

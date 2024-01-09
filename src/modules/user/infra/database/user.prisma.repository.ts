@@ -2,13 +2,15 @@ import { User } from "@modules/user/domain/user.entity";
 import { IUserRepository } from "@modules/user/domain/user.repository.interface";
 import { PrismaRepository } from "@shared/infra/database/prisma.repository";
 import { UserMap } from "../mappers/user.map";
-import { CredenciaisUserProps } from "@modules/user/domain/user.types";
+import { CredentialsUserProps } from "@modules/user/domain/user.types";
 
 export class UserPrismaRepository extends PrismaRepository implements IUserRepository<User> {
    
-    async authenticate(credenciais:CredenciaisUserProps): Promise<boolean> {
-        const userExtant = await this.recoverByEmail(credenciais.email);
-        if (userExtant && (credenciais.password === userExtant.password))  {return true;}
+    async authenticate(credentials:CredentialsUserProps): Promise<boolean> {
+        const userExtant = await this.recoverByEmail(credentials.email);
+        if (userExtant && (credentials.password === userExtant.password))  {
+            return true;
+        }
         return false;
     }
 
