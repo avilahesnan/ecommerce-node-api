@@ -3,15 +3,20 @@ import { IUserRepository } from "@modules/user/domain/user.repository.interface"
 import { PrismaRepository } from "@shared/infra/database/prisma.repository";
 import { UserMap } from "../mappers/user.map";
 import { CredentialsUserProps } from "@modules/user/domain/user.types";
+import bcrypt from 'bcrypt';
 
 export class UserPrismaRepository extends PrismaRepository implements IUserRepository<User> {
    
     async authenticate(credentials:CredentialsUserProps): Promise<boolean> {
         const userExtant = await this.recoverByEmail(credentials.email);
-        if (userExtant && (credentials.password === userExtant.password))  {
-            return true;
+        if(!userExtant)  {
+            return false;
         }
-        return false;
+        const passwordValid: boolean = await bcrypt.compare(credentials.password, userExtant.password);
+        if(!passwordValid) {
+            return false;
+        }
+        return true;
     }
 
     async recoverByEmail(email: string): Promise<User | null> {
@@ -41,13 +46,15 @@ export class UserPrismaRepository extends PrismaRepository implements IUserRepos
     }
 
     async insert(user: User): Promise<User> {
+        const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS as string, 10);
+        const passwordCrypt = await bcrypt.hash(user.password, saltRounds);
         const userInserted = await this._datasource.user.create(
             {
                 data: {
                     id: user.id,
                     name: user.name,
                     email: user.email,
-                    password: user.password,
+                    password:passwordCrypt,
                     type: UserMap.toTypeUserPrisma(user.type)
                 }
             }

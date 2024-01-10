@@ -1,0 +1,23 @@
+@host = localhost
+@port = 3000
+@apiversion = api/v1
+
+### Register A New User
+POST http://{{host}}:{{port}}/{{apiversion}}/users
+Content-type: application/json
+
+{
+    "name": "Hesnan2",
+    "email": "hesnan2@gmail.com",
+    "password": "12344",
+    "type": "ADM"
+}
+
+### Authenticate User
+POST http://{{host}}:{{port}}/{{apiversion}}/users/authenticate
+Content-type: application/json
+
+{
+    "email": "hesnan2@gmail.com",
+    "password": "12344"
+}

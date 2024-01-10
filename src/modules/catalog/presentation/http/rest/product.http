@@ -3,7 +3,7 @@
 @apiversion = api/v1
 
 ### Recover Product By Id
-GET http://{{host}}:{{port}}/{{apiversion}}/products/570fa8b1-5865-41bb-aaec-2f8da430774c
+GET http://{{host}}:{{port}}/{{apiversion}}/products/a3f24491-60ca-4949-8bf8-c0e6ec143a15
 
 ### Recover All Products
 GET http://{{host}}:{{port}}/{{apiversion}}/products
@@ -18,7 +18,7 @@ Content-type: application/json
     "value": 450,
     "categories": [
         {
-            "id": "1aa1a296-85bf-49be-8173-17c33b70073c",
+            "id": "7cb1c743-09b5-4532-bb54-91f29b765b5e",
             "name": "Banho"
         }
     ]
@@ -82,18 +82,18 @@ Content-Type: application/json
 GET http://{{host}}:{{port}}/{{apiversion}}/products/category/6039b800-646c-4825-8dc5-b7c5f11dc0ff
 
 ### Alter Status Product
-PUT http://{{host}}:{{port}}/{{apiversion}}/products/status/6039b800-646c-4825-8dc5-b7c5f11dc0ff
+PUT http://{{host}}:{{port}}/{{apiversion}}/products/a3f24491-60ca-4949-8bf8-c0e6ec143a15/status
 Content-Type: application/json
 
 {
-  "id": "570fa8b1-5865-41bb-aaec-2f8da430774c",
-  "name": "Toalha",
-  "description": "Toalha para banho",
-  "value": 50,
+  "id": "a3f24491-60ca-4949-8bf8-c0e6ec143a15",
+  "name": "Chuveiro elétrico",
+  "description": "Um ótimo chuveiro elétrico, super moderno",
+  "value": 450,
   "categories": [
     {
-      "id": "6039b800-646c-4825-8dc5-b7c5f11dc0ff",
-      "name": "Mesa"
+      "id": "7cb1c743-09b5-4532-bb54-91f29b765b5e",
+      "name": "Banho"
     }
   ],
   "status": "ACTIVE"

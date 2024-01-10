@@ -390,7 +390,7 @@ describe('[REST] Routes Express: Product', () => {
         });
     });
 
-    describe('PUT api/v1/products/:status/:id', () => {
+    describe('PUT api/v1/products/:id/status', () => {
         
         test('Should Return Status 200 and True', async () => {
 
@@ -411,10 +411,10 @@ describe('[REST] Routes Express: Product', () => {
                 response.status(200).json(true);
             });
 
-            appMock.use('/api/v1/products/:status/:id', alterStatusProductControllerMock.alterStatus);
+            appMock.use('/api/v1/products/:id/status', alterStatusProductControllerMock.alterStatus);
 
             const response = await request(appMock)
-                .put('/api/v1/products/status/855d3ea6-e4ca-414a-aecd-807ef0ca43ea');
+                .put('/api/v1/products/855d3ea6-e4ca-414a-aecd-807ef0ca43ea/status');
 
             expect(response.status)
                 .toEqual(200);

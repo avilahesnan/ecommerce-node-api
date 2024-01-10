@@ -11,6 +11,7 @@ GET http://{{host}}:{{port}}/{{apiversion}}/categories
 ### Insert A Category
 POST http://{{host}}:{{port}}/{{apiversion}}/categories
 Content-type: application/json
+Authorization: Bearer token
 
 {
     "name":"Banho"
@@ -19,6 +20,7 @@ Content-type: application/json
 ### Update A Category
 PUT http://{{host}}:{{port}}/{{apiversion}}/categories/6039b800-646c-4825-8dc5-b7c5f11dc0ff
 Content-type: application/json
+Authorization: Bearer token
 
 {
     "id": "6039b800-646c-4825-8dc5-b7c5f11dc0ff",
@@ -27,3 +29,4 @@ Content-type: application/json
 
 ### Delete A Category
 DELETE http://{{host}}:{{port}}/{{apiversion}}/categories/627527c7-0e4a-4038-8eb1-b1c359afb2a8
+Authorization: Bearer token

@@ -51,7 +51,7 @@ productRouter.get(
 );
 
 productRouter.put(
-    '/:status/:id',
+    '/:id/status',
     contentTypeMiddleware,
     (request, response, next) => alterStatusProductController.alterStatus(request, response, next)
 );
