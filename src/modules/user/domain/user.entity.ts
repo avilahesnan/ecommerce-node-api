@@ -9,7 +9,6 @@ export class User extends Entity<IUser> implements IUser {
     private _type: TypeUser = TypeUser.CLIENT;
     private _dateCreated?: Date | undefined;
     private _dateUpdated?: Date | undefined;
-    private _dateDeletion?: Date | null | undefined; // falar com o prof
 
     public get name(): string {
         return this._name;
@@ -59,14 +58,6 @@ export class User extends Entity<IUser> implements IUser {
         this._dateUpdated = value;
     }
 
-    public get dateDeletion(): Date | null | undefined {
-        return this._dateDeletion;
-    }
-
-    private set dateDeletion(value: Date | null | undefined) {
-        this._dateDeletion = value;
-    }
-
     private constructor(user:IUser){
         super(user.id);
         this.name = user.name;
@@ -75,7 +66,6 @@ export class User extends Entity<IUser> implements IUser {
         this.type = user.type;
         this.dateCreated = user.dateCreated;
         this.dateUpdated = user.dateUpdated;
-        this.dateDeletion = user.dateDeletion;
     }
 
     public static create(props: CreateUserProps): User {
