@@ -8,16 +8,17 @@ const CategorySchema = z.object({
     name: z.string().min(3).max(50)
 }).strict();
 
-const InsertProductSchema = z.object({
+const UpdateProductSchema = z.object({
+    id: z.string().uuid(),
     name: z.string().min(5).max(50),
     description: z.string().min(10).max(200),
     value: z.number().min(0),
     categories: z.array(CategorySchema).min(1).max(3)
 }).strict();
 
-const validInputInsertProductMiddleware = (request: Request, response: Response, next: NextFunction) => {
+const validInputUpdateProductMiddleware = (request: Request, response: Response, next: NextFunction) => {
     try {
-        InsertProductSchema.parse(request.body);
+        UpdateProductSchema.parse(request.body);
         next();
     } catch (error: any) {
         const validationError = fromZodError(error);
@@ -26,4 +27,4 @@ const validInputInsertProductMiddleware = (request: Request, response: Response,
     }
 }
 
-export { validInputInsertProductMiddleware as validInputInsertProduct }
+export { validInputUpdateProductMiddleware as validInputUpdateProduct }

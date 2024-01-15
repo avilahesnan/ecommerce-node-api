@@ -11,6 +11,14 @@ export class HttpError extends Error {
     }
 }
 
+class BadRequestError extends HttpError {
+    constructor( params?: {statusCode?: number, message?: string}) {
+        const { statusCode, message} = params || {};
+        super(statusCode || 400, message || '⚠️ The server cannot or will not process the request due to a client error (e.g., malformed request syntax, invalid request message framing, or misleading routing request.');
+        this.name = 'BadRequestError';
+    }
+}
+
 class NotFoundError extends HttpError {
     constructor( params?: {statusCode?: number, message?: string}) {
         const { statusCode, message} = params || {};
@@ -44,6 +52,7 @@ class ForbiddenError extends HttpError {
 }
 
 export const HttpErrors = {
+    BadRequestError: BadRequestError,
     NotFoundError: NotFoundError,
     UnsupportedMediaTypeError: UnsupportedMediaTypeError,
     UnauthorizedError: UnauthorizedError,

@@ -3,6 +3,7 @@ import { deleteCategoryController, insertCategoryController, recoverAllCategorie
 import { contentTypeMiddleware } from '@main/presentation/http/middlewares/content-type.middleware';
 import { validInputInsertCategory } from '../middlewares/valid-input-insert-category.middleware';
 import { authUser } from '@main/presentation/http/middlewares/auth-user.middleware';
+import { validInputUpdateCategory } from '../middlewares/valid-input-update-category.middleware';
 
 export const categoryRouter = express.Router();
 
@@ -28,6 +29,7 @@ categoryRouter.put(
     '/:id',
     authUser(['ADM']),
     contentTypeMiddleware,
+    validInputUpdateCategory,
     (request, response, next) => updateCategoryController.update(request, response, next)
 );
 
