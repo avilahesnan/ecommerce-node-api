@@ -1,0 +1,44 @@
+openapi: '3.0.2'
+info:
+  title: E-commerce Node API
+  version: '1.0'
+paths:
+  /categories/{categoryID}:
+    get:
+      tags:
+        - /categories
+      description: >-
+        Recover An Category By ID
+
+      parameters:
+        - name: categoryID
+          in: path
+          description: >-
+            Category Id
+          required: true
+          schema:
+            $ref: '#/components/schemas/id'
+
+  /products/{productID}:
+    get:
+      tags:
+        - /products
+      description: >-
+        Recover A Product By ID
+
+      parameters:
+        - name: productID
+          in: path
+          description: >-
+            Product Id
+          required: true
+          schema:
+            $ref: '#/components/schemas/id'
+
+servers:
+  - url: '/api/v1'
+components:
+  schemas:
+    id:
+      type: string
+      pattern: '^[0-9a-fA-F]{24}$'

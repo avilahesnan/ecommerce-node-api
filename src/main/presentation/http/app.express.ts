@@ -7,6 +7,7 @@ import { errorLogger } from "./middlewares/error-logger.middleware";
 import { errorResponser } from "./middlewares/error-responser.middleware";
 import { invalidPath } from "./middlewares/invalid-path.middleware";
 import cors from "cors";
+import { swaggerDocumentation } from "./customizers/swagger-documentation.customizer";
 
 export const createExpressApplication = async (): Promise<Application> => {
     const app: Application = express();
@@ -29,6 +30,9 @@ export const createExpressApplication = async (): Promise<Application> => {
    
     //Middlewares de Rotas
     app.use('/api/v1', apiV1Router);
+
+    //Customizadores
+    swaggerDocumentation(app);
 
     //Middleware de Tratamento de Erros (Error Handling)
     app.use(invalidPath);
