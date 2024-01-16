@@ -11,7 +11,7 @@ GET http://{{host}}:{{port}}/{{apiversion}}/products
 ### Insert A Product
 POST http://{{host}}:{{port}}/{{apiversion}}/products
 Content-type: application/json
-Authorization: Barrer token
+Authorization: Bearer token
 
 {
     "name":"Chuveiro elétrico",
@@ -28,7 +28,7 @@ Authorization: Barrer token
 ### Update A Product
 PUT http://{{host}}:{{port}}/{{apiversion}}/products/570fa8b1-5865-41bb-aaec-2f8da430774c
 Content-type: application/json
-Authorization: Barrer token
+Authorization: Bearer token
 
 {
     "id": "570fa8b1-5865-41bb-aaec-2f8da430774c",
@@ -45,12 +45,12 @@ Authorization: Barrer token
 
 ### Delete A Product
 DELETE http://{{host}}:{{port}}/{{apiversion}}/products/19245b61-aade-443c-9176-b740e11796f4
-Authorization: Barrer token
+Authorization: Bearer token
 
 ### Add Category Product
 POST http://{{host}}:{{port}}/{{apiversion}}/products/add-category/570fa8b1-5865-41bb-aaec-2f8da430774c
 Content-Type: application/json
-Authorization: Barrer token
+Authorization: Bearer token
 
 {
   "id": "570fa8b1-5865-41bb-aaec-2f8da430774c",
@@ -68,7 +68,7 @@ Authorization: Barrer token
 ### Remove Category Product
 DELETE http://{{host}}:{{port}}/{{apiversion}}/products/remove-category/dab5bed8-1241-4611-b916-8f9ed1059451
 Content-Type: application/json
-Authorization: Barrer token
+Authorization: Bearer token
 
 {
   "id": "570fa8b1-5865-41bb-aaec-2f8da430774c",
@@ -89,7 +89,7 @@ GET http://{{host}}:{{port}}/{{apiversion}}/products/category/6039b800-646c-4825
 ### Alter Status Product
 PUT http://{{host}}:{{port}}/{{apiversion}}/products/a3f24491-60ca-4949-8bf8-c0e6ec143a15/status
 Content-Type: application/json
-Authorization: Barrer token
+Authorization: Bearer token
 
 {
   "id": "a3f24491-60ca-4949-8bf8-c0e6ec143a15",
