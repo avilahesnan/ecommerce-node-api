@@ -30,16 +30,21 @@ describe('Use Case: Remove Category Product', () => {
     test('Should Remove A Category From A Product', async () => {
 
         const category = {
-            id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
-            name: "Mesa"
+            id: "7cb1c743-09b5-4532-bb54-91f29b765b5e",
+            name: "Banho4"
         };
+
+        const category2 = {
+            id: "e06c520a-0af3-40c5-9d14-5482640447f6",
+            name: "Banho5"
+        }
 
         const productInputDTO: RecoverProductProps = {
             id: "575dbd2f-1e73-419b-9f66-b08d943b4a5a",
             name: "Almofada",
             description: "Um ótima almofada",
             value: 60,
-            categories: [category]
+            categories: [category, category2]
         };
 
         productRepositoryMock.exists.mockResolvedValue(true);
@@ -66,16 +71,21 @@ describe('Use Case: Remove Category Product', () => {
     test('Should Throw An Exception When Trying to Remove A Category From A Product That Do not Exist', async () => {
    
         const category = {
-            id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
-            name: "Mesa"
+            id: "7cb1c743-09b5-4532-bb54-91f29b765b5e",
+            name: "Banho4"
         };
+
+        const category2 = {
+            id: "e06c520a-0af3-40c5-9d14-5482640447f6",
+            name: "Banho5"
+        }
 
         const productInputDTO: RecoverProductProps = {
             id: "575dbd2f-1e73-419b-9f66-b08d943b4a5a",
             name: "Almofada",
             description: "Um ótima almofada",
             value: 60,
-            categories: [category]
+            categories: [category, category2]
         };
 
         productRepositoryMock.exists.mockResolvedValue(false);
@@ -90,16 +100,21 @@ describe('Use Case: Remove Category Product', () => {
     test('Should Throw An Exception When Trying to Remove A Category That Do not Exist From A Product', async () => {
    
         const category = {
-            id: "a22a6030-bf2f-424b-b72e-2ca49e774094",
-            name: "Mesa"
+            id: "7cb1c743-09b5-4532-bb54-91f29b765b5e",
+            name: "Banho4"
         };
+
+        const category2 = {
+            id: "e06c520a-0af3-40c5-9d14-5482640447f6",
+            name: "Banho5"
+        }
 
         const productInputDTO: RecoverProductProps = {
             id: "575dbd2f-1e73-419b-9f66-b08d943b4a5a",
             name: "Almofada",
             description: "Um ótima almofada",
             value: 60,
-            categories: [category]
+            categories: [category, category2]
         };
 
         productRepositoryMock.exists.mockResolvedValue(true);

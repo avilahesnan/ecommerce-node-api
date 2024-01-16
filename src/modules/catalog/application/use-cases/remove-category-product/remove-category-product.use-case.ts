@@ -25,18 +25,15 @@ export class RemoveCategoryProductUseCase implements IUseCase<RecoverProductProp
             throw new ProductApplicationExceptions.ProductNotFound();
         }
 
-        const category: Category = Category.recover({
-            id: "1aa1a296-85bf-49be-8173-17c33b70073c",
-            name: "Banho"
-        });
+        const product: Product = Product.recover(productProps);
+
+        const category: Category = product.categories[1];
 
         const existsCategory: boolean = await this._categoryRepository.exists(category.id);
 
         if (!existsCategory) {
             throw new CategoryApplicationExceptions.CategoryNotFound();
         }
-
-        const product: Product = Product.recover(productProps);
 
         const productCategoryRemoved: boolean = await this._productRepository.removeCategory(product, category);
 

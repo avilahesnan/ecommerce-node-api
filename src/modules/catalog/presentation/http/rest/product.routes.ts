@@ -47,14 +47,14 @@ productRouter.post(
 );
 
 productRouter.delete(
-    '/:remove-category/:id',
+    '/remove-category/:id/:categoryId',
     authUser(['ADM']),
     contentTypeMiddleware,
     (request, response, next) => removeCategoryProductController.removeCategory(request, response, next)
 );
 
 productRouter.get(
-    '/:category/:id',
+    '/category/:id',
     (request, response, next) => recoverProductsByCategoryController.recoverByCategory(request, response, next)
 );
 

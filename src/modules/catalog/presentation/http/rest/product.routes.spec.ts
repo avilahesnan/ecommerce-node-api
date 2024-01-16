@@ -303,7 +303,7 @@ describe('[REST] Routes Express: Product', () => {
         });
     });
 
-    describe('DELETE api/v1/products/:remove-category/:id', () => {
+    describe('DELETE api/v1/products/remove-category/:id/:categoryId', () => {
         
         test('Should Return Status 200 and True', async () => {
 
@@ -324,10 +324,10 @@ describe('[REST] Routes Express: Product', () => {
                 response.status(200).json(true);
             });
 
-            appMock.use('/api/v1/products/:remove-category/:id', removeCategoryProductControllerMock.removeCategory);
+            appMock.use('/api/v1/products/remove-category/:id/:categoryId', removeCategoryProductControllerMock.removeCategory);
 
             const response = await request(appMock)
-                .put('/api/v1/products/remove-category/855d3ea6-e4ca-414a-aecd-807ef0ca43ea');
+                .put('/api/v1/products/remove-category/855d3ea6-e4ca-414a-aecd-807ef0ca43ea/a22a6030-bf2f-424b-b72e-2ca49e774094');
 
             expect(response.status)
                 .toEqual(200);
@@ -340,7 +340,7 @@ describe('[REST] Routes Express: Product', () => {
         });
     });
 
-    describe('GET api/v1/products/:category/:id', () => {
+    describe('GET api/v1/products/category/:id', () => {
 
         test('Should Return Status 200 and All Objects of Type IProduct in JSON Format', async () => {
 
@@ -374,7 +374,7 @@ describe('[REST] Routes Express: Product', () => {
                 response.status(200).json(listProducts);
             });
 
-            appMock.use('/api/v1/products/:category/:id', recoverProductsByCategoryControllerMock.recoverByCategory);
+            appMock.use('/api/v1/products/category/:id', recoverProductsByCategoryControllerMock.recoverByCategory);
 
             const response = await request(appMock)
                 .get('/api/v1/products/category/a22a6030-bf2f-424b-b72e-2ca49e774094');

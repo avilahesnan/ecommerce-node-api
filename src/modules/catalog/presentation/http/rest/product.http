@@ -11,7 +11,7 @@ GET http://{{host}}:{{port}}/{{apiversion}}/products
 ### Insert A Product
 POST http://{{host}}:{{port}}/{{apiversion}}/products
 Content-type: application/json
-Authorization: Bearer token
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNzhjYjc5LWFhOGMtNGQwYi05N2M1LTA2OWQxYTRkYWZiYyIsIm5hbWUiOiJIZXNuYW4yIiwiZW1haWwiOiJoZXNuYW4yQGdtYWlsLmNvbSIsInR5cGUiOiJBRE0iLCJpYXQiOjE3MDU0MTg4NTYsImV4cCI6MTcwNTQyMjQ1Nn0.nKAmYARvGGCWr6YH_UdvGxLj4CTeeyCzcGlcKK4HDk0
 
 {
     "name":"Chuveiro elétrico",
@@ -19,8 +19,8 @@ Authorization: Bearer token
     "value": 450,
     "categories": [
         {
-            "id": "7cb1c743-09b5-4532-bb54-91f29b765b5e",
-            "name": "Banho"
+            "id": "0798dd18-79cc-4613-9506-acfb85980301",
+            "name": "Mesa"
         }
     ]
 }
@@ -28,7 +28,7 @@ Authorization: Bearer token
 ### Update A Product
 PUT http://{{host}}:{{port}}/{{apiversion}}/products/570fa8b1-5865-41bb-aaec-2f8da430774c
 Content-type: application/json
-Authorization: Bearer token
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNzhjYjc5LWFhOGMtNGQwYi05N2M1LTA2OWQxYTRkYWZiYyIsIm5hbWUiOiJIZXNuYW4yIiwiZW1haWwiOiJoZXNuYW4yQGdtYWlsLmNvbSIsInR5cGUiOiJBRE0iLCJpYXQiOjE3MDU0MTg4NTYsImV4cCI6MTcwNTQyMjQ1Nn0.nKAmYARvGGCWr6YH_UdvGxLj4CTeeyCzcGlcKK4HDk0
 
 {
     "id": "570fa8b1-5865-41bb-aaec-2f8da430774c",
@@ -37,18 +37,18 @@ Authorization: Bearer token
     "value": 50,
     "categories": [
       {
-        "id": "1aa1a296-85bf-49be-8173-17c33b70073c",
-        "name": "Banho"
+        "id": "0798dd18-79cc-4613-9506-acfb85980301",
+        "name": "Mesa"
       }
     ]
   }
 
 ### Delete A Product
-DELETE http://{{host}}:{{port}}/{{apiversion}}/products/19245b61-aade-443c-9176-b740e11796f4
-Authorization: Bearer token
+DELETE http://{{host}}:{{port}}/{{apiversion}}/products/a3f24491-60ca-4949-8bf8-c0e6ec143a15
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNzhjYjc5LWFhOGMtNGQwYi05N2M1LTA2OWQxYTRkYWZiYyIsIm5hbWUiOiJIZXNuYW4yIiwiZW1haWwiOiJoZXNuYW4yQGdtYWlsLmNvbSIsInR5cGUiOiJBRE0iLCJpYXQiOjE3MDU0MTg4NTYsImV4cCI6MTcwNTQyMjQ1Nn0.nKAmYARvGGCWr6YH_UdvGxLj4CTeeyCzcGlcKK4HDk0
 
 ### Add Category Product
-POST http://{{host}}:{{port}}/{{apiversion}}/products/add-category/570fa8b1-5865-41bb-aaec-2f8da430774c
+POST http://{{host}}:{{port}}/{{apiversion}}/products/add-category/570fa8b1-5865-41bb-aaec-2f8da430774c/1aa1a296-85bf-49be-8173-17c33b70073c
 Content-Type: application/json
 Authorization: Bearer token
 
@@ -66,30 +66,9 @@ Authorization: Bearer token
 }
 
 ### Remove Category Product
-DELETE http://{{host}}:{{port}}/{{apiversion}}/products/remove-category/dab5bed8-1241-4611-b916-8f9ed1059451
+DELETE http://{{host}}:{{port}}/{{apiversion}}/products/remove-category/a3f24491-60ca-4949-8bf8-c0e6ec143a15/7cb1c743-09b5-4532-bb54-91f29b765b5e
 Content-Type: application/json
-Authorization: Bearer token
-
-{
-  "id": "570fa8b1-5865-41bb-aaec-2f8da430774c",
-  "name": "Toalha",
-  "description": "Toalha para banho",
-  "value": 50,
-  "categories": [
-    {
-      "id": "1aa1a296-85bf-49be-8173-17c33b70073c",
-      "name": "Banho"
-    }
-  ]
-}
-
-### Recover Products By Category
-GET http://{{host}}:{{port}}/{{apiversion}}/products/category/6039b800-646c-4825-8dc5-b7c5f11dc0ff
-
-### Alter Status Product
-PUT http://{{host}}:{{port}}/{{apiversion}}/products/a3f24491-60ca-4949-8bf8-c0e6ec143a15/status
-Content-Type: application/json
-Authorization: Bearer token
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNzhjYjc5LWFhOGMtNGQwYi05N2M1LTA2OWQxYTRkYWZiYyIsIm5hbWUiOiJIZXNuYW4yIiwiZW1haWwiOiJoZXNuYW4yQGdtYWlsLmNvbSIsInR5cGUiOiJBRE0iLCJpYXQiOjE3MDU0MTczMDksImV4cCI6MTcwNTQyMDkwOX0.5NrGeqMjTbzIUimccQhGWPTIm0eByr_iNxKdFGXJlzg
 
 {
   "id": "a3f24491-60ca-4949-8bf8-c0e6ec143a15",
@@ -99,8 +78,28 @@ Authorization: Bearer token
   "categories": [
     {
       "id": "7cb1c743-09b5-4532-bb54-91f29b765b5e",
-      "name": "Banho"
+      "name": "Banho4"
     }
-  ],
-  "status": "ACTIVE"
+  ]
+}
+
+### Recover Products By Category
+GET http://{{host}}:{{port}}/{{apiversion}}/products/category/7cb1c743-09b5-4532-bb54-91f29b765b5e
+
+### Alter Status Product
+PUT http://{{host}}:{{port}}/{{apiversion}}/products/a3f24491-60ca-4949-8bf8-c0e6ec143a15/status
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNzhjYjc5LWFhOGMtNGQwYi05N2M1LTA2OWQxYTRkYWZiYyIsIm5hbWUiOiJIZXNuYW4yIiwiZW1haWwiOiJoZXNuYW4yQGdtYWlsLmNvbSIsInR5cGUiOiJBRE0iLCJpYXQiOjE3MDU0MTIzODQsImV4cCI6MTcwNTQxNTk4NH0.YrZDJsK_bCwK1FO_c6Goqu1ElSVomM07R6XYZ4QYhKo
+
+{
+  "id": "a3f24491-60ca-4949-8bf8-c0e6ec143a15",
+  "name": "Chuveiro elétrico",
+  "description": "Um ótimo chuveiro elétrico, super moderno",
+  "value": 450,
+  "categories": [
+    {
+      "id": "7cb1c743-09b5-4532-bb54-91f29b765b5e",
+      "name": "Banho4"
+    }
+  ]
 }
