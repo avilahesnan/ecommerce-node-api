@@ -6,7 +6,6 @@ import { MockProxy, mock, mockReset } from "vitest-mock-extended";
 import { RemoveCategoryProductUseCase } from "./remove-category-product.use-case";
 import { afterEach, beforeAll, describe, expect, test, vi } from "vitest";
 import { RecoverProductProps } from "@modules/catalog/domain/product/product.types";
-import { CategoryMap } from "@modules/catalog/infra/mappers/category.map";
 import { CategoryApplicationExceptions } from "../../exceptions/category.application.exception";
 import { ProductApplicationExceptions } from "../../exceptions/product.application.exception";
 

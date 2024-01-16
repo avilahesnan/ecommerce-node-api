@@ -21,7 +21,6 @@ const authUserMiddleware = (typesUserAllowed: Array<String>) => {
         } catch (error) {
             next(new HttpErrors.ForbiddenError());
         }
-
         next();
     }
 }

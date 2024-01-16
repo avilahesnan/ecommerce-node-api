@@ -3,7 +3,6 @@ import { IProductRepository } from "@modules/catalog/domain/product/product.repo
 import { MockProxy, mock, mockReset } from "vitest-mock-extended";
 import { DeleteProductUseCase } from "./delete-product.use-case";
 import { afterEach, beforeAll, describe, expect, test, vi } from "vitest";
-import { CategoryMap } from "@modules/catalog/infra/mappers/category.map";
 import { ProductApplicationExceptions } from "../../exceptions/product.application.exception";
 
 let productRepositoryMock: MockProxy<IProductRepository<Product>>;

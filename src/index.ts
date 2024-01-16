@@ -105,8 +105,6 @@ async function main() {
     /// Recover Product By Category ///
 
     // console.log(await recoverProductsByCategoryUseCase.execute("06e7b01d-28d6-423f-91b4-2a21063a2a72"));
-
-
 }
 
 main()

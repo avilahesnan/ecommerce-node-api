@@ -29,4 +29,4 @@ Scenario: Categoria válida e produto válido inapto a ter uma categoria removid
         Uma categoria válida
     ]
     Quando (When) [Solicitar a remoção da categoria do produto]
-    Então (Then) [Um erro informando que o produto não possui a categoria informada a ser removida]  
+    Então (Then) [Um erro informando que o produto não possui a categoria informada a ser removida]

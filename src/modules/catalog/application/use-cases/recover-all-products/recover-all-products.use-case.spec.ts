@@ -3,7 +3,6 @@ import { IProductRepository } from "@modules/catalog/domain/product/product.repo
 import { MockProxy, mock, mockReset } from "vitest-mock-extended";
 import { RecoverAllProductsUseCase } from "./recover-all-products.use-case";
 import { afterEach, beforeAll, describe, expect, test, vi } from "vitest";
-import { CategoryMap } from "@modules/catalog/infra/mappers/category.map";
 import { ProductMap } from "@modules/catalog/infra/mappers/product.map";
 import { IProduct } from "@modules/catalog/domain/product/product.types";
 
@@ -60,3 +59,4 @@ describe('Use Case: Recover All Product', () => {
             .toHaveBeenCalledTimes(1);
     });
 });
+

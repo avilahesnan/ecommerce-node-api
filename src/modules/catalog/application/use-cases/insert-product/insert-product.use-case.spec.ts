@@ -4,7 +4,6 @@ import { MockProxy, mock, mockReset } from "vitest-mock-extended";
 import { InsertProductUseCase } from "./insert-product.use-case";
 import { afterEach, beforeAll, describe, expect, test, vi } from "vitest";
 import { CreateProductProps, IProduct } from "@modules/catalog/domain/product/product.types";
-import { CategoryMap } from "@modules/catalog/infra/mappers/category.map";
 import { Category } from "@modules/catalog/domain/category/category.entity";
 
 let productRepositoryMock: MockProxy<IProductRepository<Product>>;

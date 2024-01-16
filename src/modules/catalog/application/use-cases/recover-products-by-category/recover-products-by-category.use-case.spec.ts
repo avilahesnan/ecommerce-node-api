@@ -5,7 +5,6 @@ import { RecoverProductsByCategoryUseCase } from "./recover-products-by-category
 import { afterEach, beforeAll, describe, expect, test, vi } from "vitest";
 import { ICategoryRepository } from "@modules/catalog/domain/category/category.repository.interface";
 import { Category } from "@modules/catalog/domain/category/category.entity";
-import { CategoryMap } from "@modules/catalog/infra/mappers/category.map";
 import { ProductMap } from "@modules/catalog/infra/mappers/product.map";
 import { IProduct } from "@modules/catalog/domain/product/product.types";
 import { CategoryApplicationExceptions } from "../../exceptions/category.application.exception";

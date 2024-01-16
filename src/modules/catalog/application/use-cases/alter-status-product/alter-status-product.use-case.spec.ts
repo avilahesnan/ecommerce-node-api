@@ -3,8 +3,7 @@ import { IProductRepository } from "@modules/catalog/domain/product/product.repo
 import { MockProxy, mock, mockReset } from "vitest-mock-extended";
 import { AlterStatusProductUseCase } from "./alter-status-product.use-case";
 import { afterEach, beforeAll, describe, expect, test, vi } from "vitest";
-import { CategoryMap } from "@modules/catalog/infra/mappers/category.map";
-import { RecoverProductProps, StatusProduct } from "@modules/catalog/domain/product/product.types";
+import { RecoverProductProps} from "@modules/catalog/domain/product/product.types";
 import { ProductApplicationExceptions } from "../../exceptions/product.application.exception";
 
 let productRepositoryMock: MockProxy<IProductRepository<Product>>;
