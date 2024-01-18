@@ -11,7 +11,7 @@ GET http://{{host}}:{{port}}/{{apiversion}}/products
 ### Insert A Product
 POST http://{{host}}:{{port}}/{{apiversion}}/products
 Content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNzhjYjc5LWFhOGMtNGQwYi05N2M1LTA2OWQxYTRkYWZiYyIsIm5hbWUiOiJIZXNuYW4yIiwiZW1haWwiOiJoZXNuYW4yQGdtYWlsLmNvbSIsInR5cGUiOiJBRE0iLCJpYXQiOjE3MDU0MTg4NTYsImV4cCI6MTcwNTQyMjQ1Nn0.nKAmYARvGGCWr6YH_UdvGxLj4CTeeyCzcGlcKK4HDk0
+Authorization: Bearer <token>
 
 {
     "name":"Chuveiro elétrico",
@@ -28,7 +28,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNzhjYjc5L
 ### Update A Product
 PUT http://{{host}}:{{port}}/{{apiversion}}/products/570fa8b1-5865-41bb-aaec-2f8da430774c
 Content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNzhjYjc5LWFhOGMtNGQwYi05N2M1LTA2OWQxYTRkYWZiYyIsIm5hbWUiOiJIZXNuYW4yIiwiZW1haWwiOiJoZXNuYW4yQGdtYWlsLmNvbSIsInR5cGUiOiJBRE0iLCJpYXQiOjE3MDU0MTg4NTYsImV4cCI6MTcwNTQyMjQ1Nn0.nKAmYARvGGCWr6YH_UdvGxLj4CTeeyCzcGlcKK4HDk0
+Authorization: Bearer <token>
 
 {
     "id": "570fa8b1-5865-41bb-aaec-2f8da430774c",
@@ -45,12 +45,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNzhjYjc5L
 
 ### Delete A Product
 DELETE http://{{host}}:{{port}}/{{apiversion}}/products/a3f24491-60ca-4949-8bf8-c0e6ec143a15
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNzhjYjc5LWFhOGMtNGQwYi05N2M1LTA2OWQxYTRkYWZiYyIsIm5hbWUiOiJIZXNuYW4yIiwiZW1haWwiOiJoZXNuYW4yQGdtYWlsLmNvbSIsInR5cGUiOiJBRE0iLCJpYXQiOjE3MDU0MTg4NTYsImV4cCI6MTcwNTQyMjQ1Nn0.nKAmYARvGGCWr6YH_UdvGxLj4CTeeyCzcGlcKK4HDk0
+Authorization: Bearer <token>
 
 ### Add Category Product
 POST http://{{host}}:{{port}}/{{apiversion}}/products/add-category/570fa8b1-5865-41bb-aaec-2f8da430774c/1aa1a296-85bf-49be-8173-17c33b70073c
 Content-Type: application/json
-Authorization: Bearer token
+Authorization: Bearer <token>
 
 {
   "id": "570fa8b1-5865-41bb-aaec-2f8da430774c",
@@ -68,7 +68,7 @@ Authorization: Bearer token
 ### Remove Category Product
 DELETE http://{{host}}:{{port}}/{{apiversion}}/products/remove-category/a3f24491-60ca-4949-8bf8-c0e6ec143a15/7cb1c743-09b5-4532-bb54-91f29b765b5e
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNzhjYjc5LWFhOGMtNGQwYi05N2M1LTA2OWQxYTRkYWZiYyIsIm5hbWUiOiJIZXNuYW4yIiwiZW1haWwiOiJoZXNuYW4yQGdtYWlsLmNvbSIsInR5cGUiOiJBRE0iLCJpYXQiOjE3MDU0MTczMDksImV4cCI6MTcwNTQyMDkwOX0.5NrGeqMjTbzIUimccQhGWPTIm0eByr_iNxKdFGXJlzg
+Authorization: Bearer <token>
 
 {
   "id": "a3f24491-60ca-4949-8bf8-c0e6ec143a15",
@@ -89,7 +89,7 @@ GET http://{{host}}:{{port}}/{{apiversion}}/products/category/7cb1c743-09b5-4532
 ### Alter Status Product
 PUT http://{{host}}:{{port}}/{{apiversion}}/products/a3f24491-60ca-4949-8bf8-c0e6ec143a15/status
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhNzhjYjc5LWFhOGMtNGQwYi05N2M1LTA2OWQxYTRkYWZiYyIsIm5hbWUiOiJIZXNuYW4yIiwiZW1haWwiOiJoZXNuYW4yQGdtYWlsLmNvbSIsInR5cGUiOiJBRE0iLCJpYXQiOjE3MDU0MTIzODQsImV4cCI6MTcwNTQxNTk4NH0.YrZDJsK_bCwK1FO_c6Goqu1ElSVomM07R6XYZ4QYhKo
+Authorization: Bearer <token>
 
 {
   "id": "a3f24491-60ca-4949-8bf8-c0e6ec143a15",
